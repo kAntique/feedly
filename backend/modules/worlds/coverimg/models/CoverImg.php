@@ -18,6 +18,7 @@ class CoverImg extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+     public $cover;
     public static function tableName()
     {
         return 'cover_img';
@@ -31,6 +32,7 @@ class CoverImg extends \yii\db\ActiveRecord
         return [
             [['filename'], 'required'],
             [['filename'], 'string', 'max' => 150],
+            [['cover'], 'file', 'skipOnEmpty' => true, 'on' => 'create', 'extensions' => 'jpg,png,gif'],
         ];
     }
 
@@ -42,6 +44,7 @@ class CoverImg extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'filename' => 'Filename',
+            'cover' => 'รูปภาพ',
         ];
     }
 

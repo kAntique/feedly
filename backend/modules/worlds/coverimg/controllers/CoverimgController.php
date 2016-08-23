@@ -8,6 +8,7 @@ use backend\modules\worlds\coverimg\models\CoverimgSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * CoverimgController implements the CRUD actions for Coverimg model.
@@ -65,7 +66,15 @@ class CoverimgController extends Controller
     {
         $model = new Coverimg();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+
+          $file = UploadedFile::getInstance($model,'cover');
+
+          if ($file->size!= 0) {
+            $model->filename = $file->name;
+            $file->saveAs('uploads/coverimage'.$file->name );
+            $model->save();
+      }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [

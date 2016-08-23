@@ -24,7 +24,9 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-
+<div class="text-center">
+  <?= Html::img('uploads/coverimage'.$model->filename )?>
+</div>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
