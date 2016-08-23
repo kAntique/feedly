@@ -11,7 +11,24 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
+    'modules' => [
+      'world' => [
+           'class' => 'backend\modules\worlds\world\Module',
+       ],
+       'category' => [
+            'class' => 'backend\modules\worlds\category\Module',
+        ],
+        'rate' => [
+           'class' => 'backend\modules\worlds\rate\Module',
+       ],
+       'coverimg' => [
+            'class' => 'backend\modules\worlds\coverimg\Module',
+        ],
+        'status' => [
+           'class' => 'backend\modules\worlds\status\Module',
+       ],
+
+    ],
     'components' => [
       'view' => [
          'theme' => [
