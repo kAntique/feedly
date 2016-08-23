@@ -1,7 +1,9 @@
 <?php
 
 namespace backend\modules\worlds\category\models;
-
+use backend\modules\worlds\coverimg\models\CoverImg;
+use backend\modules\worlds\rate\models\Rate;
+use backend\modules\worlds\world\models\World;
 use Yii;
 
 /**
@@ -41,7 +43,7 @@ class Category extends \yii\db\ActiveRecord
             [['rate_id', 'world_id', 'cover_img_id'], 'integer'],
             [['title'], 'string', 'max' => 30],
             [['tags'], 'string', 'max' => 200],
-            [['cover_img_id'], 'exist', 'skipOnError' => true, 'targetClass' => CoverImg::className(), 'targetAttribute' => ['cover_img_id' => 'id']],
+            [['cover_img_id'], 'exist', 'skipOnError' => true, 'targetClass' => CoverImg::className(), 'targetAttribute' => ['coverimg_id' => 'id']],
             [['rate_id'], 'exist', 'skipOnError' => true, 'targetClass' => Rate::className(), 'targetAttribute' => ['rate_id' => 'id']],
             [['world_id'], 'exist', 'skipOnError' => true, 'targetClass' => World::className(), 'targetAttribute' => ['world_id' => 'id']],
         ];
@@ -59,7 +61,7 @@ class Category extends \yii\db\ActiveRecord
             'tags' => 'Tags',
             'rate_id' => 'Rate ID',
             'world_id' => 'World ID',
-            'cover_img_id' => 'Cover Img ID',
+            'coverimg_id' => 'Cover Img ID',
         ];
     }
 
@@ -68,7 +70,7 @@ class Category extends \yii\db\ActiveRecord
      */
     public function getCoverImg()
     {
-        return $this->hasOne(CoverImg::className(), ['id' => 'cover_img_id']);
+        return $this->hasOne(CoverImg::className(), ['id' => 'coverimg_id']);
     }
 
     /**

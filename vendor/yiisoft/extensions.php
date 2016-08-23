@@ -102,4 +102,13 @@ return array (
       '@kartik/file' => $vendorDir . '/kartik-v/yii2-widget-fileinput',
     ),
   ),
+  '2amigos/yii2-selectize-widget' => 
+  array (
+    'name' => '2amigos/yii2-selectize-widget',
+    'version' => '1.0.1.0',
+    'alias' => 
+    array (
+      '@dosamigos/selectize' => $vendorDir . '/2amigos/yii2-selectize-widget/src',
+    ),
+  ),
 );
