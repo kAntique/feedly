@@ -31,7 +31,11 @@
                 'options' => ['class' => 'sidebar-menu'],
                 'items' => [
                     ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
-                    ['label' => 'Gii', 'icon' => 'fa fa-file-code-o', 'url' => ['/gii']],
+                    ['label' => 'Worlds', 'icon' => 'fa fa-file-code-o', 'url' => ['/world/world']],
+                    ['label' => 'Rate', 'icon' => 'fa fa-file-code-o', 'url' => ['/rate/rate']],
+                  ['label' => 'CoverImage', 'icon' => 'fa fa-file-code-o', 'url' => ['/coverimg/coverimg']],
+                  ['label' => 'Category', 'icon' => 'fa fa-file-code-o', 'url' => ['/category/category']],
+                    ['label' => 'Status', 'icon' => 'fa fa-file-code-o', 'url' => ['/status/status']],
                     ['label' => 'Debug', 'icon' => 'fa fa-dashboard', 'url' => ['/debug']],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                     [
