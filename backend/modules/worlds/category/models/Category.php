@@ -43,7 +43,7 @@ class Category extends \yii\db\ActiveRecord
             [['rate_id', 'world_id', 'cover_img_id'], 'integer'],
             [['title'], 'string', 'max' => 30],
             [['tags'], 'string', 'max' => 200],
-            [['cover_img_id'], 'exist', 'skipOnError' => true, 'targetClass' => CoverImg::className(), 'targetAttribute' => ['coverimg_id' => 'id']],
+            [['cover_img_id'], 'exist', 'skipOnError' => true, 'targetClass' => CoverImg::className(), 'targetAttribute' => ['cover_img_id' => 'id']],
             [['rate_id'], 'exist', 'skipOnError' => true, 'targetClass' => Rate::className(), 'targetAttribute' => ['rate_id' => 'id']],
             [['world_id'], 'exist', 'skipOnError' => true, 'targetClass' => World::className(), 'targetAttribute' => ['world_id' => 'id']],
         ];
