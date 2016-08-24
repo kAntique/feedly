@@ -8,7 +8,12 @@ use kartik\file\FileInput;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="coverimg-form">
+<div class="box box-success box-solid">
+  <div class="box-header">
+      <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
+  </div>
+
+  <div class="box-body">
 
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
@@ -20,16 +25,17 @@ use kartik\file\FileInput;
                            'showCaption' => false,
                            'showRemove' => false,
                            'showUpload' => false,
-                           'browseClass' => 'btn btn-primary btn-block',
+                           'browseClass' => 'btn btn-primary ',//btn-block
                            'browseIcon' => '<i class="glyphicon glyphicon-camera"></i> ',
-                           'browseLabel' =>  'Select Photo'
+                           'browseLabel' =>  'Select Photo',
+                           //'maxFileSize'=>2800,
                        ],
                        'options' => ['accept' => 'image/*']
                    ]); ?><br>
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'เพิ่ม' : 'ตกลง', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
-
+  </div>
 </div>

@@ -8,7 +8,7 @@ use backend\modules\worlds\category\models\CategorySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use backend\modules\worlds\coverimg\models\CoverImg;
 /**
  * CategoryController implements the CRUD actions for Category model.
  */
@@ -54,8 +54,10 @@ class CategoryController extends Controller
      */
     public function actionView($id, $rate_id, $world_id, $cover_img_id)
     {
+      $cover = CoverImg::find()->where(['id'=>$cover_img_id])->one();
         return $this->render('view', [
             'model' => $this->findModel($id, $rate_id, $world_id, $cover_img_id),
+            'cover'=>$cover,
         ]);
     }
 

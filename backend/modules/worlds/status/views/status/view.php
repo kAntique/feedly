@@ -10,13 +10,15 @@ $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Statuses', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="status-view">
+<div class="box box-success box-solid">
+  <div class="box-header">
+      <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
+  </div>
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
+  <div class="box-body">
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('แก้ไข', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('ลบ', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -32,5 +34,5 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
         ],
     ]) ?>
-
+</div>
 </div>

@@ -7,18 +7,23 @@ use yii\grid\GridView;
 /* @var $searchModel backend\modules\worlds\coverimg\models\CoverimgSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Coverimgs';
+$this->title = 'ภาพปก';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="coverimg-index">
+<div class="box box-success box-solid">
+  <div class="box-header">
+      <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
+  </div>
 
-    <h1><?= Html::encode($this->title) ?></h1>
+  <div class="box-body">
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Coverimg', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('เพิ่มภาพปก', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+    
     <?= GridView::widget([
+
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
@@ -30,4 +35,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+</div>
 </div>

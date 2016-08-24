@@ -7,16 +7,19 @@ use yii\grid\GridView;
 /* @var $searchModel backend\modules\worlds\category\models\CategorySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Categories';
+$this->title = 'หมวดหมู่';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="category-index">
+<div class="box box-success box-solid">
+  <div class="box-header">
+      <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
+  </div>
 
-    <h1><?= Html::encode($this->title) ?></h1>
+  <div class="box-body">
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Category', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('เพิ่มหมวดหมู่', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -28,11 +31,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
             'description:ntext',
             'tags',
-            'rate_id',
+            'rate.rate_name',
             // 'world_id',
             // 'cover_img_id',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+  </div>
 </div>

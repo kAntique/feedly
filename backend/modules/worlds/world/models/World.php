@@ -40,7 +40,7 @@ class World extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'world_name' => 'World Name',
+            'world_name' => 'หัวข้อ',
         ];
     }
 

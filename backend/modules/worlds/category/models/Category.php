@@ -55,13 +55,13 @@ class Category extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'รหัสประเภท',
-            'title' => 'ประเภท',
+            'id' => 'รหัสหมวดหมู่',
+            'title' => 'หมวดหมู่',
             'description' => 'รายละเอียด',
-            'tags' => 'Tags',
-            'rate_id' => 'Rate ID',
-            'world_id' => 'World ID',
-            'coverimg_id' => 'Cover Img ID',
+            'tags' => 'คำค้น',
+            'rate_id' => 'ระดับความเหมาะสม',
+            'world_id' => 'หัวข้อ',
+            'cover_img_id' => 'ภาพปก ',
         ];
     }
 

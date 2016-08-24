@@ -6,13 +6,13 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\modules\worlds\rate\models\Rate */
 
-$this->title = 'Create Rate';
+$this->title = 'เพิ่ม ระดับความเหมาะสม';
 $this->params['breadcrumbs'][] = ['label' => 'Rates', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="rate-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+
 
     <?= $this->render('_form', [
         'model' => $model,

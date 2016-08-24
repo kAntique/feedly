@@ -32,7 +32,7 @@ class CoverImg extends \yii\db\ActiveRecord
         return [
             [['filename'], 'required'],
             [['filename'], 'string', 'max' => 150],
-            [['cover'], 'file', 'skipOnEmpty' => true, 'on' => 'create', 'extensions' => 'jpg,png,gif'],
+            [['cover'], 'file', 'skipOnEmpty' => true, 'on' => 'create', 'extensions' => 'jpg,png,gif','maxSize' => 409600, 'tooBig' => 'Limit is 400KB'],
         ];
     }
 
@@ -43,7 +43,7 @@ class CoverImg extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'filename' => 'Filename',
+            'filename' => 'ภาพปก',
             'cover' => 'รูปภาพ',
         ];
     }

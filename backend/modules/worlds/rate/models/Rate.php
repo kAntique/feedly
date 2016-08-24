@@ -43,8 +43,8 @@ class Rate extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'rate_name' => 'Rate Name',
-            'description' => 'Description',
+            'rate_name' => 'ระดับความเหมาะสม',
+            'description' => 'รายละเอียด',
         ];
     }
 

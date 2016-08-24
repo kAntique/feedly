@@ -7,16 +7,19 @@ use yii\grid\GridView;
 /* @var $searchModel backend\modules\worlds\status\models\StatusSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Statuses';
+$this->title = 'สถานะ';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="status-index">
+<div class="box box-success box-solid">
+  <div class="box-header">
+      <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
+  </div>
 
-    <h1><?= Html::encode($this->title) ?></h1>
+  <div class="box-body">
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Status', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('เพิ่มสถานะ', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -30,4 +33,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+</div>
 </div>

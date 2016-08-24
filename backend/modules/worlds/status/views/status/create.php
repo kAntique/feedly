@@ -6,13 +6,13 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\modules\worlds\status\models\Status */
 
-$this->title = 'Create Status';
+$this->title = 'เพิ่มสถานะ';
 $this->params['breadcrumbs'][] = ['label' => 'Statuses', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="status-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+
 
     <?= $this->render('_form', [
         'model' => $model,

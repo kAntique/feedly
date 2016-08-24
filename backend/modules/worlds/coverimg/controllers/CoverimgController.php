@@ -42,6 +42,7 @@ class CoverimgController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            
         ]);
     }
 
@@ -70,11 +71,19 @@ class CoverimgController extends Controller
 
           $file = UploadedFile::getInstance($model,'cover');
 
-          if ($file->size!= 0) {
-            $model->filename = $file->name;
-            $file->saveAs('uploads/coverimage'.$file->name );
-            $model->save();
-      }
+          // if ($file->size!= 0 ) {
+          //   Yii::$app->session->setFlash('warning', 'Check your  file size .');
+          //   return $this->refresh();
+          // }
+            if ($file->size > 409600) {
+                Yii::$app->session->setFlash('warning', 'Check your  file size .');
+                  return $this->refresh();
+            }else {
+              $model->filename = $file->name;
+              $file->saveAs('uploads/coverimage'.$file->name );
+              $model->save();
+            }
+
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [

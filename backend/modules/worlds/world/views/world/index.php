@@ -10,13 +10,16 @@ use yii\grid\GridView;
 $this->title = 'Worlds';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="world-index">
+<div class="box box-success box-solid">
+  <div class="box-header">
+      <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
+  </div>
 
-    <h1><?= Html::encode($this->title) ?></h1>
+  <div class="box-body">
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create World', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('เพิ่ม world', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -31,3 +34,4 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 </div>
+</divฬ
