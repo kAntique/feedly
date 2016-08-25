@@ -27,6 +27,8 @@ class Category extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+       public $cover;
+
     public static function tableName()
     {
         return 'category';
@@ -46,6 +48,8 @@ class Category extends \yii\db\ActiveRecord
             [['cover_img_id'], 'exist', 'skipOnError' => true, 'targetClass' => CoverImg::className(), 'targetAttribute' => ['cover_img_id' => 'id']],
             [['rate_id'], 'exist', 'skipOnError' => true, 'targetClass' => Rate::className(), 'targetAttribute' => ['rate_id' => 'id']],
             [['world_id'], 'exist', 'skipOnError' => true, 'targetClass' => World::className(), 'targetAttribute' => ['world_id' => 'id']],
+            [['cover'], 'file', 'skipOnEmpty' => true, 'on' => 'create', 'extensions' => 'jpg,png,gif'],
+
         ];
     }
 
@@ -60,7 +64,7 @@ class Category extends \yii\db\ActiveRecord
             'description' => 'รายละเอียด',
             'tags' => 'คำค้น',
             'rate_id' => 'ระดับความเหมาะสม',
-            'world_id' => 'หัวข้อ',
+            'world_id' => 'ประเภท',
             'cover_img_id' => 'ภาพปก ',
         ];
     }
@@ -70,7 +74,7 @@ class Category extends \yii\db\ActiveRecord
      */
     public function getCoverImg()
     {
-        return $this->hasOne(CoverImg::className(), ['id' => 'coverimg_id']);
+        return $this->hasOne(CoverImg::className(), ['id' => 'cover_img_id']);
     }
 
     /**

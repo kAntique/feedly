@@ -42,7 +42,7 @@ class CoverimgController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            
+
         ]);
     }
 
@@ -76,7 +76,7 @@ class CoverimgController extends Controller
           //   return $this->refresh();
           // }
             if ($file->size > 409600) {
-                Yii::$app->session->setFlash('warning', 'Check your  file size .');
+                Yii::$app->session->setFlash('warning', 'ไฟล์ขนาดใหญ่เกินไป โปรดเลือกไฟล์ใหม่.');
                   return $this->refresh();
             }else {
               $model->filename = $file->name;

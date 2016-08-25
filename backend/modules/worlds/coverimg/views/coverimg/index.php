@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('เพิ่มภาพปก', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-    
+
     <?= GridView::widget([
 
         'dataProvider' => $dataProvider,
@@ -29,8 +29,17 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'filename',
+          //  'id',
+            //'filename',
+            [
+          'attribute' => 'filename',
+          'format' => 'html',
+          'label' => 'ภาพปก',
+          'value' => function ($model) {
+              return Html::img('uploads/coverimage' . $model['filename'],
+                  ['width' => '60px']);
+          },
+      ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

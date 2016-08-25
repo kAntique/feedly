@@ -27,11 +27,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
             'world_name',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 </div>
-</divฬ
+</div>

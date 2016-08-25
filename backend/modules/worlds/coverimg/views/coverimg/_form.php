@@ -28,9 +28,10 @@ use kartik\file\FileInput;
                            'browseClass' => 'btn btn-primary ',//btn-block
                            'browseIcon' => '<i class="glyphicon glyphicon-camera"></i> ',
                            'browseLabel' =>  'Select Photo',
-                           //'maxFileSize'=>2800,
+                           //'maxFileSize'=>409600,
                        ],
-                       'options' => ['accept' => 'image/*']
+                       'options' => ['accept' => 'image/*'],
+
                    ]); ?><br>
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'เพิ่ม' : 'ตกลง', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

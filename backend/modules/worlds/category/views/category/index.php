@@ -21,22 +21,36 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('เพิ่มหมวดหมู่', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'title',
-            'description:ntext',
-            'tags',
-            'rate.rate_name',
-            // 'world_id',
-            // 'cover_img_id',
+     <?= GridView::widget([
+        // 'dataProvider' => $dataProvider1,
+         'dataProvider' => $dataProvider,
+         'filterModel' => $searchModel,
 
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+         'columns' => [
+             ['class' => 'yii\grid\SerialColumn'],
+             //'coverImg.filename',
+                   [
+                 'attribute' => 'cover_img_id',
+                 'format' => 'html',
+                 'label' => 'ภาพปก',
+                 'value' => function ($model) {
+                     return Html::img('uploads/coverimage' . $model->coverImg['filename'],
+                         ['width' => '100px']);
+                 },
+             ],
+             'title',
+          //  'description:ntext',
+             //'tags',
+             'rate.rate_name',
+              'world.world_name',
+
+
+
+
+             ['class' => 'yii\grid\ActionColumn'],
+         ],
+     ]);
+      ?>
   </div>
 </div>
