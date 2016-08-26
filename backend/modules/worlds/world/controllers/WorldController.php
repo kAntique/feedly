@@ -8,7 +8,7 @@ use backend\modules\worlds\world\models\WorldSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use backend\modules\worlds\category\models\Category;
 /**
  * WorldController implements the CRUD actions for World model.
  */
@@ -101,7 +101,15 @@ class WorldController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $category = Category::find()->where(['world_id'=>$model])->one();
+        if ($category) {
+          Yii::$app->session->setFlash('warning', 'ไม่สามารถลบข้อมูลได้ เป็นส่วนสำคัญของตารางหลัก.');
+
+        }else {
+        $model->delete();
+        Yii::$app->session->setFlash('success', 'ลบข้อมูลสำเร็จ.');
+        }
 
         return $this->redirect(['index']);
     }

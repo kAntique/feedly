@@ -8,7 +8,7 @@ use backend\modules\worlds\rate\models\RateSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use backend\modules\worlds\category\models\Category;
 /**
  * RateController implements the CRUD actions for Rate model.
  */
@@ -101,9 +101,17 @@ class RateController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+      $model = $this->findModel($id);
+      $category = Category::find()->where(['world_id'=>$model])->one();
+      if ($category) {
+        Yii::$app->session->setFlash('warning', 'ไม่สามารถลบข้อมูลได้ เป็นส่วนสำคัญของตารางหลัก.');
 
-        return $this->redirect(['index']);
+      }else {
+      $model->delete();
+      Yii::$app->session->setFlash('success', 'ลบข้อมูลสำเร็จ.');
+      }
+
+      return $this->redirect(['index']);
     }
 
     /**

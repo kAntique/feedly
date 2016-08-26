@@ -11,6 +11,10 @@ use yii\filters\VerbFilter;
 use backend\modules\worlds\coverimg\models\CoverImg;
 use yii\web\UploadedFile;
 use yii\data\ActiveDataProvider;
+use Imagine\Image\Box;
+use yii\imagine\Image;
+
+
 /**
  * CategoryController implements the CRUD actions for Category model.
  */
@@ -93,8 +97,13 @@ class CategoryController extends Controller
 
            if($modelimg->save()){
                $image->saveAs($path);
+               Image::frame($path)
+             ->thumbnail(new Box(350, 300))
+             ->save($path, ['quality' => 70]);
                $modelimg->id;
                $model->cover_img_id = $modelimg->id;
+
+
                $model->save();
 
            } else {
@@ -133,8 +142,11 @@ class CategoryController extends Controller
         Yii::$app->params['uploadPath'] = 'uploads/coverimage';
 
         if ($model->load(Yii::$app->request->post())) {
-          unlink(getcwd().'/uploads/coverimage'.$model->coverImg['filename']);
+
+
           $image = UploadedFile::getInstance($modelimg,'cover');
+          if ($image->size!=0) {
+            unlink(getcwd().'/uploads/coverimage'.$model->coverImg['filename']);
 
            // store the source file name
            $modelimg->filename = $image->name;
@@ -150,6 +162,9 @@ class CategoryController extends Controller
            if($modelimg->save()){
 
                $image->saveAs($path);
+               Image::frame($path)
+             ->thumbnail(new Box(100, 100))
+             ->save($path, ['quality' => 70]);
                $modelimg->id;
                $model->cover_img_id = $modelimg->id;
                $model->save();
@@ -157,6 +172,11 @@ class CategoryController extends Controller
            } else {
                // error in saving model
            }
+         }
+        //  else {
+        //    Yii::$app->session->setFlash('warning', 'โปรดเลือกไฟล์.');
+        //      return $this->refresh();
+        //  }
             return $this->redirect(['view', 'id' => $model->id, 'rate_id' => $model->rate_id, 'world_id' => $model->world_id, 'cover_img_id' => $model->cover_img_id]);
         } else {
             return $this->render('update', [
@@ -178,9 +198,10 @@ class CategoryController extends Controller
     public function actionDelete($id, $rate_id, $world_id, $cover_img_id)
     {
 
-
-          $model =$this->findModel($id, $rate_id, $world_id, $cover_img_id)->delete();
-
+         $model = $this->findModel($id, $rate_id, $world_id,$cover_img_id);
+         $coverimage = CoverImg::find()->where(['id'=>$model])->one();
+         $model =>
+           Yii::$app->session->setFlash('success', 'ลบข้อมูลสำเร็จ.');
         return $this->redirect(['index']);
     }
 

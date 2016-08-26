@@ -29,19 +29,24 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
+
             'id',
             'title',
             'description:ntext',
             'tags',
             'rate.rate_name',
             'world.world_name',
-            'cover_img_id',
+            //'cover_img_id',
+            'coverImg.filename',
+
 
         ],
     ]) ?>
     <div class="text-center" >
 
-      <?= Html::img('uploads/coverimage'.$cover->filename,['width' => 620,'height' => 480])?>
+      <?= Html::img('uploads/coverimage'.$cover->filename
+      ,['width' => 350,'height' => 300]
+      )?>
 
     </div>
 
