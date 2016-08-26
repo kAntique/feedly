@@ -111,4 +111,13 @@ return array (
       '@dosamigos/selectize' => $vendorDir . '/2amigos/yii2-selectize-widget/src',
     ),
   ),
+  'yiisoft/yii2-imagine' => 
+  array (
+    'name' => 'yiisoft/yii2-imagine',
+    'version' => '2.0.3.0',
+    'alias' => 
+    array (
+      '@yii/imagine' => $vendorDir . '/yiisoft/yii2-imagine',
+    ),
+  ),
 );

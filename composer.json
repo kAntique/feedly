@@ -20,7 +20,8 @@
         "yiisoft/yii2-swiftmailer": "*",
         "dmstr/yii2-adminlte-asset": "2.*",
         "kartik-v/yii2-widget-fileinput": "@dev",
-        "2amigos/yii2-selectize-widget": "~1.0"
+        "2amigos/yii2-selectize-widget": "~1.0",
+        "yiisoft/yii2-imagine": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
