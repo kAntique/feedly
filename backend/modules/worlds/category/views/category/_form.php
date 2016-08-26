@@ -19,9 +19,7 @@ use kartik\file\FileInput;
   </div>
 
   <div class="box-body">
-     <!-- if(!$model -> isNewRecord){
-       Html::img('uploads/coverimage'.$model->coverImg['filename']);
-     };?> -->
+
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
@@ -50,6 +48,9 @@ use kartik\file\FileInput;
      ArrayHelper::map(CoverImg::find()->all(),'id','filename'),
      ['prompt'=>'เลือก ภาพปก']
     ) ?> -->
+    <?php if(!$model->isNewRecord){?>
+   <?=   Html::img('uploads/coverimage'.$model->coverImg['filename'], ['width' => '200px']);?>
+   <?php }?>
    <?= $form->field($modelimg, 'cover')->fileInput() ?>
     <!-- < echo FileInput::widget([
                     'name' =>'cover',

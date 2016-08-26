@@ -127,9 +127,13 @@ class CategoryController extends Controller
     {
         $model = $this->findModel($id, $rate_id, $world_id, $cover_img_id);
 
+
         $modelimg = new Coverimg();
+
         Yii::$app->params['uploadPath'] = 'uploads/coverimage';
+
         if ($model->load(Yii::$app->request->post())) {
+          unlink(getcwd().'/uploads/coverimage'.$model->coverImg['filename']);
           $image = UploadedFile::getInstance($modelimg,'cover');
 
            // store the source file name
@@ -144,6 +148,7 @@ class CategoryController extends Controller
            $path = Yii::$app->params['uploadPath'] . $modelimg->filename;
 
            if($modelimg->save()){
+
                $image->saveAs($path);
                $modelimg->id;
                $model->cover_img_id = $modelimg->id;
@@ -172,7 +177,9 @@ class CategoryController extends Controller
      */
     public function actionDelete($id, $rate_id, $world_id, $cover_img_id)
     {
-        $this->findModel($id, $rate_id, $world_id, $cover_img_id)->delete();
+
+
+          $model =$this->findModel($id, $rate_id, $world_id, $cover_img_id)->delete();
 
         return $this->redirect(['index']);
     }

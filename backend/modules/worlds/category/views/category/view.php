@@ -44,8 +44,6 @@ $this->params['breadcrumbs'][] = $this->title;
       <?= Html::img('uploads/coverimage'.$cover->filename,['width' => 620,'height' => 480])?>
 
     </div>
-    <div class="text-center"
-  <p>  <?= Html::a( 'Back', Yii::$app->request->referrer,['class' => 'btn btn-success']);?></p>
-  </div>
+
 </div>
 </div>
