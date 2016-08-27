@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2e0cb936abef9729dd0217971912a633",
-    "content-hash": "70564c1c704e090f64f793eb58bc27c2",
+    "hash": "51aec44970383e2a08c6a70e427c34bd",
+    "content-hash": "e4e21588079e90d8b40e0e9c0e67362f",
     "packages": [
         {
             "name": "2amigos/yii2-selectize-widget",
@@ -307,16 +307,16 @@
         },
         {
             "name": "bower-asset/selectize",
-            "version": "v0.12.2",
+            "version": "v0.12.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/selectize/selectize.js.git",
-                "reference": "2e72b32d9ca8e8c1c943bb16a80d8a9c9af61268"
+                "reference": "abc8a560a8335a017790c2a799925cc123670bfc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/selectize/selectize.js/zipball/2e72b32d9ca8e8c1c943bb16a80d8a9c9af61268",
-                "reference": "2e72b32d9ca8e8c1c943bb16a80d8a9c9af61268",
+                "url": "https://api.github.com/repos/selectize/selectize.js/zipball/abc8a560a8335a017790c2a799925cc123670bfc",
+                "reference": "abc8a560a8335a017790c2a799925cc123670bfc",
                 "shasum": ""
             },
             "require": {
@@ -325,7 +325,7 @@
                 "bower-asset/sifter": "dev-0.5.x|0.5.x"
             },
             "require-dev": {
-                "bower-asset/bootstrap-2": "2",
+                "bower-asset/bootstrap-2": "~2",
                 "bower-asset/bootstrap-3.2": "3.2"
             },
             "type": "bower-asset-library",
