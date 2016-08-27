@@ -78,13 +78,13 @@ class EditorController extends Controller
                    $model->website = "-";
                    $model->save();
                 }else {
-                    $model->save();
+                   $model->save();
                 }
 
 
 
             }
-            //Yii::$app->session->setFlash('success', 'คุณได้สมัครสมาชิกเรียบร้อยแล้ว สามารถเข้าไปใช้งานได้เลย');
+
                 return $this->render('welcome',[
                     'model' => $model,
                 ]);
@@ -126,7 +126,7 @@ class EditorController extends Controller
         $model = new PasswordResetRequestForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {
-                Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
+                //Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
 
                 return $this->goHome();
                 // return $this->render('login');
