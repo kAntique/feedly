@@ -27,6 +27,9 @@ return [
         'status' => [
            'class' => 'backend\modules\worlds\status\Module',
        ],
+       'member' => [
+            'class' => 'backend\modules\member\Module',
+        ],
 
     ],
     'components' => [
