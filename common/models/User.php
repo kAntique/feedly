@@ -25,6 +25,7 @@ class User extends ActiveRecord implements IdentityInterface
 {
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
+    public $re_password;
 
 
     /**
@@ -51,8 +52,29 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            ['status', 'default', 'value' => self::STATUS_ACTIVE],
-            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+          [['username','password_hash','email'],'required'],
+          ['username', 'trim'],
+          ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
+          [['email'],'email'],
+          [['email'], 'unique'],
+          [['email'], 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
+          ['password_hash', 'string', 'min' => 6],
+          ['status', 'default', 'value' => self::STATUS_ACTIVE],
+          ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+          [['type_member'],'integer'],
+          //[['re_password'],'integer'],
+          //[['re_password'],'safe'],
+          ['re_password', 'compare', 'compareAttribute'=>'password_hash', 'message'=>"Passwords don't match" ],
+        ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'username' => 'ชื่อผู้ใช้',
+            'password_hash' => 'รหัสผ่าน',
+            'email' => 'อีเมลล์',
+            're_password' => 'ยืนยันรหัสผ่าน',
         ];
     }
 

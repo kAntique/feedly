@@ -84,7 +84,7 @@ class EditorController extends Controller
 
 
             }
-            Yii::$app->session->setFlash('success', 'คุณได้สมัครสมาชิกเรียบร้อยแล้ว สามารถเข้าไปใช้งานได้เลย');
+            //Yii::$app->session->setFlash('success', 'คุณได้สมัครสมาชิกเรียบร้อยแล้ว สามารถเข้าไปใช้งานได้เลย');
                 return $this->render('welcome',[
                     'model' => $model,
                 ]);

@@ -35,14 +35,13 @@ class Editor extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'name', 'lastname', 'avatar', 'website'], 'required'],
+            [['user_id', 'name', 'lastname', 'avatar'], 'required'],
             [['user_id'], 'integer'],
             [['date_register'], 'safe'],
             [['website'], 'string'],
             [['name', 'lastname', 'avatar'], 'string', 'max' => 50],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
             [['avatar_img'], 'file', 'skipOnEmpty' => true, 'on' => 'create', 'extensions' => 'jpg,png,gif'],
-            [['website'], 'string'],
         ];
     }
 
