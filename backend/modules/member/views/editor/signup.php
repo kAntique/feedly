@@ -14,6 +14,7 @@ use dosamigos\selectize\SelectizeTextInput;
 $this->title = 'สมัครสมาชิก';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<div class="col-lg-7">
 <div class="box box-success box-solid">
     <div class="box-header">
       <h3 class="box-title"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;<?=  Html::encode($this->title)?></h3>
@@ -22,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>กรุณากรอกข้อมูลต่อไปนี้เพื่อสมัครสมาชิก:</p>
 
     <div class="row">
-        <div class="col-lg-5">
+        <div class="col-lg-8">
             <?php $form = ActiveForm::begin([
               'options' =>['enctype' => 'multipart/form-data']
             ]); ?>
@@ -61,8 +62,6 @@ $this->params['breadcrumbs'][] = $this->title;
                   }
                 ?>
 
-                <!-- < $form->field($model, 'avatar')->textInput() ?> -->
-
                 <?= $form->field($user, 'email') ?>
 
                 <?= $form->field($user, 'password_hash')->passwordInput() ?>
@@ -73,12 +72,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= Html::submitButton($model->isNewRecord ? 'Signup' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
                 </div>
 
-                <!-- <div class="form-group">
-                     Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
-                </div> -->
-
             <?php ActiveForm::end(); ?>
         </div>
     </div>
+</div>
 </div>
 </div>

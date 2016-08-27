@@ -6,7 +6,6 @@ use Yii;
 use backend\modules\member\models\Editor;
 use backend\modules\member\models\EditorSearch;
 use backend\modules\member\models\PasswordResetRequestForm;
-//use backend\modules\member\models\ResetRequestForm;
 use backend\modules\member\models\ResetPasswordForm;
 use yii\web\UploadedFile;
 use dosamigos\fileupload\FileUpload;
@@ -127,9 +126,7 @@ class EditorController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {
                 //Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
-
                 return $this->goHome();
-                // return $this->render('login');
             } else {
                 Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for email provided.');
             }
@@ -190,7 +187,6 @@ class EditorController extends Controller
          $model = $this->findModel(Yii::$app->user->identity->id);
          return $this->render('view', [
              'model' => $model,
-             //'query' => $query,
          ]);
      }
 
@@ -224,8 +220,6 @@ class EditorController extends Controller
         $model = $this->findModel($id);
         $user = $model->user;
         $oldPass = $user->password_hash;
-        $oldImage = $model->avatar;
-        //echo $oldImage;
         if ($model->load(Yii::$app->request->post()) && $user->load(Yii::$app->request->post())) {
            if ($oldPass != $user->password_hash) {
               $user->password_hash = Yii::$app->security->generatePasswordHash($user->password_hash);
@@ -233,17 +227,13 @@ class EditorController extends Controller
            if ($user->save()) {
                 $file = \yii\web\UploadedFile::getInstance($model, 'avatar_img');
                 if (isset($file->size) && $file->size !== 0) {
-                    // if ($oldImage != $model->avatar) {
-                    //     unlink($oldImage);
-                    // }
                     $model->avatar = $file->name;
                     $file->saveAs('uploads/avatar/'.md5($file->name).'.'.$file->extension);
                     $model->avatar = md5($file->name).'.' . $file->extension;
-                    //$model->save();
                 }
                 $model->save();
           }
-          return $this->redirect(['view', 'id' => $model->id]); //, 'user_id' => $user->user_id
+          return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -264,13 +254,17 @@ class EditorController extends Controller
     {
         $model = $this->findModel($id);
         $user = $model->user;
-        //$user = $user->$user_id;
-        //$this->findModel($id, $user)->delete();
-        //$model->user_id = $user->id;
         $model->delete();
         $user->delete();
-        Yii::$app->session->setFlash('success', 'คุณได้ลบข้อมูลส่วนตัวของคุณเรียบร้อยแล้วครับ');
-        return $this->redirect(['index']);
+        //Yii::$app->session->setFlash('success', 'คุณได้ลบข้อมูลส่วนตัวของคุณเรียบร้อยแล้วครับ');
+        return $this->redirect(['after']);
+    }
+
+    public function actionAfter()
+    {
+      $this->layout = 'main2';
+      //Yii::$app->session->setFlash('success', 'คุณได้ลบข้อมูลส่วนตัวของคุณเรียบร้อยแล้วครับ');
+      return $this->render('after');
     }
 
 
