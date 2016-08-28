@@ -14,6 +14,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\models\User;
+use yii\imagine\Image;
+use Imagine\Image\Box;
 
 /**
  * EditorController implements the CRUD actions for Editor model.
@@ -71,15 +73,18 @@ class EditorController extends Controller
                 $model->avatar = $file->name;
                 $file->saveAs('uploads/avatar/'.md5($file->name). '.' . $file->extension);
                 $model->avatar = md5($file->name).'.' . $file->extension;
+                Image::thumbnail('uploads/avatar/' . $model->avatar, 500, 300)
+                ->resize(new Box(500,300));
+                // ->save('uploads/avatar/thumbnail-500x300/' . $model->avatar . '.' . $file->extension,
+                //         ['quality' => 70]);
 
                 $model->user_id = $user->id;
                 if($user->type_member == '1'){
                    $model->website = "-";
-                   $model->save();
                 }else {
-                   $model->save();
+                   $model->website = $model->website;
                 }
-
+                $model->save();
 
 
             }
