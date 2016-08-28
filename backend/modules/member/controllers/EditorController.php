@@ -240,6 +240,8 @@ class EditorController extends Controller
                     $model->avatar = $file->name;
                     $file->saveAs('uploads/avatar/'.md5($file->name).'.'.$file->extension);
                     $model->avatar = md5($file->name).'.' . $file->extension;
+                    Image::thumbnail('uploads/avatar/' . $model->avatar, 500, 300)
+                    ->resize(new Box(500,300));
                 }
                 $model->save();
           }
