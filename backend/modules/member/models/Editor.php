@@ -36,12 +36,14 @@ class Editor extends \yii\db\ActiveRecord
     {
         return [
             [['user_id', 'name', 'lastname', 'avatar'], 'required'],
+            [['name','lastname'], 'match', 'pattern' => '/^[ก-ฮ,a-z]\w*$/i'],
             [['user_id'], 'integer'],
             [['date_register'], 'safe'],
             [['website'], 'string'],
             [['name', 'lastname', 'avatar'], 'string', 'max' => 50],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
-            [['avatar_img'], 'file', 'skipOnEmpty' => true, 'on' => 'create', 'extensions' => 'jpg,png,gif'],
+            [['avatar_img'], 'file', 'skipOnEmpty' => true, 'on' => 'create', 'extensions' => 'jpg,png,gif'], //'maxSize' => 1024*1024
+            //['website', 'url', 'defaultScheme' => 'http'], // checks if "website" is a valid URL. Prepend "http://" to the "website" attribute
         ];
     }
 

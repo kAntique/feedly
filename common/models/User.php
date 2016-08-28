@@ -54,6 +54,7 @@ class User extends ActiveRecord implements IdentityInterface
         return [
           [['username','password_hash','email'],'required'],
           ['username', 'trim'],
+          ['username', 'match', 'pattern' => '/^[ก-ฮ,a-z]\w*$/i'],
           ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
           [['email'],'email'],
           [['email'], 'unique'],
