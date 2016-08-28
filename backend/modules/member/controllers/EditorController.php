@@ -220,6 +220,8 @@ class EditorController extends Controller
         $model = $this->findModel($id);
         $user = $model->user;
         $oldPass = $user->password_hash;
+        $oldAvatar = $model->avatar;
+        //echo $oldAvatar;
         if ($model->load(Yii::$app->request->post()) && $user->load(Yii::$app->request->post())) {
            if ($oldPass != $user->password_hash) {
               $user->password_hash = Yii::$app->security->generatePasswordHash($user->password_hash);
@@ -227,6 +229,9 @@ class EditorController extends Controller
            if ($user->save()) {
                 $file = \yii\web\UploadedFile::getInstance($model, 'avatar_img');
                 if (isset($file->size) && $file->size !== 0) {
+                    if ($oldAvatar != 0) {
+                        unlink('uploads/avatar/'.$oldAvatar);
+                    }
                     $model->avatar = $file->name;
                     $file->saveAs('uploads/avatar/'.md5($file->name).'.'.$file->extension);
                     $model->avatar = md5($file->name).'.' . $file->extension;
@@ -254,6 +259,10 @@ class EditorController extends Controller
     {
         $model = $this->findModel($id);
         $user = $model->user;
+        $oldAvatar = $model->avatar;
+        if ($oldAvatar != 0) {
+            unlink('uploads/avatar/'.$oldAvatar);
+        }
         $model->delete();
         $user->delete();
         //Yii::$app->session->setFlash('success', 'คุณได้ลบข้อมูลส่วนตัวของคุณเรียบร้อยแล้วครับ');

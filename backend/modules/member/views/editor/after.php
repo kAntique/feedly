@@ -6,7 +6,10 @@ use yii\bootstrap\ActiveForm;
 ?>
 <div class="box-body">
   <p>
-      <h4>กรุณาเลือกรายการที่ต้องการ</h4>
+      <div class="text-center">
+        <h4>กรุณาเลือกรายการที่ต้องการ</h4>
+      </div>
+      <br/>
        <div class="text-center">
            <a href="index.php?r=member/editor/select">สมัครสมาชิกใหม่</a><br>
        </div>

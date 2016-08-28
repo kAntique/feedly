@@ -64,8 +64,7 @@ class User extends ActiveRecord implements IdentityInterface
           ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
           [['type_member'],'integer'],
           //[['re_password'],'integer'],
-          //[['re_password'],'safe'],
-          ['re_password', 'compare', 'compareAttribute'=>'password_hash', 'message'=>"Passwords don't match" ],
+          //['re_password', 'compare', 'compareAttribute'=>'password_hash', 'message'=>"Passwords don't match" ],
         ];
     }
 
