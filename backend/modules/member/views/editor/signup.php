@@ -34,13 +34,23 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'lastname')->textInput() ?>
 
-                <?= $form->field($model, 'website')->widget(SelectizeTextInput::className(), [
+                <?php if (Yii::$app->request->get('type_member') == '2'): ?>
+                  <?= $form->field($model, 'website')->widget(SelectizeTextInput::className(), [
+                      //'loadUrl' => ['tag/list'],
+                      //'options' => ['type_member'=> '1'] ,
+                      'clientOptions' => [ 'plugins' => ['remove_button'],
+                        'create' => true,
+                       ],
+                       ])->hint('กรอกได้มากกว่า 1 เว็บไซต์')?>
+                <?php endif; ?>
+
+                <!-- < $form->field($model, 'website')->widget(SelectizeTextInput::className(), [
                     //'loadUrl' => ['tag/list'],
                     //'options' => ['type_member'=> '1'] ,
                     'clientOptions' => [ 'plugins' => ['remove_button'],
                       'create' => true,
                      ],
-                     ])->hint('กรอกได้มากกว่า 1 เว็บไซต์')?>
+                     ])->hint('กรอกได้มากกว่า 1 เว็บไซต์')?> -->
 
                 <br><?php echo FileInput::widget([
                     'model' => $model,
