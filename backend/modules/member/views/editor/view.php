@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model backend\modules\member\models\Editor */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Editors', 'url' => ['index']];
+//$this->params['breadcrumbs'][] = ['label' => 'Editors', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="box box-success box-solid">
@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('ลบ', ['delete', 'id' => $model->id, 'user_id' => $model->user_id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'คุณแน่ใจหรือไม่ว่าต้องการลบข้อมูลนี้ออก ?',
                 'method' => 'post',
             ],
         ]) ?>

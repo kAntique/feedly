@@ -7,16 +7,16 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'ร้องขอรหัสผ่านใหม่';
+$this->title = 'ขอรหัสผ่านใหม่';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-request-password-reset">
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h3><?= Html::encode($this->title) ?></h3>
 
-    <p>โปรดกรอกอีเมล์ของคุณ การร้องขอรหัสผ่านใหม่จะถูกส่งไปยังอีเมลล์ของคุณ.</p>
+    <p>โปรดกรอกอีเมล์ของคุณ.</p>
 
     <div class="row">
-        <div class="col-lg-5">
+        <div class="col-lg-12">
             <?php $form = ActiveForm::begin(['id' => 'request-password-reset-form']); ?>
 
                 <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>

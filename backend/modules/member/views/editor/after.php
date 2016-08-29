@@ -15,7 +15,7 @@ use yii\bootstrap\ActiveForm;
        </div>
        <br/>
        <div class="text-center">
-           <a href="index.php?r=site/login">เป็นสมาชิกอยู่แล้ว</a><br>
+           <a href="index.php?r=site/login">มีรหัสผ่านอยู่แล้ว</a><br>
        </div>
   </p>
 

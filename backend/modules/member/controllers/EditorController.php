@@ -54,14 +54,14 @@ class EditorController extends Controller
 
 
     public function actionSelect(){
-          $this->layout = 'main2';
+          $this->layout = "@backend/themes/adminlte/views/layouts/cardLayout";
           return $this->render('select');
     }
 
 
     public function actionSignup()
     {
-        $this->layout = 'main2';
+        $this->layout = "@backend/themes/adminlte/views/layouts/cardLayout";
         $model = new Editor();
         $user = new User();
         if ($model->load(Yii::$app->request->post()) && $user->load(Yii::$app->request->post())) {
@@ -126,7 +126,7 @@ class EditorController extends Controller
      */
     public function actionRequestPasswordReset()
     {
-        $this->layout = 'main2';
+        $this->layout = "@backend/themes/adminlte/views/layouts/cardLayout";
         $model = new PasswordResetRequestForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {
@@ -151,7 +151,7 @@ class EditorController extends Controller
      */
     public function actionResetPassword($token)
     {
-        $this->layout = 'main2';
+        $this->layout = "@backend/themes/adminlte/views/layouts/cardLayout";
         try {
             $model = new ResetPasswordForm($token);
         } catch (InvalidParamException $e) {
@@ -240,8 +240,8 @@ class EditorController extends Controller
                     $model->avatar = $file->name;
                     $file->saveAs('uploads/avatar/'.md5($file->name).'.'.$file->extension);
                     $model->avatar = md5($file->name).'.' . $file->extension;
-                    Image::thumbnail('uploads/avatar/' . $model->avatar, 500, 300)
-                    ->resize(new Box(500,300));
+                    // Image::thumbnail('uploads/avatar/' . $model->avatar, 500, 300)
+                    // ->resize(new Box(500,300));
                 }
                 $model->save();
           }
@@ -266,10 +266,11 @@ class EditorController extends Controller
     {
         $model = $this->findModel($id);
         $user = $model->user;
-        $oldAvatar = $model->avatar;
-        if ($oldAvatar != 0) {
-            unlink('uploads/avatar/'.$oldAvatar);
-        }
+        // $oldAvatar = $model->avatar;
+        // if ($oldAvatar != 0) {
+        //     unlink('uploads/avatar/'.$oldAvatar);
+        // }
+        unlink('uploads/avatar/'.$model->avatar);
         $model->delete();
         $user->delete();
         //Yii::$app->session->setFlash('success', 'คุณได้ลบข้อมูลส่วนตัวของคุณเรียบร้อยแล้วครับ');
@@ -278,7 +279,7 @@ class EditorController extends Controller
 
     public function actionAfter()
     {
-      $this->layout = 'main2';
+      $this->layout = "@backend/themes/adminlte/views/layouts/cardLayout";
       //Yii::$app->session->setFlash('success', 'คุณได้ลบข้อมูลส่วนตัวของคุณเรียบร้อยแล้วครับ');
       return $this->render('after');
     }

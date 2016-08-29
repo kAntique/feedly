@@ -48,7 +48,7 @@ class ResetPasswordForm extends Model
             ['password', 'string', 'min' => 6],
 
             ['re_password', 'required'],
-            ['re_password', 'compare', 'compareAttribute'=>'password', 'message'=>"Passwords don't match" ],
+            ['re_password', 'compare', 'compareAttribute'=>'password', 'message'=>"รหัสผ่านไม่ตรงกัน" ],
 
         ];
     }
