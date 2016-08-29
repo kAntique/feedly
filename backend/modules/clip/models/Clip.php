@@ -32,6 +32,7 @@ use Yii;
  */
 class Clip extends \yii\db\ActiveRecord
 {
+  public $cover;
     /**
      * @inheritdoc
      */
@@ -51,12 +52,13 @@ class Clip extends \yii\db\ActiveRecord
             [['date_time'], 'safe'],
             [['cover_img_id', 'rate_id', 'status_id', 'category_id'], 'integer'],
             [['tags'], 'string', 'max' => 200],
-            [['link'], 'string', 'max' => 45],
+            [['link'], 'string', 'max' => 100],
             [['IPaddress'], 'string', 'max' => 20],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
             [['cover_img_id'], 'exist', 'skipOnError' => true, 'targetClass' => CoverImg::className(), 'targetAttribute' => ['cover_img_id' => 'id']],
             [['rate_id'], 'exist', 'skipOnError' => true, 'targetClass' => Rate::className(), 'targetAttribute' => ['rate_id' => 'id']],
             [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => Status::className(), 'targetAttribute' => ['status_id' => 'id']],
+              [['cover'], 'file', 'skipOnEmpty' => true, 'on' => 'create', 'extensions' => 'jpg,png,gif'],
         ];
     }
 
@@ -67,19 +69,20 @@ class Clip extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
-            'subtitle' => 'Subtitle',
-            'year' => 'Year',
-            'ep' => 'Ep',
-            'description' => 'Description',
-            'tags' => 'Tags',
-            'link' => 'Link',
-            'date_time' => 'Date Time',
-            'IPaddress' => 'Ipaddress',
-            'cover_img_id' => 'Cover Img ID',
-            'rate_id' => 'Rate ID',
-            'status_id' => 'Status ID',
-            'category_id' => 'Category ID',
+            'title' => 'ชื่อเรื่อง',
+            'subtitle' => 'เรื่องย่อย',
+            'year' => 'ปี',
+            'ep' => 'ตอน',
+            'description' => 'รายละเอียด',
+            'tags' => 'คำค้น',
+            'link' => 'ลิงค์วิดีโอ',
+            'date_time' => 'วันที่',
+            'IPaddress' => 'IP_address',
+            'cover_img_id' => 'ภาพปก',
+            'rate_id' => 'ระดับความเหมาะสม',
+            'status_id' => 'สถานะลิงค์',
+            'category_id' => 'หมวดหมู่',
+            'cover' => 'ภาพปก',
         ];
     }
 

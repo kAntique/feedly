@@ -49,12 +49,12 @@ use kartik\file\FileInput;
      ['prompt'=>'เลือก ภาพปก']
     ) ?> -->
     <?php if(!$model->isNewRecord){?>
-   <?=   Html::img('uploads/coverimage'.$model->coverImg['filename'], ['width' => '200px']);?>
+   <?=   Html::img('uploads/coverimage/'.$model->coverImg['filename'], ['width' => '200px']);?>
 
    <?php }?>
 
    <?= $form->field($modelimg, 'cover')->fileInput() ?>
-  
+
 
     <!-- < echo FileInput::widget([
                     'name' =>'cover',

@@ -21,7 +21,8 @@
         "dmstr/yii2-adminlte-asset": "2.*",
         "kartik-v/yii2-widget-fileinput": "@dev",
         "2amigos/yii2-selectize-widget": "~1.0",
-        "yiisoft/yii2-imagine": "*"
+        "yiisoft/yii2-imagine": "*",
+        "2amigos/yii2-ckeditor-widget": "~1.0"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

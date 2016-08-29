@@ -8,6 +8,10 @@ use backend\modules\clip\models\ClipSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use backend\modules\worlds\coverimg\models\CoverImg;
+use yii\web\UploadedFile;
+use Imagine\Image\Box;
+use yii\imagine\Image;
 
 /**
  * ClipController implements the CRUD actions for Clip model.
@@ -55,8 +59,10 @@ class ClipController extends Controller
      */
     public function actionView($id, $cover_img_id, $rate_id, $status_id, $category_id)
     {
+      $cover = CoverImg::find()->where(['id'=>$cover_img_id])->one();
         return $this->render('view', [
             'model' => $this->findModel($id, $cover_img_id, $rate_id, $status_id, $category_id),
+              'cover'=>$cover,
         ]);
     }
 
@@ -68,12 +74,41 @@ class ClipController extends Controller
     public function actionCreate()
     {
         $model = new Clip();
+        $modelimg = new CoverImg();
+          Yii::$app->params['uploadPath'] = 'uploads/coverimage/';
+        if ($model->load(Yii::$app->request->post()) ) {
+          $image = UploadedFile::getInstance($modelimg,'cover');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+           // store the source file name
+           $modelimg->filename = $image->name;
+           $ext = end((explode(".", $image->name)));
+
+           // generate a unique file name
+           $modelimg->filename = Yii::$app->security->generateRandomString().".{$ext}";
+
+           // the path to save file, you can set an uploadPath
+           // in Yii::$app->params (as used in example below)
+           $path = Yii::$app->params['uploadPath'] . $modelimg->filename;
+
+           if($modelimg->save()){
+               $image->saveAs($path);
+               Image::frame($path)
+             ->thumbnail(new Box(350, 300))
+             ->save($path, ['quality' => 70]);
+               $modelimg->id;
+               $model->cover_img_id = $modelimg->id;
+
+
+               $model->save();
+
+           } else {
+               // error in saving model
+           }
             return $this->redirect(['view', 'id' => $model->id, 'cover_img_id' => $model->cover_img_id, 'rate_id' => $model->rate_id, 'status_id' => $model->status_id, 'category_id' => $model->category_id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'modelimg'=>  $modelimg,
             ]);
         }
     }
@@ -92,11 +127,51 @@ class ClipController extends Controller
     {
         $model = $this->findModel($id, $cover_img_id, $rate_id, $status_id, $category_id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $modelimg = CoverImg::find()->where(['id'=>$cover_img_id])->one();
+
+        Yii::$app->params['uploadPath'] = 'uploads/coverimage/';
+
+        if ($model->load(Yii::$app->request->post())) {
+
+
+          $image = UploadedFile::getInstance($modelimg,'cover');
+          if ($image->size!=0) {
+            unlink(getcwd().'/uploads/coverimage/'.$model->coverImg['filename']);
+
+           // store the source file name
+           $modelimg->filename = $image->name;
+           $ext = end((explode(".", $image->name)));
+
+           // generate a unique file name
+           $modelimg->filename = Yii::$app->security->generateRandomString().".{$ext}";
+
+           // the path to save file, you can set an uploadPath
+           // in Yii::$app->params (as used in example below)
+           $path = Yii::$app->params['uploadPath'] . $modelimg->filename;
+
+           if($modelimg->save()){
+
+               $image->saveAs($path);
+               Image::frame($path)
+             ->thumbnail(new Box(100, 100))
+             ->save($path, ['quality' => 70]);
+               $modelimg->id;
+               $model->cover_img_id = $modelimg->id;
+               $model->save();
+
+           } else {
+               // error in saving model
+           }
+         }
+        //  else {
+        //    Yii::$app->session->setFlash('warning', 'โปรดเลือกไฟล์.');
+        //      return $this->refresh();
+        //  }
             return $this->redirect(['view', 'id' => $model->id, 'cover_img_id' => $model->cover_img_id, 'rate_id' => $model->rate_id, 'status_id' => $model->status_id, 'category_id' => $model->category_id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'modelimg' => $modelimg,
             ]);
         }
     }
@@ -113,8 +188,12 @@ class ClipController extends Controller
      */
     public function actionDelete($id, $cover_img_id, $rate_id, $status_id, $category_id)
     {
-        $this->findModel($id, $cover_img_id, $rate_id, $status_id, $category_id)->delete();
 
+        $coverimage = CoverImg::find()->where(['id'=>$cover_img_id])->one();
+        $model =   $this->findModel($id, $cover_img_id, $rate_id, $status_id, $category_id)->delete();
+        $coverimage->delete();
+
+          Yii::$app->session->setFlash('success', 'ลบข้อมูลสำเร็จ.');
         return $this->redirect(['index']);
     }
 

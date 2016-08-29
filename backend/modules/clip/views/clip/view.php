@@ -10,7 +10,13 @@ $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => 'Clips', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="clip-view">
+<div class="box box-success box-solid">
+  <div class="box-header">
+      <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
+  </div>
+
+  <div class="box-body">
+
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -38,11 +44,18 @@ $this->params['breadcrumbs'][] = $this->title;
             'link',
             'date_time',
             'IPaddress',
-            'cover_img_id',
-            'rate_id',
-            'status_id',
-            'category_id',
+            'rate.rate_name',
+            'status.name',
+            'category.title',
+            'coverImg.filename',
         ],
     ]) ?>
+    <div class="text-center" >
 
+      <?= Html::img('uploads/coverimage/'.$cover->filename
+      ,['width' => 350,'height' => 300]
+      )?>
+
+    </div>
+</div>
 </div>
