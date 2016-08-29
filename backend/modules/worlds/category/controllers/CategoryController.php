@@ -98,8 +98,8 @@ class CategoryController extends Controller
            if($modelimg->save()){
                $image->saveAs($path);
                Image::frame($path)
-             ->thumbnail(new Box(350, 300))
-             ->save($path, ['quality' => 70]);
+             ->thumbnail(new Box(1280, 720))
+             ->save($path, ['quality' => 100]);
                $modelimg->id;
                $model->cover_img_id = $modelimg->id;
 
@@ -139,14 +139,14 @@ class CategoryController extends Controller
 
         $modelimg = CoverImg::find()->where(['id'=>$cover_img_id])->one();
 
-        Yii::$app->params['uploadPath'] = 'uploads/coverimage';
+        Yii::$app->params['uploadPath'] = 'uploads/coverimage/';
 
         if ($model->load(Yii::$app->request->post())) {
 
 
           $image = UploadedFile::getInstance($modelimg,'cover');
           if ($image->size!=0) {
-            unlink(getcwd().'/uploads/coverimage'.$model->coverImg['filename']);
+            unlink(getcwd().'/uploads/coverimage/'.$model->coverImg['filename']);
 
            // store the source file name
            $modelimg->filename = $image->name;
@@ -163,8 +163,8 @@ class CategoryController extends Controller
 
                $image->saveAs($path);
                Image::frame($path)
-             ->thumbnail(new Box(100, 100))
-             ->save($path, ['quality' => 70]);
+               ->thumbnail(new Box(1280, 720))
+               ->save($path, ['quality' => 100]);
                $modelimg->id;
                $model->cover_img_id = $modelimg->id;
                $model->save();

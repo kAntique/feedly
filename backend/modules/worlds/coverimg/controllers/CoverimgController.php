@@ -80,7 +80,7 @@ class CoverimgController extends Controller
                   return $this->refresh();
             }else {
               $model->filename = $file->name;
-              $file->saveAs('uploads/coverimage'.$file->name );
+              $file->saveAs('uploads/coverimage/'.$file->name );
               $model->save();
             }
 

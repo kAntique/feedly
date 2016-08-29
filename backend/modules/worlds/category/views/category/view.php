@@ -38,6 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'world.world_name',
             //'cover_img_id',
             'coverImg.filename',
+            
 
 
         ],
@@ -45,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="text-center" >
 
       <?= Html::img('uploads/coverimage/'.$cover->filename
-      ,['width' => 350,'height' => 300]
+      ,['width' => 680,'height' => 420]
       )?>
 
     </div>
