@@ -53,6 +53,14 @@ class ResetPasswordForm extends Model
         ];
     }
 
+    public function attributeLabels()
+    {
+        return [
+            'password' => 'รหัสผ่าน',
+            're_password' => 'ยืนยันรหัสผ่าน',
+        ];
+    }
+
     /**
      * Resets password.
      *
