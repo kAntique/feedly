@@ -50,13 +50,13 @@ class ClipController extends Controller
      * @param integer $cover_img_id
      * @param integer $rate_id
      * @param integer $status_id
-     * @param integer $catagory_id
+     * @param integer $category_id
      * @return mixed
      */
-    public function actionView($id, $cover_img_id, $rate_id, $status_id, $catagory_id)
+    public function actionView($id, $cover_img_id, $rate_id, $status_id, $category_id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id, $cover_img_id, $rate_id, $status_id, $catagory_id),
+            'model' => $this->findModel($id, $cover_img_id, $rate_id, $status_id, $category_id),
         ]);
     }
 
@@ -70,7 +70,7 @@ class ClipController extends Controller
         $model = new Clip();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id, 'cover_img_id' => $model->cover_img_id, 'rate_id' => $model->rate_id, 'status_id' => $model->status_id, 'catagory_id' => $model->catagory_id]);
+            return $this->redirect(['view', 'id' => $model->id, 'cover_img_id' => $model->cover_img_id, 'rate_id' => $model->rate_id, 'status_id' => $model->status_id, 'category_id' => $model->category_id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -85,15 +85,15 @@ class ClipController extends Controller
      * @param integer $cover_img_id
      * @param integer $rate_id
      * @param integer $status_id
-     * @param integer $catagory_id
+     * @param integer $category_id
      * @return mixed
      */
-    public function actionUpdate($id, $cover_img_id, $rate_id, $status_id, $catagory_id)
+    public function actionUpdate($id, $cover_img_id, $rate_id, $status_id, $category_id)
     {
-        $model = $this->findModel($id, $cover_img_id, $rate_id, $status_id, $catagory_id);
+        $model = $this->findModel($id, $cover_img_id, $rate_id, $status_id, $category_id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id, 'cover_img_id' => $model->cover_img_id, 'rate_id' => $model->rate_id, 'status_id' => $model->status_id, 'catagory_id' => $model->catagory_id]);
+            return $this->redirect(['view', 'id' => $model->id, 'cover_img_id' => $model->cover_img_id, 'rate_id' => $model->rate_id, 'status_id' => $model->status_id, 'category_id' => $model->category_id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -108,12 +108,12 @@ class ClipController extends Controller
      * @param integer $cover_img_id
      * @param integer $rate_id
      * @param integer $status_id
-     * @param integer $catagory_id
+     * @param integer $category_id
      * @return mixed
      */
-    public function actionDelete($id, $cover_img_id, $rate_id, $status_id, $catagory_id)
+    public function actionDelete($id, $cover_img_id, $rate_id, $status_id, $category_id)
     {
-        $this->findModel($id, $cover_img_id, $rate_id, $status_id, $catagory_id)->delete();
+        $this->findModel($id, $cover_img_id, $rate_id, $status_id, $category_id)->delete();
 
         return $this->redirect(['index']);
     }
@@ -125,13 +125,13 @@ class ClipController extends Controller
      * @param integer $cover_img_id
      * @param integer $rate_id
      * @param integer $status_id
-     * @param integer $catagory_id
+     * @param integer $category_id
      * @return Clip the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id, $cover_img_id, $rate_id, $status_id, $catagory_id)
+    protected function findModel($id, $cover_img_id, $rate_id, $status_id, $category_id)
     {
-        if (($model = Clip::findOne(['id' => $id, 'cover_img_id' => $cover_img_id, 'rate_id' => $rate_id, 'status_id' => $status_id, 'catagory_id' => $catagory_id])) !== null) {
+        if (($model = Clip::findOne(['id' => $id, 'cover_img_id' => $cover_img_id, 'rate_id' => $rate_id, 'status_id' => $status_id, 'category_id' => $category_id])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

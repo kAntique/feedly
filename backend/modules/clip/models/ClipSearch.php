@@ -18,7 +18,7 @@ class ClipSearch extends Clip
     public function rules()
     {
         return [
-            [['id', 'cover_img_id', 'rate_id', 'status_id', 'catagory_id'], 'integer'],
+            [['id', 'cover_img_id', 'rate_id', 'status_id', 'category_id'], 'integer'],
             [['title', 'subtitle', 'year', 'ep', 'description', 'tags', 'link', 'date_time', 'IPaddress'], 'safe'],
         ];
     }
@@ -64,7 +64,7 @@ class ClipSearch extends Clip
             'cover_img_id' => $this->cover_img_id,
             'rate_id' => $this->rate_id,
             'status_id' => $this->status_id,
-            'catagory_id' => $this->catagory_id,
+            'category_id' => $this->category_id,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])

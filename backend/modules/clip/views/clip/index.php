@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'cover_img_id',
             // 'rate_id',
             // 'status_id',
-            // 'catagory_id',
+            // 'category_id',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
