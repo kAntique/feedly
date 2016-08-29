@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
                  'format' => 'html',
                  'label' => 'ภาพปก',
                  'value' => function ($model) {
-                     return Html::img('uploads/coverimage' . $model->coverImg['filename'],
+                     return Html::img('uploads/coverimage/' . $model->coverImg['filename'],
                          ['width' => '100px']);
                  },
              ],

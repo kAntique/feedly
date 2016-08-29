@@ -50,8 +50,12 @@ use kartik\file\FileInput;
     ) ?> -->
     <?php if(!$model->isNewRecord){?>
    <?=   Html::img('uploads/coverimage'.$model->coverImg['filename'], ['width' => '200px']);?>
+
    <?php }?>
+
    <?= $form->field($modelimg, 'cover')->fileInput() ?>
+  
+
     <!-- < echo FileInput::widget([
                     'name' =>'cover',
                       'pluginOptions' => [

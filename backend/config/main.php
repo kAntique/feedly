@@ -27,6 +27,9 @@ return [
         'status' => [
            'class' => 'backend\modules\worlds\status\Module',
        ],
+       'clip' => [
+            'class' => 'backend\modules\clip\Module',
+        ],
 
     ],
     'components' => [

@@ -80,7 +80,7 @@ class CategoryController extends Controller
     {
         $model = new Category();
         $modelimg = new Coverimg();
-        Yii::$app->params['uploadPath'] = 'uploads/coverimage';
+        Yii::$app->params['uploadPath'] = 'uploads/coverimage/';
         if ($model->load(Yii::$app->request->post())) {
           $image = UploadedFile::getInstance($modelimg,'cover');
 
@@ -137,7 +137,7 @@ class CategoryController extends Controller
         $model = $this->findModel($id, $rate_id, $world_id, $cover_img_id);
 
 
-        $modelimg = new Coverimg();
+        $modelimg = CoverImg::find()->where(['id'=>$cover_img_id])->one();
 
         Yii::$app->params['uploadPath'] = 'uploads/coverimage';
 
@@ -197,10 +197,10 @@ class CategoryController extends Controller
      */
     public function actionDelete($id, $rate_id, $world_id, $cover_img_id)
     {
+         $coverimage = CoverImg::find()->where(['id'=>$cover_img_id])->one();
+         $model = $this->findModel($id, $rate_id, $world_id,$cover_img_id)->delete();
+         $coverimage->delete();
 
-         $model = $this->findModel($id, $rate_id, $world_id,$cover_img_id);
-         $coverimage = CoverImg::find()->where(['id'=>$model])->one();
-         $model =>
            Yii::$app->session->setFlash('success', 'ลบข้อมูลสำเร็จ.');
         return $this->redirect(['index']);
     }
