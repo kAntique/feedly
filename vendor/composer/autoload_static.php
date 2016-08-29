@@ -37,6 +37,7 @@ class ComposerStaticInit8b5026c3702b01f5040b9139ea9c7ee5
         'd' => 
         array (
             'dosamigos\\selectize\\' => 20,
+            'dosamigos\\ckeditor\\' => 19,
             'dmstr\\' => 6,
         ),
         'c' => 
@@ -105,6 +106,10 @@ class ComposerStaticInit8b5026c3702b01f5040b9139ea9c7ee5
         'dosamigos\\selectize\\' => 
         array (
             0 => __DIR__ . '/..' . '/2amigos/yii2-selectize-widget/src',
+        ),
+        'dosamigos\\ckeditor\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/2amigos/yii2-ckeditor-widget/src',
         ),
         'dmstr\\' => 
         array (

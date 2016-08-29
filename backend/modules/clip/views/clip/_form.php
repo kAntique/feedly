@@ -8,6 +8,7 @@ use backend\modules\worlds\rate\models\Rate;
 use backend\modules\worlds\status\models\Status;
 use dosamigos\selectize\SelectizeTextInput;
 use kartik\file\FileInput;
+use dosamigos\ckeditor\CKEditor;
 /* @var $this yii\web\View */
 /* @var $model backend\modules\clip\models\Clip */
 /* @var $form yii\widgets\ActiveForm */
@@ -25,13 +26,20 @@ use kartik\file\FileInput;
 
     <?= $form->field($model, 'title')->textInput() ?>
 
-    <?= $form->field($model, 'subtitle')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'subtitle')->widget(CKEditor::className(), [
+        'options' => ['rows' => 6],
+        'preset' => 'basic'
+    ]) ?>
+
 
     <?= $form->field($model, 'year')->textInput() ?>
 
     <?= $form->field($model, 'ep')->textInput() ?>
 
-    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'description')->widget(CKEditor::className(), [
+        'options' => ['rows' => 6],
+        'preset' => 'basic'
+    ]) ?>
 
     <?= $form->field($model, 'tags')->widget(SelectizeTextInput::className(), [
 
