@@ -30,7 +30,7 @@
             [
                 'options' => ['class' => 'sidebar-menu'],
                 'items' => [
-                    ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
+                    ['label' => 'Menu', 'options' => ['class' => 'header']],
                     ['label' => 'ประเภท', 'icon' => 'glyphicon glyphicon-globe', 'url' => ['/world/world']],
                   ['label' => 'หมวดหมู่', 'icon' => 'glyphicon glyphicon-th-list', 'url' => ['/category/category']],
                   ['label' => 'วิดีโอ', 'icon' => 'glyphicon glyphicon-film', 'url' => ['/clip/clip']],

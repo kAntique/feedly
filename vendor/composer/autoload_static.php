@@ -126,6 +126,13 @@ class ComposerStaticInit8b5026c3702b01f5040b9139ea9c7ee5
     );
 
     public static $prefixesPsr0 = array (
+        'y' => 
+        array (
+            'yii\\image\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/yurkinx/yii2-image',
+            ),
+        ),
         'c' => 
         array (
             'cebe\\gravatar\\' => 

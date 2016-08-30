@@ -54,7 +54,7 @@ use dosamigos\ckeditor\CKEditor;
 
      <!-- $form->field($model, 'date_time')->textInput() ?> -->
 
-    <?= $form->field($model, 'IPaddress')->textInput(['maxlength' => true]) ?>
+   <!-- $form->field($model, 'IPaddress')->textInput(['maxlength' => true]) ?> -->
 
      <!-- $form->field($model, 'cover_img_id')->textInput() ?> -->
 
@@ -65,6 +65,8 @@ use dosamigos\ckeditor\CKEditor;
 
     <?= $form->field($model, 'status_id')->dropDownList(
      ArrayHelper::map(Status::find()->all(),'id','name'),
+     ['options'=> ['name' =>['Selected'=>'selected']]],
+
      ['prompt'=>'เลือก ระดับ']
     ) ?>
 

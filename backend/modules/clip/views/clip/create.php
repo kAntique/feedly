@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="clip-create">
 
-    
+
     <?= $this->render('_form', [
         'model' => $model,
         'modelimg'=>  $modelimg,

@@ -13,6 +13,7 @@ use yii\web\UploadedFile;
 use yii\data\ActiveDataProvider;
 use Imagine\Image\Box;
 use yii\imagine\Image;
+use backend\modules\clip\models\Clip;
 
 
 /**
@@ -97,9 +98,12 @@ class CategoryController extends Controller
 
            if($modelimg->save()){
                $image->saveAs($path);
-               Image::frame($path)
-             ->thumbnail(new Box(1280, 720))
-             ->save($path, ['quality' => 100]);
+               Image::getImagine()->open($image)
+               ->resize(new Box(1280, 720))
+               ->save($path , ['quality' => 100]);
+            //    Image::frame($path)
+            //  ->thumbnail(new Box(1280, 720))
+            //  ->save($path, ['quality' => 100]);
                $modelimg->id;
                $model->cover_img_id = $modelimg->id;
 
@@ -163,7 +167,7 @@ class CategoryController extends Controller
 
                $image->saveAs($path);
                Image::frame($path)
-               ->thumbnail(new Box(1280, 720))
+                 ->resize(new Box(1280, 720))
                ->save($path, ['quality' => 100]);
                $modelimg->id;
                $model->cover_img_id = $modelimg->id;
@@ -198,10 +202,18 @@ class CategoryController extends Controller
     public function actionDelete($id, $rate_id, $world_id, $cover_img_id)
     {
          $coverimage = CoverImg::find()->where(['id'=>$cover_img_id])->one();
-         $model = $this->findModel($id, $rate_id, $world_id,$cover_img_id)->delete();
-         $coverimage->delete();
+         $model = $this->findModel($id, $rate_id, $world_id,$cover_img_id);
+         $clip = Clip::find()->where(['category_id'=>$model])->one();
+         if ($clip) {
+           Yii::$app->session->setFlash('warning', 'ไม่สามารถลบข้อมูลได้ เป็นส่วนสำคัญของตารางหลัก.');
 
-           Yii::$app->session->setFlash('success', 'ลบข้อมูลสำเร็จ.');
+         }else {
+         $model->delete();
+           unlink(getcwd().'/uploads/coverimage/'.$model->coverImg['filename']);
+          $coverimage->delete();
+         Yii::$app->session->setFlash('success', 'ลบข้อมูลสำเร็จ.');
+         }
+
         return $this->redirect(['index']);
     }
 
