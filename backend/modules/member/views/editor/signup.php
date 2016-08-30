@@ -10,6 +10,7 @@ use dosamigos\fileupload\FileUpload;
 use dosamigos\fileupload\FileUploadUI;
 use kartik\file\FileInput;
 use dosamigos\selectize\SelectizeTextInput;
+//use	yii\widgets\ActiveForm;
 
 //$this->title = 'สมัครสมาชิก';
 //$this->params['breadcrumbs'][] = $this->title;
@@ -20,7 +21,8 @@ use dosamigos\selectize\SelectizeTextInput;
 <div class="row-lg-12">
     <div class="col-lg-12">
         <?php $form = ActiveForm::begin([
-          'options' =>['enctype' => 'multipart/form-data']
+          'enableAjaxValidation' =>true,
+          'options' =>['enctype' => 'multipart/form-data'],
         ]); ?>
 
             <?= $form->field($user, 'username')->textInput(['autofocus' => true]) ?>

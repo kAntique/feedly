@@ -16,6 +16,7 @@ use yii\filters\VerbFilter;
 use common\models\User;
 use yii\imagine\Image;
 use Imagine\Image\Box;
+use yii\bootstrap\ActiveForm;
 
 /**
  * EditorController implements the CRUD actions for Editor model.
@@ -65,6 +66,12 @@ class EditorController extends Controller
         $model = new Editor();
         $user = new User();
         if ($model->load(Yii::$app->request->post()) && $user->load(Yii::$app->request->post())) {
+            if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+                Yii::$app->response->format = 'json';
+                return ActiveForm::validate($user,$model);
+            }
+            // Yii::$app->response->format = 'json';
+            // return ActiveForm::validate($user);
             $user->password_hash = Yii::$app->security->generatePasswordHash($user->password_hash);
             $user->auth_key = Yii::$app->security->generateRandomString();
             $user->type_member = Yii::$app->request->get('type_member');
@@ -82,16 +89,27 @@ class EditorController extends Controller
                 if($user->type_member == '1'){
                    $model->website = "-";
                 }else {
-                   $model->website = $model->website;
+                   $model->website = 'http://www'.'.'.$model->website;
                 }
                 $model->save();
 
 
             }
+            if ($model->validate() || $user->validate()) {
+              if (Yii::$app->getUser()->login($user)) {
+                  Yii::$app->session->setFlash('success', 'Feedly ยินดีต้อนรับ คุณได้สมัครสมาชิกเรียบร้อยแล้ว');
+                  return $this->goHome();
+              }
+            }else {
+              print_r($model->getErrors);
+              print_r($user->getErrors);
+              exit;
+            }
 
-                return $this->render('welcome',[
-                    'model' => $model,
-                ]);
+
+                // return $this->render('welcome',[
+                //     'model' => $model,
+                // ]);
         }else {
           return $this->render('signup', [
               'model' => $model,
@@ -228,18 +246,24 @@ class EditorController extends Controller
         $oldAvatar = $model->avatar;
         //echo $oldAvatar;
         if ($model->load(Yii::$app->request->post()) && $user->load(Yii::$app->request->post())) {
+          if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+              Yii::$app->response->format = 'json';
+              return ActiveForm::validate($user,$model);
+          }
            if ($oldPass != $user->password_hash) {
               $user->password_hash = Yii::$app->security->generatePasswordHash($user->password_hash);
            }
            if ($user->save()) {
                 $file = \yii\web\UploadedFile::getInstance($model, 'avatar_img');
                 if (isset($file->size) && $file->size !== 0) {
-                    if ($oldAvatar != 0) {
-                        unlink('uploads/avatar/'.$oldAvatar);
-                    }
                     $model->avatar = $file->name;
                     $file->saveAs('uploads/avatar/'.md5($file->name).'.'.$file->extension);
                     $model->avatar = md5($file->name).'.' . $file->extension;
+                    if ($oldAvatar != 0) {
+                        if ($oldAvatar == $model->avatar) {  //ที่จริงควรเพิ่ม $oldAvatar != $model->avatar //เหตุผลที่ไม่ใส่ไปเพราะในฐานข้อมูลที่บาง attribute มีชื่ออยู่แต่รูปไม่มี
+                            unlink('uploads/avatar/'.$oldAvatar);
+                        }
+                    }
                     // Image::thumbnail('uploads/avatar/' . $model->avatar, 500, 300)
                     // ->resize(new Box(500,300));
                 }

@@ -25,7 +25,7 @@ class User extends ActiveRecord implements IdentityInterface
 {
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
-    public $re_password;
+    //public $re_password;
 
 
     /**
@@ -54,15 +54,20 @@ class User extends ActiveRecord implements IdentityInterface
         return [
           [['username','password_hash','email'],'required'],
           ['username', 'trim'],
-          ['username', 'match', 'pattern' => '/^[ก-ฮ,a-z]\w*$/i'],
-          ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
-          [['email'],'email'],
-          [['email'], 'unique'],
-          [['email'], 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
+          //['username', 'required'],
+          ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'ชื่อผู้ใช้นี้มีคนใช้งานแล้ว'],
+          ['username', 'string', 'min' => 2, 'max' => 255],
+          ['email', 'trim'],
+          //['email', 'required'],
+          ['email', 'email'],
+          ['email', 'string', 'max' => 255],
+          ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'อีเมลล์นี้มีคนใช้งานแล้ว'],
+
           ['password_hash', 'string', 'min' => 6],
           ['status', 'default', 'value' => self::STATUS_ACTIVE],
           ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
           [['type_member'],'integer'],
+          //['verifyCode', 'captcha'],
           //[['re_password'],'integer'],
           //['re_password', 'compare', 'compareAttribute'=>'password_hash', 'message'=>"Passwords don't match" ],
         ];
