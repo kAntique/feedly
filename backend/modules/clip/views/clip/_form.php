@@ -9,6 +9,7 @@ use backend\modules\worlds\status\models\Status;
 use dosamigos\selectize\SelectizeTextInput;
 use kartik\file\FileInput;
 use dosamigos\ckeditor\CKEditor;
+//use yii\bootstrap\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model backend\modules\clip\models\Clip */
 /* @var $form yii\widgets\ActiveForm */
@@ -50,8 +51,6 @@ use dosamigos\ckeditor\CKEditor;
                      ->hint('กรอกได้มากกว่า 1 คำค้น')
                      ?>
 
-    <?= $form->field($model, 'link')->textInput(['maxlength' => true]) ?>
-
      <!-- $form->field($model, 'date_time')->textInput() ?> -->
 
    <!-- $form->field($model, 'IPaddress')->textInput(['maxlength' => true]) ?> -->
@@ -83,6 +82,11 @@ use dosamigos\ckeditor\CKEditor;
 
    <?= $form->field($modelimg, 'cover')->fileInput() ?>
 
+ <?= $form->field($model, 'link')->textInput() ?>
+    <div class="text-right">
+        <?= Html::a('Dailymotion', ['Dailymotion'], ['class' => 'btn btn-primary']) ?>
+       <?= Html::a('Openload', ['openload'], ['class' => 'btn btn-primary']) ?>
+    </div><br>
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>

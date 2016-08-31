@@ -222,4 +222,19 @@ class ClipController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    public function actionOpenload()
+    {
+      $model = new Clip();
+
+      if ($model->load(Yii::$app->request->post() &&   $model->save())) {
+
+
+          return $this->redirect(['create', 'id' => $model->id]);
+      } else {
+          return $this->render('openload', [
+              'model' => $model,
+          ]);
+      }
+    }
 }

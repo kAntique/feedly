@@ -33,6 +33,7 @@ use Yii;
 class Clip extends \yii\db\ActiveRecord
 {
   public $cover;
+    public $openload;
     /**
      * @inheritdoc
      */
@@ -59,6 +60,7 @@ class Clip extends \yii\db\ActiveRecord
             [['rate_id'], 'exist', 'skipOnError' => true, 'targetClass' => Rate::className(), 'targetAttribute' => ['rate_id' => 'id']],
             [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => Status::className(), 'targetAttribute' => ['status_id' => 'id']],
               [['cover'], 'file', 'skipOnEmpty' => true, 'on' => 'create', 'extensions' => 'jpg,png,gif'],
+
         ];
     }
 
