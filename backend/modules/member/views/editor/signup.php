@@ -10,6 +10,7 @@ use dosamigos\fileupload\FileUpload;
 use dosamigos\fileupload\FileUploadUI;
 use kartik\file\FileInput;
 use dosamigos\selectize\SelectizeTextInput;
+use yii\captcha\Captcha;
 //use	yii\widgets\ActiveForm;
 
 //$this->title = 'สมัครสมาชิก';
@@ -68,6 +69,11 @@ use dosamigos\selectize\SelectizeTextInput;
             ?>
 
             <!-- < $form->field($user, 're_password')->passwordInput() ?> -->
+
+            <!-- < $form->field($model, 'reCaptcha')->widget(
+                \himiklab\yii2\recaptcha\ReCaptcha::className(),
+                ['siteKey' => '6Le55CgTAAAAABXOWu_kRKJW3kXxJjmlpTrfghcT']
+            ) ?> -->
 
             <div class="form-group">
                 <?= Html::submitButton($model->isNewRecord ? 'Signup' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

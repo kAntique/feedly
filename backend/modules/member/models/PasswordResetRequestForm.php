@@ -11,6 +11,7 @@ use common\models\User;
 class PasswordResetRequestForm extends Model
 {
     public $email;
+    public $reCaptcha;
 
 
     /**
@@ -27,6 +28,16 @@ class PasswordResetRequestForm extends Model
                 'filter' => ['status' => User::STATUS_ACTIVE],
                 'message' => 'There is no user with such email.'
             ],
+            ['reCaptcha','required'],
+            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator::className(), 'secret' => '6Le55CgTAAAAAMRv7obGVW6Ju4x3JEgnQTwBylm3'],
+        ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'email' => 'อีเมลล์',
+            'reCaptcha' => 'Captcha',
         ];
     }
 

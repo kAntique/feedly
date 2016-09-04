@@ -21,6 +21,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
 
+                <?= $form->field($model, 'reCaptcha')->widget(
+                    \himiklab\yii2\recaptcha\ReCaptcha::className(),
+                    ['siteKey' => '6Le55CgTAAAAABXOWu_kRKJW3kXxJjmlpTrfghcT']
+                ) ?>
+
                 <div class="form-group">
                     <?= Html::submitButton('Send', ['class' => 'btn btn-primary']) ?>
                 </div>

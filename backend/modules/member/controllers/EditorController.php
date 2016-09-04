@@ -38,6 +38,16 @@ class EditorController extends Controller
         ];
     }
 
+    public function actions()
+    {
+        return [
+            'captcha' => [
+              'class' => 'yii\captcha\CaptchaAction',
+             'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+            ],
+        ];
+    }
+
     /**
      * Lists all Editor models.
      * @return mixed
@@ -70,11 +80,11 @@ class EditorController extends Controller
                 Yii::$app->response->format = 'json';
                 return ActiveForm::validate($user,$model);
             }
-            // Yii::$app->response->format = 'json';
-            // return ActiveForm::validate($user);
             $user->password_hash = Yii::$app->security->generatePasswordHash($user->password_hash);
             $user->auth_key = Yii::$app->security->generateRandomString();
             $user->type_member = Yii::$app->request->get('type_member');
+            // $model->reCaptcha = '0';
+            //  var_dump($model->reCaptcha);
             if ($user->save()) {
                 $file = \yii\web\UploadedFile::getInstance($model, 'avatar_img');
                 $model->avatar = $file->name;
@@ -91,19 +101,23 @@ class EditorController extends Controller
                 }else {
                    $model->website = 'http://www'.'.'.$model->website;
                 }
+                // if (!$model->reCaptcha == '0') {
+                //   $model->save();
+                // }
                 $model->save();
 
 
             }
-            if ($model->validate() || $user->validate()) {
+            if ($model->validate() && $user->validate()) {
               if (Yii::$app->getUser()->login($user)) {
                   Yii::$app->session->setFlash('success', 'Feedly ยินดีต้อนรับ คุณได้สมัครสมาชิกเรียบร้อยแล้ว');
                   return $this->goHome();
               }
             }else {
-              print_r($model->getErrors);
-              print_r($user->getErrors);
-              exit;
+              return $this->render('signup', [
+                  'model' => $model,
+                  'user' => $user,
+              ]);
             }
 
 

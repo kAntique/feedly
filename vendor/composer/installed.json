@@ -1614,5 +1614,55 @@
             "widget",
             "yii2"
         ]
+    },
+    {
+        "name": "himiklab/yii2-recaptcha-widget",
+        "version": "1.0.5",
+        "version_normalized": "1.0.5.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/himiklab/yii2-recaptcha-widget.git",
+            "reference": "0e13a167b408f979b2c5ea5ceb444d169902570c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/himiklab/yii2-recaptcha-widget/zipball/0e13a167b408f979b2c5ea5ceb444d169902570c",
+            "reference": "0e13a167b408f979b2c5ea5ceb444d169902570c",
+            "shasum": ""
+        },
+        "require": {
+            "yiisoft/yii2": "*"
+        },
+        "require-dev": {
+            "phpunit/dbunit": ">=1.2",
+            "phpunit/phpunit": ">=3.7",
+            "phpunit/phpunit-selenium": ">=1.2"
+        },
+        "time": "2016-06-10 15:38:28",
+        "type": "yii2-extension",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "himiklab\\yii2\\recaptcha\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "HimikLab",
+                "homepage": "https://github.com/himiklab/"
+            }
+        ],
+        "description": "Yii2 Google reCAPTCHA widget",
+        "keywords": [
+            "captcha",
+            "google",
+            "recaptcha",
+            "widget",
+            "yii2"
+        ]
     }
 ]
