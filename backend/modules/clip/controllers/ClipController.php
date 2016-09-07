@@ -12,6 +12,8 @@ use backend\modules\worlds\coverimg\models\CoverImg;
 use yii\web\UploadedFile;
 use Imagine\Image\Box;
 use yii\imagine\Image;
+use yii\authclient\AuthAction;
+use yii\web\Response;
 
 
 /**
@@ -31,6 +33,8 @@ class ClipController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+
+
         ];
     }
 
@@ -49,7 +53,7 @@ class ClipController extends Controller
         ]);
     }
 
-    /**
+      /**
      * Displays a single Clip model.
      * @param integer $id
      * @param integer $cover_img_id
@@ -76,8 +80,9 @@ class ClipController extends Controller
     {
         $model = new Clip();
         $modelimg = new CoverImg();
-
         $userIP = Yii::$app->request->UserIP;
+        // Yii::$app->response->format = Response::FORMAT_JSON;
+        // $result = ['status' => 'finished']; // whatever
         //var_dump($userIP);
           Yii::$app->params['uploadPath'] = 'uploads/coverimage/';
         if ($model->load(Yii::$app->request->post()) ) {
@@ -102,13 +107,13 @@ class ClipController extends Controller
                $modelimg->id;
                $model->cover_img_id = $modelimg->id;
                $model->IPaddress = $userIP;
-
-
                $model->save();
+
 
            } else {
                // error in saving model
            }
+
             return $this->redirect(['view', 'id' => $model->id, 'cover_img_id' => $model->cover_img_id, 'rate_id' => $model->rate_id, 'status_id' => $model->status_id, 'category_id' => $model->category_id]);
         } else {
             return $this->render('create', [
@@ -225,15 +230,41 @@ class ClipController extends Controller
 
     public function actionOpenload()
     {
+        $model = new Clip();
+      //  $model = Clip::findOne(['id' => $id]);
+      // $login = 'a187cd9d64e79ee4' ;
+      // $key = 'kResascq' ;
+
+      $login = '7025d55ff5a790f1';
+      $key = 'yN-q0vUl';
+
+       //$link ='https://s2.graphiq.com/sites/default/files/stories/t2/tiny_cat_12573_8950.jpg' ;
+       //$url = 'https://api.openload.co/1/remotedl/add?login='.$login.'&key='.$key.'&url='.$link;
+      if ($model->load(Yii::$app->request->post() && $model->save())) {
+            // Yii::$app->response->format = 'json';
+
+          return $this->redirect(['upload', 'id' => $model->id]);
+      } else {
+          return $this->renderAjax('openload', [
+              'model' => $model,
+              // 'url' => $url,
+              // 'login' => $login,
+              // 'key' => $key,
+          ]);
+      }
+
+    }
+
+    public function actionUpload()
+    {
       $model = new Clip();
-
       if ($model->load(Yii::$app->request->post() &&   $model->save())) {
-
-
           return $this->redirect(['create', 'id' => $model->id]);
       } else {
-          return $this->render('openload', [
+          return $this->render('upload', [
               'model' => $model,
+              // 'login' => $login,
+              // 'key' => $key,
           ]);
       }
     }

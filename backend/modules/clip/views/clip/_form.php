@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use backend\modules\worlds\category\models\Category;
@@ -9,6 +10,7 @@ use backend\modules\worlds\status\models\Status;
 use dosamigos\selectize\SelectizeTextInput;
 use kartik\file\FileInput;
 use dosamigos\ckeditor\CKEditor;
+use yii\bootstrap\Modal;
 //use yii\bootstrap\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model backend\modules\clip\models\Clip */
@@ -82,11 +84,26 @@ use dosamigos\ckeditor\CKEditor;
 
    <?= $form->field($modelimg, 'cover')->fileInput() ?>
 
- <?= $form->field($model, 'link')->textInput() ?>
-    <div class="text-right">
-        <?= Html::a('Dailymotion', ['Dailymotion'], ['class' => 'btn btn-primary']) ?>
-       <?= Html::a('Openload', ['openload'], ['class' => 'btn btn-primary']) ?>
-    </div><br>
+  <?= $form->field($model, 'link')->textInput() ?>
+ <div class="aling right">
+<div>
+         <?= Html::a('Dailymotion', ['Dailymotion'], ['class' => 'btn btn-primary']) ?>
+
+        <?= Html::button('Openload',['value'=> Url::to('index.php?r=clip/clip/openload'),'class'=> 'btn btn-primary','id'=> 'modalButton'])  ?>
+      <?php Modal::begin([
+
+          'header' => '<h4>Upload</h4>',
+            'id' => 'modal',
+              'size' => 'modal-lg',
+
+            ]);
+
+              echo "<div id='modalContent'></div>";
+              Modal::end();?>
+</div>
+
+ </div>
+
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
