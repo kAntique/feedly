@@ -81,9 +81,7 @@ class ClipController extends Controller
         $model = new Clip();
         $modelimg = new CoverImg();
         $userIP = Yii::$app->request->UserIP;
-        // Yii::$app->response->format = Response::FORMAT_JSON;
-        // $result = ['status' => 'finished']; // whatever
-        //var_dump($userIP);
+
           Yii::$app->params['uploadPath'] = 'uploads/coverimage/';
         if ($model->load(Yii::$app->request->post()) ) {
           $image = UploadedFile::getInstance($modelimg,'cover');
@@ -257,15 +255,12 @@ class ClipController extends Controller
 
     public function actionUpload()
     {
-      $model = new Clip();
-      if ($model->load(Yii::$app->request->post() &&   $model->save())) {
-          return $this->redirect(['create', 'id' => $model->id]);
-      } else {
+      $model = Clip::find()->where(['status_link'=>0])->all();
+
           return $this->render('upload', [
               'model' => $model,
-              // 'login' => $login,
-              // 'key' => $key,
+
           ]);
       }
-    }
+
 }

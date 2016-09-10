@@ -36,7 +36,7 @@
                   ['label' => 'วิดีโอ', 'icon' => 'glyphicon glyphicon-film', 'url' => ['/clip/clip']],
                     ['label' => 'สถานะ', 'icon' => 'glyphicon glyphicon-check', 'url' => ['/status/status']],
                       ['label' => 'ระดับความเหมาะสม', 'icon' => 'glyphicon glyphicon-object-align-bottom', 'url' => ['/rate/rate']],
-
+                      ['label' => 'อัพโหลดวิดีโอ',  'icon' => 'glyphicon glyphicon-upload', 'url' => ['/clip/clip/upload']],
                     // ['label' => 'Debug', 'icon' => 'fa fa-dashboard', 'url' => ['/debug']],
                     // ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                     // [

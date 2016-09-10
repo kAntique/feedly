@@ -18,59 +18,81 @@ use yii\bootstrap\Modal;
 $this->registerJs(" $('#btnUpload').on('click', function() {
 var getlink = document.getElementsByName('link')[0].value ;
 var url = 'https://api.openload.co/1/remotedl/add?login=7025d55ff5a790f1&key=yN-q0vUl&url='+getlink;
-
-
+$('#modal').modal('hide');
+ $('#modalButton').prop('disabled', true);
+ $('#dailymotion').prop('disabled', true);
+ $('#createVDO').prop('disabled', true);
+  $('#clip-link').prop('disabled', true);
 $.ajax({
           url : url,
          type: 'post',
 
          success:function(response) {
              console.log(response);
-              $('#uplink').hide();
-                $('#progressbar').show();
-                if(response.status){
+             $.ajax({
+               url: 'http://localhost/feedly/backend/web/index.php?r=clip/clip/create',
+                type: 'post',
 
-                 var getstatus = 'https://api.openload.co/1/remotedl/status?login=7025d55ff5a790f1&key=yN-q0vUl&limit=5&id='+response.result.id;
-                $.ajax({
-                          url : getstatus,
-                         type: 'get',
+                 success: function (data) {
 
-                         success:function(checkstatus) {
-                           console.log(checkstatus);
-                                $.ajax({
-                                      url: getstatus,
-                                      type: 'get',
-                                      success: function(res) {
+                        $('#clip-link').val(response.result.id);
 
-                                        var refreshIntervalId =  setInterval(function(){
+                        $('#modalButton').prop('disabled', false);
+                        $('#dailymotion').prop('disabled', false);
+                        $('#createVDO').prop('disabled', false);
+                         $('#clip-link').prop('disabled', false);
+                     }
+             });
+              // $('#uplink').hide();
+              //   $('#progressbar').show();
 
-                                        $.ajax({
-                                          url:getstatus ,
-                                           success: function(checkstatus){
-                                              console.log(checkstatus);
-                                              if(checkstatus.result[response.result.id].status == 'finished')
-                                              clearInterval(refreshIntervalId);
-                                                 //alert(checkstatus.result[response.result.id].url);
-                                                 $('#modal').modal('hide');
-                                                 $.ajax({
-                                                   url: 'http://localhost/feedly/backend/web/index.php?r=clip/clip/create',
-                                                    type: 'post',
-
-                                                     success: function (data) {
-                                                            $('#clip-link').val(checkstatus.result[response.result.id].url);
-                                                         }
-                                                 });
-                                           },
-                                          });
-                                        }, 5000);
-                                      }
-                                  });
-
-                             }
-
-                 });
-
-               }
+              //   if(response.status){
+               //
+              //    var getstatus = 'https://api.openload.co/1/remotedl/status?login=7025d55ff5a790f1&key=yN-q0vUl&limit=5&id='+response.result.id;
+              //   $.ajax({
+              //             url : getstatus,
+              //            type: 'get',
+               //
+              //            success:function(checkstatus) {
+              //              console.log(checkstatus);
+              //                   $.ajax({
+              //                         url: getstatus,
+              //                         type: 'get',
+              //                         success: function(res) {
+               //
+              //                           var refreshIntervalId =  setInterval(function(){
+               //
+              //                           $.ajax({
+              //                             url:getstatus ,
+              //                              success: function(checkstatus){
+              //                                 console.log(checkstatus);
+              //                                 if(checkstatus.result[response.result.id].status == 'finished')
+              //                                 clearInterval(refreshIntervalId);
+              //                                    //alert(checkstatus.result[response.result.id].url);
+              //                                   //  $('#modal').modal('hide');
+              //                                    $.ajax({
+              //                                      url: 'http://localhost/feedly/backend/web/index.php?r=clip/clip/create',
+              //                                       type: 'post',
+               //
+              //                                        success: function (data) {
+              //                                               $('#clip-link').val(checkstatus.result[response.result.id].url);
+              //                                               $('#modalButton').prop('disabled', false);
+              //                                               $('#dailymotion').prop('disabled', false);
+              //                                               $('#createVDO').prop('disabled', false);
+              //                                               // $('#clip-link').prop('disabled', false);
+              //                                            }
+              //                                    });
+              //                              },
+              //                             });
+              //                           }, 5000);
+              //                         }
+              //                     });
+               //
+              //                }
+               //
+              //    });
+               //
+              //  }
              },
 
 

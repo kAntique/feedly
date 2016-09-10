@@ -51,7 +51,7 @@ class Clip extends \yii\db\ActiveRecord
             [['title', 'subtitle', 'year', 'ep', 'description', 'tags', 'link', 'IPaddress', 'cover_img_id', 'rate_id', 'status_id', 'category_id'], 'required'],
             [['title', 'subtitle', 'year', 'ep', 'description'], 'string'],
             [['date_time'], 'safe'],
-            [['cover_img_id', 'rate_id', 'status_id', 'category_id'], 'integer'],
+            [['cover_img_id', 'rate_id', 'status_id', 'category_id' , 'status_link'], 'integer'],
             [['tags'], 'string', 'max' => 200],
             [['link'], 'string', 'max' => 100],
             [['IPaddress'], 'string', 'max' => 20],
@@ -85,6 +85,7 @@ class Clip extends \yii\db\ActiveRecord
             'status_id' => 'สถานะลิงค์',
             'category_id' => 'หมวดหมู่',
             'cover' => 'ภาพปก',
+            'status_link' => 'สถานะลิงค์วิดีโอ'
         ];
     }
 

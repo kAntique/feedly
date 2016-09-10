@@ -101,14 +101,12 @@ class CategoryController extends Controller
                Image::getImagine()->open($image)
                ->resize(new Box(1280, 720))
                ->save($path , ['quality' => 100]);
-            //    Image::frame($path)
-            //  ->thumbnail(new Box(1280, 720))
-            //  ->save($path, ['quality' => 100]);
                $modelimg->id;
                $model->cover_img_id = $modelimg->id;
-
-
                $model->save();
+
+
+
 
            } else {
                // error in saving model

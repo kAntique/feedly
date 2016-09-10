@@ -85,9 +85,10 @@ use yii\bootstrap\Modal;
    <?= $form->field($modelimg, 'cover')->fileInput() ?>
 
   <?= $form->field($model, 'link')->textInput() ?>
- <div class="aling right">
+  <?= $form->field($model, 'status_link')->textInput() ?>
+ <div class="text-right">
 <div>
-         <?= Html::a('Dailymotion', ['Dailymotion'], ['class' => 'btn btn-primary']) ?>
+         <?= Html::button('Dailymotion', ['value'=> Url::to('index.php?r=clip/clip/dailymotion'),'class'=> 'btn btn-primary','id'=> 'dailymotion']) ?>
 
         <?= Html::button('Openload',['value'=> Url::to('index.php?r=clip/clip/openload'),'class'=> 'btn btn-primary','id'=> 'modalButton'])  ?>
       <?php Modal::begin([
@@ -105,7 +106,7 @@ use yii\bootstrap\Modal;
  </div>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary','id'=> 'createVDO']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
