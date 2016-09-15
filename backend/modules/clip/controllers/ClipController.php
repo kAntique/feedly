@@ -14,7 +14,11 @@ use Imagine\Image\Box;
 use yii\imagine\Image;
 use yii\authclient\AuthAction;
 use yii\web\Response;
-
+use yii\helpers\Url;
+use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
+use yii\web\JsExpression;
+use yii\data\ActiveDataProvider;
 
 /**
  * ClipController implements the CRUD actions for Clip model.
@@ -256,9 +260,32 @@ class ClipController extends Controller
     public function actionUpload()
     {
       $model = Clip::find()->where(['status_link'=>0])->all();
+      $dataProvider = new ActiveDataProvider([
+          'query' => $model,
+      ]);
+      foreach ($model as $value){
+      $link = $value->link;
+      $url = 'https://api.openload.co/1/remotedl/status?login=7025d55ff5a790f1&key=yN-q0vUl&limit=5&id='.$link ;
+      $ch = file_get_contents( $url );
+      $decode=json_decode($ch);
+
+                 foreach( $decode->result as $list){
+
+                   if ($list->status == "finished") {
+                      $value->link = $list->url;
+                      $value->status_link = 1;
+                      $value->save();
+
+                   }
+                  }
+      }
 
           return $this->render('upload', [
               'model' => $model,
+                'dataProvider' => $dataProvider,
+                  'time' => date('H:i:s'),
+
+
 
           ]);
       }

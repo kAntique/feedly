@@ -6,60 +6,14 @@ use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use yii\bootstrap\Progress ;
 use yii\bootstrap\Modal;
-$this->registerJs(
-   "$(document).ready(function(){
-        $('#statuslink').on('pjax:end', function() {
-            $.pjax.reload({container:'#countries'});  //Reload View
-            setTimeout(refresh, 5000); // restart the function every 5 seconds
-        });
-    });"
-);
-// $this->registerJs(" $(document).ready( function() {
-// var getlink = document.getElementById('showLink').text ;
-// console.log(getlink);
-// var url = 'https://api.openload.co/1/remotedl/status?login=7025d55ff5a790f1&key=yN-q0vUl&limit=5&id='+getlink;
-// $.ajax({
-//           url : url,
-//          type: 'get',
-//
-//          success:function(response) {
-//              console.log(response);
-//                   // var refreshIntervalId =  setInterval(function(){
-//                   // $.ajax({
-//                   //   url: url,
-//                   //   type: 'get',
-//                   //    success: function(checkstatus){
-//                   //       console.log(checkstatus);
-//                   //       if(checkstatus.result[response.result.id].status == 'finished')
-//                   //       clearInterval(refreshIntervalId);
-//                   //
-//                   //          $.ajax({
-//                   //            url: 'http://localhost/feedly/backend/web/index.php?r=clip/clip/create',
-//                   //             type: 'post',
-//                   //
-//                   //              success: function (data) {
-//                   //                     $('#clip-link').val(checkstatus.result[response.result.id].url);
-//                   //
-//                   //                  }
-//                   //          });
-//                   //    },
-//                   //   });
-//                   // }, 5000);
-//
-//
-//              },
-//
-//
-//           error:function(){
-//             window.connectionCls.getConnection();
-//           }
-//
-//
-//
-// });
-//
-//
-// }); ");
+use yii\widgets\Pjax;
+
+ $this->registerJs(
+    "$(document).ready(function() {
+          setInterval(function(){ $.pjax.reload('#showdata'); }, 50000);
+});"
+ );
+
 ?>
 <head>
 <style>
@@ -73,7 +27,7 @@ th, td {
 }
 </style>
 </head>
-<div class="box box-success box-solid">
+<div class="box box-success box-solid"  id="content" >
   <div class="box-header">
       <h3 class="box-title"><?= Html::encode('อัพโหลดวิดีโอ') ?></h3>
   </div>
@@ -97,10 +51,9 @@ th, td {
    </div>
 
     </div>
-<? Pjax::begin(['id'='statuslink']);?>
+<?php Pjax::begin(['id'=>'showdata']);?>
 
-
-  <table style="width:100%" class="text-align">
+  <table style="width:100%" class="text-align"  >
     <tr>
       <th>ชื่อเรื่อง</th>
       <th>ลิงค์วิดีโอ</th>
@@ -109,7 +62,7 @@ th, td {
       <?php foreach( $model as $list) :?>
     <tr>
       <td><?php echo $list->title; ?></td>
-      <td id = "showLink"><?php echo $list->link;?></td>
+      <td ><?php echo $list->link;?></td>
       <td><?php
         if( $list->status_link == 0){
           echo "Uploading";
@@ -122,8 +75,7 @@ th, td {
   </table>
 
 </div>
-  <? Pjex::end();?>
+  <?php Pjax::end();?>
 
 
-</div>
 </div>
