@@ -243,15 +243,11 @@ class ClipController extends Controller
        //$link ='https://s2.graphiq.com/sites/default/files/stories/t2/tiny_cat_12573_8950.jpg' ;
        //$url = 'https://api.openload.co/1/remotedl/add?login='.$login.'&key='.$key.'&url='.$link;
       if ($model->load(Yii::$app->request->post() && $model->save())) {
-            // Yii::$app->response->format = 'json';
 
           return $this->redirect(['upload', 'id' => $model->id]);
       } else {
           return $this->renderAjax('openload', [
               'model' => $model,
-              // 'url' => $url,
-              // 'login' => $login,
-              // 'key' => $key,
           ]);
       }
 

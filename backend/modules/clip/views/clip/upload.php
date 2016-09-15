@@ -10,7 +10,7 @@ use yii\widgets\Pjax;
 
  $this->registerJs(
     "$(document).ready(function() {
-          setInterval(function(){ $.pjax.reload('#showdata'); }, 50000);
+          setInterval(function(){ $.pjax.reload('#showdata'); }, 10000);
 });"
  );
 

@@ -30,6 +30,9 @@ return [
        'clip' => [
             'class' => 'backend\modules\clip\Module',
         ],
+        'article' => [
+           'class' => 'backend\modules\article\Module',
+       ],
 
     ],
     'components' => [

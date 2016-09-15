@@ -85,7 +85,7 @@ use yii\bootstrap\Modal;
    <?= $form->field($modelimg, 'cover')->fileInput() ?>
 
   <?= $form->field($model, 'link')->textInput() ?>
-  <?= $form->field($model, 'status_link')->textInput() ?>
+  <!-- = $form->field($model, 'status_link')->textInput() ?> -->
  <div class="text-right">
 <div>
          <?= Html::button('Dailymotion', ['value'=> Url::to('index.php?r=clip/clip/dailymotion'),'class'=> 'btn btn-primary','id'=> 'dailymotion']) ?>

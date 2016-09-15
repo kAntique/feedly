@@ -30,13 +30,19 @@
             [
                 'options' => ['class' => 'sidebar-menu'],
                 'items' => [
-                    ['label' => 'Menu', 'options' => ['class' => 'header']],
-                    ['label' => 'ประเภท', 'icon' => 'glyphicon glyphicon-globe', 'url' => ['/world/world']],
-                  ['label' => 'หมวดหมู่', 'icon' => 'glyphicon glyphicon-th-list', 'url' => ['/category/category']],
-                  ['label' => 'วิดีโอ', 'icon' => 'glyphicon glyphicon-film', 'url' => ['/clip/clip']],
-                    ['label' => 'สถานะ', 'icon' => 'glyphicon glyphicon-check', 'url' => ['/status/status']],
+                  //  ['label' => 'Menu', 'options' => ['class' => 'header']],
+                      ['label' => 'คลิป', 'options' => ['class' => 'header']],
+                      ['label' => 'รายการ', 'icon' => 'glyphicon glyphicon-list-alt', 'url' => ['/clip/clip']],
+                      ['label' => 'เพิ่มคลิป', 'icon' => 'glyphicon glyphicon-film', 'url' => ['/clip/clip/create']],
+                      ['label' => 'อัพโหลด',  'icon' => 'glyphicon glyphicon-upload', 'url' => ['/clip/clip/upload']],
+                      ['label' => 'สถานะ', 'icon' => 'glyphicon glyphicon-check', 'url' => ['/status/status']],
+                      ['label' => 'บทความ', 'options' => ['class' => 'header']],
+                      ['label' => 'เพิ่มบทความ', 'icon' => 'glyphicon glyphicon-edit', 'url' => ['article/article']],
+                      ['label' => 'ตั้งค่าทั่วไป', 'options' => ['class' => 'header']],
+                      ['label' => 'ประเภท', 'icon' => 'glyphicon glyphicon-globe', 'url' => ['/world/world']],
+                      ['label' => 'หมวดหมู่', 'icon' => 'glyphicon glyphicon-th-list', 'url' => ['/category/category']],
                       ['label' => 'ระดับความเหมาะสม', 'icon' => 'glyphicon glyphicon-object-align-bottom', 'url' => ['/rate/rate']],
-                      ['label' => 'อัพโหลดวิดีโอ',  'icon' => 'glyphicon glyphicon-upload', 'url' => ['/clip/clip/upload']],
+
                     // ['label' => 'Debug', 'icon' => 'fa fa-dashboard', 'url' => ['/debug']],
                     // ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                     // [
