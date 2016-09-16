@@ -7,16 +7,21 @@ use yii\grid\GridView;
 /* @var $searchModel backend\modules\article\models\ArticleSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Articles';
+$this->title = 'บทความ';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="article-index">
+<div class="box box-success box-solid">
+  <div class="box-header">
+      <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
+  </div>
 
-    <h1><?= Html::encode($this->title) ?></h1>
+  <div class="box-body">
+
+
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Article', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('เพิ่มบทความ', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -24,14 +29,26 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
+            [
+          'attribute' => 'cover_img_id',
+          'format' => 'html',
+          'label' => 'ภาพปก',
+          'value' => function ($model) {
+              return Html::img('uploads/coverimage/' . $model->coverImg['filename'],
+                  ['width' => '100px']);
+          },
+      ],
+
+
+            //'id',
             'headline',
-            'content:ntext',
+            //'content:ntext',
             'date_time',
-            'IPaddress',
+          //  'IPaddress',
             // 'tags',
             // 'rate_id',
-            // 'cover_img_id',
+             //'cover_img',
             // 'world_id',
             // 'category_id',
             // 'status_id',
@@ -39,4 +56,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+</div>
 </div>

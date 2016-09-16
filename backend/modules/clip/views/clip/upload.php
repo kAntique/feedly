@@ -60,6 +60,7 @@ th, td {
       <th>สถานะวิดีโอ</th>
     </tr>
       <?php foreach( $model as $list) :?>
+
     <tr>
       <td><?php echo $list->title; ?></td>
       <td ><?php echo $list->link;?></td>
@@ -67,15 +68,20 @@ th, td {
         if( $list->status_link == 0){
           echo "Uploading";
         }else {
-            echo "finished";
+            echo "Finished";
         }
        ?></td>
+       <td>  <?= Html::a('แก้ไข', ['update', 'id' => $list->id, 'cover_img_id' => $list->cover_img_id, 'rate_id' => $list->rate_id,'status_id' => $list->status_id,  'category_id' => $list->category_id], ['class' => 'btn btn-primary']) ?> </td>
     </tr>
+
     <?php  endforeach ;?>
   </table>
 
 </div>
   <?php Pjax::end();?>
-
-
+  <div class="text-center" style="color:red;" >
+<?php  if ($model == null) {
+    echo "*** ไม่มีรายการอัพโหลด ***";
+  }?>
+</div>
 </div>

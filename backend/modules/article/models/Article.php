@@ -33,6 +33,7 @@ class Article extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+     public $cover;
     public static function tableName()
     {
         return 'article';
@@ -44,18 +45,18 @@ class Article extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['headline', 'content', 'IPaddress', 'tags', 'rate_id', 'cover_img_id', 'world_id', 'category_id', 'status_id'], 'required'],
+            [['headline', 'content', 'IPaddress', 'tags', 'rate_id', 'cover_img_id', 'category_id'], 'required'],
             [['content'], 'string'],
             [['date_time'], 'safe'],
-            [['rate_id', 'cover_img_id', 'world_id', 'category_id', 'status_id'], 'integer'],
+            [['rate_id', 'cover_img_id', 'category_id'], 'integer'],
             [['headline'], 'string', 'max' => 150],
             [['IPaddress'], 'string', 'max' => 20],
             [['tags'], 'string', 'max' => 200],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
             [['cover_img_id'], 'exist', 'skipOnError' => true, 'targetClass' => CoverImg::className(), 'targetAttribute' => ['cover_img_id' => 'id']],
             [['rate_id'], 'exist', 'skipOnError' => true, 'targetClass' => Rate::className(), 'targetAttribute' => ['rate_id' => 'id']],
-            [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => Status::className(), 'targetAttribute' => ['status_id' => 'id']],
-          
+
+              [['cover'], 'file', 'skipOnEmpty' => true, 'on' => 'create', 'extensions' => 'jpg,png,gif'],
         ];
     }
 
@@ -66,16 +67,16 @@ class Article extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'headline' => 'Headline',
-            'content' => 'Content',
-            'date_time' => 'Date Time',
+            'headline' => 'หัวข้อ',
+            'content' => 'เนื้อหา',
+            'date_time' => 'วันที่',
             'IPaddress' => 'Ipaddress',
-            'tags' => 'Tags',
-            'rate_id' => 'Rate ID',
-            'cover_img_id' => 'Cover Img ID',
-            'world_id' => 'World ID',
-            'category_id' => 'Category ID',
-            'status_id' => 'Status ID',
+            'tags' => 'คำค้น',
+            'rate_id' => 'ระดับความเหมาะสม',
+            'cover_img_id' => 'ภาพปก',
+            'cover' => 'ภาพปก',
+            'category_id' => 'หมวดหมู่',
+
         ];
     }
 
@@ -106,16 +107,7 @@ class Article extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getStatus()
-    {
-        return $this->hasOne(Status::className(), ['id' => 'status_id']);
-    }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getWorld()
-    {
-        return $this->hasOne(World::className(), ['id' => 'world_id']);
-    }
+
+
 }

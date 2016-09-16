@@ -17,7 +17,7 @@ use yii\bootstrap\Modal;
 
 $this->registerJs(" $('#btnUpload').on('click', function() {
 var getlink = document.getElementsByName('link')[0].value ;
-var url = 'https://api.openload.co/1/remotedl/add?login=7025d55ff5a790f1&key=yN-q0vUl&url='+getlink;
+var url = '".\Yii::$app->params['url_openload_remote']."'+getlink;
 $('#modal').modal('hide');
  $('#modalButton').prop('disabled', true);
  $('#dailymotion').prop('disabled', true);
@@ -30,7 +30,7 @@ $.ajax({
          success:function(response) {
              console.log(response);
              $.ajax({
-               url: 'http://localhost/feedly/backend/web/index.php?r=clip/clip/create',
+               url: '".\Yii::$app->params['res_openload']."',
                 type: 'post',
 
                  success: function (data) {
@@ -43,68 +43,11 @@ $.ajax({
                          $('#clip-link').prop('disabled', false);
                      }
              });
-              // $('#uplink').hide();
-              //   $('#progressbar').show();
-
-              //   if(response.status){
-               //
-              //    var getstatus = 'https://api.openload.co/1/remotedl/status?login=7025d55ff5a790f1&key=yN-q0vUl&limit=5&id='+response.result.id;
-              //   $.ajax({
-              //             url : getstatus,
-              //            type: 'get',
-               //
-              //            success:function(checkstatus) {
-              //              console.log(checkstatus);
-              //                   $.ajax({
-              //                         url: getstatus,
-              //                         type: 'get',
-              //                         success: function(res) {
-               //
-              //                           var refreshIntervalId =  setInterval(function(){
-               //
-              //                           $.ajax({
-              //                             url:getstatus ,
-              //                              success: function(checkstatus){
-              //                                 console.log(checkstatus);
-              //                                 if(checkstatus.result[response.result.id].status == 'finished')
-              //                                 clearInterval(refreshIntervalId);
-              //                                    //alert(checkstatus.result[response.result.id].url);
-              //                                   //  $('#modal').modal('hide');
-              //                                    $.ajax({
-              //                                      url: 'http://localhost/feedly/backend/web/index.php?r=clip/clip/create',
-              //                                       type: 'post',
-               //
-              //                                        success: function (data) {
-              //                                               $('#clip-link').val(checkstatus.result[response.result.id].url);
-              //                                               $('#modalButton').prop('disabled', false);
-              //                                               $('#dailymotion').prop('disabled', false);
-              //                                               $('#createVDO').prop('disabled', false);
-              //                                               // $('#clip-link').prop('disabled', false);
-              //                                            }
-              //                                    });
-              //                              },
-              //                             });
-              //                           }, 5000);
-              //                         }
-              //                     });
-               //
-              //                }
-               //
-              //    });
-               //
-              //  }
              },
-
-
           error:function(){
             window.connectionCls.getConnection();
           }
-
-
-
 });
-
-
 }); ");
 
 ?>
@@ -115,8 +58,6 @@ $.ajax({
   </div>
 
   <div class="box-body">
-
-
   <? Pjax::begin();?>
 
 
@@ -127,13 +68,6 @@ $.ajax({
    <input type="text" name="link" size="120">
     <?= Html::button( 'Upload',['class' => 'btn btn-success' ,'id'=> 'btnUpload']) ?>
 </div>
-</div>
-
-<div class="progress progress-xs" id="progressbar" style=" display: none;" >
-  <div class="progress-bar progress-bar-success progress-bar-striped active" style="width: 100%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" >
-    <span class="sr-only"><span id="status_progress">20</span>% Complete</span>
-  </div>
-
 </div>
 
 

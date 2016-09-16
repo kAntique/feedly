@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\modules\clip\models\ClipSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'วิดีโอ';
+$this->title = 'คลิป';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="box box-success box-solid">
@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('เพิ่มวิดีโอ', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('เพิ่มคลิป', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

@@ -8,7 +8,10 @@ use backend\modules\article\models\ArticleSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use backend\modules\worlds\coverimg\models\CoverImg;
+use yii\web\UploadedFile;
+use Imagine\Image\Box;
+use yii\imagine\Image;
 /**
  * ArticleController implements the CRUD actions for Article model.
  */
@@ -54,10 +57,12 @@ class ArticleController extends Controller
      * @param integer $status_id
      * @return mixed
      */
-    public function actionView($id, $rate_id, $cover_img_id, $world_id, $category_id, $status_id)
+    public function actionView($id, $rate_id, $cover_img_id, $category_id)
     {
+      $cover = CoverImg::find()->where(['id'=>$cover_img_id])->one();
         return $this->render('view', [
-            'model' => $this->findModel($id, $rate_id, $cover_img_id, $world_id, $category_id, $status_id),
+            'model' => $this->findModel($id, $rate_id, $cover_img_id,  $category_id),
+            'cover'=>$cover,
         ]);
     }
 
@@ -69,12 +74,42 @@ class ArticleController extends Controller
     public function actionCreate()
     {
         $model = new Article();
+        $modelimg = new CoverImg();
+        $userIP = Yii::$app->request->UserIP;
+        Yii::$app->params['uploadPath'] = 'uploads/coverimage/';
+      if ($model->load(Yii::$app->request->post()) ) {
+        $image = UploadedFile::getInstance($modelimg,'cover');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id, 'rate_id' => $model->rate_id, 'cover_img_id' => $model->cover_img_id, 'world_id' => $model->world_id, 'category_id' => $model->category_id, 'status_id' => $model->status_id]);
+         // store the source file name
+         $modelimg->filename = $image->name;
+         $ext = end((explode(".", $image->name)));
+
+         // generate a unique file name
+         $modelimg->filename = Yii::$app->security->generateRandomString().".{$ext}";
+
+         // the path to save file, you can set an uploadPath
+         // in Yii::$app->params (as used in example below)
+         $path = Yii::$app->params['uploadPath'] . $modelimg->filename;
+
+         if($modelimg->save()){
+             $image->saveAs($path);
+             Image::frame($path)
+             ->resize(new Box(1280, 720))
+           ->save($path, ['quality' => 100]);
+             $modelimg->id;
+             $model->cover_img_id = $modelimg->id;
+             $model->IPaddress = $userIP;
+             $model->save();
+
+
+         } else {
+             // error in saving model
+         }
+            return $this->redirect(['view', 'id' => $model->id, 'rate_id' => $model->rate_id, 'cover_img_id' => $model->cover_img_id,  'category_id' => $model->category_id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'modelimg'=>  $modelimg,
             ]);
         }
     }
@@ -90,15 +125,53 @@ class ArticleController extends Controller
      * @param integer $status_id
      * @return mixed
      */
-    public function actionUpdate($id, $rate_id, $cover_img_id, $world_id, $category_id, $status_id)
+    public function actionUpdate($id, $rate_id, $cover_img_id, $category_id)
     {
-        $model = $this->findModel($id, $rate_id, $cover_img_id, $world_id, $category_id, $status_id);
+        $model = $this->findModel($id, $rate_id, $cover_img_id,  $category_id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id, 'rate_id' => $model->rate_id, 'cover_img_id' => $model->cover_img_id, 'world_id' => $model->world_id, 'category_id' => $model->category_id, 'status_id' => $model->status_id]);
+        $modelimg = CoverImg::find()->where(['id'=>$cover_img_id])->one();
+
+        Yii::$app->params['uploadPath'] = 'uploads/coverimage/';
+
+        if ($model->load(Yii::$app->request->post())) {
+
+
+          $image = UploadedFile::getInstance($modelimg,'cover');
+          if (empty($image)) {
+              $model->save();
+         }else {
+           unlink(getcwd().'/uploads/coverimage/'.$model->coverImg['filename']);
+
+          // store the source file name
+          $modelimg->filename = $image->name;
+          $ext = end((explode(".", $image->name)));
+
+          // generate a unique file name
+          $modelimg->filename = Yii::$app->security->generateRandomString().".{$ext}";
+
+          // the path to save file, you can set an uploadPath
+          // in Yii::$app->params (as used in example below)
+          $path = Yii::$app->params['uploadPath'] . $modelimg->filename;
+
+          if($modelimg->save()){
+
+              $image->saveAs($path);
+              Image::frame($path)
+            ->resize(new Box(1280, 720))
+            ->save($path, ['quality' => 100]);
+              $modelimg->id;
+              $model->cover_img_id = $modelimg->id;
+              $model->save();
+
+          } else {
+              // error in saving model
+          }
+         }
+            return $this->redirect(['view', 'id' => $model->id, 'rate_id' => $model->rate_id, 'cover_img_id' => $model->cover_img_id,  'category_id' => $model->category_id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'modelimg'=>$modelimg,
             ]);
         }
     }
@@ -114,10 +187,15 @@ class ArticleController extends Controller
      * @param integer $status_id
      * @return mixed
      */
-    public function actionDelete($id, $rate_id, $cover_img_id, $world_id, $category_id, $status_id)
+    public function actionDelete($id, $rate_id, $cover_img_id, $category_id)
     {
-        $this->findModel($id, $rate_id, $cover_img_id, $world_id, $category_id, $status_id)->delete();
+            $model = $this->findModel($id, $rate_id, $cover_img_id,  $category_id);
+        $coverimage = CoverImg::find()->where(['id'=>$cover_img_id])->one();
+           unlink(getcwd().'/uploads/coverimage/'.$model->coverImg['filename']);
+        $model->delete();
+          $coverimage->delete();
 
+          Yii::$app->session->setFlash('success', 'ลบข้อมูลสำเร็จ.');
         return $this->redirect(['index']);
     }
 
@@ -133,9 +211,9 @@ class ArticleController extends Controller
      * @return Article the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id, $rate_id, $cover_img_id, $world_id, $category_id, $status_id)
+    protected function findModel($id, $rate_id, $cover_img_id,  $category_id)
     {
-        if (($model = Article::findOne(['id' => $id, 'rate_id' => $rate_id, 'cover_img_id' => $cover_img_id, 'world_id' => $world_id, 'category_id' => $category_id, 'status_id' => $status_id])) !== null) {
+        if (($model = Article::findOne(['id' => $id, 'rate_id' => $rate_id, 'cover_img_id' => $cover_img_id,  'category_id' => $category_id])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

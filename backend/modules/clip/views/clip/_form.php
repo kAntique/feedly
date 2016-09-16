@@ -73,7 +73,7 @@ use yii\bootstrap\Modal;
 
 
     <?= $form->field($model, 'category_id')->dropDownList(
-     ArrayHelper::map(Category::find()->all(),'id','title'),
+     ArrayHelper::map(Category::find()->where(['world_id'=>1])->all(),'id','title'),
      ['prompt'=>'เลือกหมวดหมู่']
     ) ?>
 

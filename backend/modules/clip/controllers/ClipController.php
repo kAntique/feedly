@@ -233,15 +233,6 @@ class ClipController extends Controller
     public function actionOpenload()
     {
         $model = new Clip();
-      //  $model = Clip::findOne(['id' => $id]);
-      // $login = 'a187cd9d64e79ee4' ;
-      // $key = 'kResascq' ;
-
-      $login = '7025d55ff5a790f1';
-      $key = 'yN-q0vUl';
-
-       //$link ='https://s2.graphiq.com/sites/default/files/stories/t2/tiny_cat_12573_8950.jpg' ;
-       //$url = 'https://api.openload.co/1/remotedl/add?login='.$login.'&key='.$key.'&url='.$link;
       if ($model->load(Yii::$app->request->post() && $model->save())) {
 
           return $this->redirect(['upload', 'id' => $model->id]);
@@ -256,12 +247,9 @@ class ClipController extends Controller
     public function actionUpload()
     {
       $model = Clip::find()->where(['status_link'=>0])->all();
-      $dataProvider = new ActiveDataProvider([
-          'query' => $model,
-      ]);
       foreach ($model as $value){
       $link = $value->link;
-      $url = 'https://api.openload.co/1/remotedl/status?login=7025d55ff5a790f1&key=yN-q0vUl&limit=5&id='.$link ;
+      $url = \Yii::$app->params['url_openload_status'].$link ;
       $ch = file_get_contents( $url );
       $decode=json_decode($ch);
 
@@ -278,8 +266,8 @@ class ClipController extends Controller
 
           return $this->render('upload', [
               'model' => $model,
-                'dataProvider' => $dataProvider,
-                  'time' => date('H:i:s'),
+
+
 
 
 

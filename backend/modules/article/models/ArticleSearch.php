@@ -18,7 +18,7 @@ class ArticleSearch extends Article
     public function rules()
     {
         return [
-            [['id', 'rate_id', 'cover_img_id', 'world_id', 'category_id', 'status_id'], 'integer'],
+            [['id', 'rate_id', 'cover_img_id', 'category_id'], 'integer'],
             [['headline', 'content', 'date_time', 'IPaddress', 'tags'], 'safe'],
         ];
     }
@@ -63,9 +63,9 @@ class ArticleSearch extends Article
             'date_time' => $this->date_time,
             'rate_id' => $this->rate_id,
             'cover_img_id' => $this->cover_img_id,
-            'world_id' => $this->world_id,
+
             'category_id' => $this->category_id,
-            'status_id' => $this->status_id,
+        
         ]);
 
         $query->andFilterWhere(['like', 'headline', $this->headline])

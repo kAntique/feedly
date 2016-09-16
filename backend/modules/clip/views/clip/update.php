@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="clip-update">
 
-  
+
 
     <?= $this->render('_form', [
         'model' => $model,
