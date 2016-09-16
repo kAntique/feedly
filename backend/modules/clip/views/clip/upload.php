@@ -7,7 +7,7 @@ use yii\helpers\ArrayHelper;
 use yii\bootstrap\Progress ;
 use yii\bootstrap\Modal;
 use yii\widgets\Pjax;
-
+$this->title = 'อัพโหลดคลิป ';
  $this->registerJs(
     "$(document).ready(function() {
           setInterval(function(){ $.pjax.reload('#showdata'); }, 10000);
@@ -29,7 +29,7 @@ th, td {
 </head>
 <div class="box box-success box-solid"  id="content" >
   <div class="box-header">
-      <h3 class="box-title"><?= Html::encode('อัพโหลดวิดีโอ') ?></h3>
+      <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
   </div>
 
   <div class="box-body">

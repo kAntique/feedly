@@ -54,7 +54,7 @@ $.ajax({
 
 <div class="box box-success box-solid">
   <div class="box-header">
-      <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
+      <h3 class="box-title"><?= Html::encode("อัพโหลดคลิป") ?></h3>
   </div>
 
   <div class="box-body">
@@ -66,7 +66,7 @@ $.ajax({
 
  <div class="form-group">
    <input type="text" name="link" size="120">
-    <?= Html::button( 'Upload',['class' => 'btn btn-success' ,'id'=> 'btnUpload']) ?>
+    <?= Html::button( 'อัพโหลด',['class' => 'btn btn-success' ,'id'=> 'btnUpload']) ?>
 </div>
 </div>
 

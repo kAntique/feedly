@@ -56,7 +56,8 @@ class Article extends \yii\db\ActiveRecord
             [['cover_img_id'], 'exist', 'skipOnError' => true, 'targetClass' => CoverImg::className(), 'targetAttribute' => ['cover_img_id' => 'id']],
             [['rate_id'], 'exist', 'skipOnError' => true, 'targetClass' => Rate::className(), 'targetAttribute' => ['rate_id' => 'id']],
 
-              [['cover'], 'file', 'skipOnEmpty' => true, 'on' => 'create', 'extensions' => 'jpg,png,gif'],
+              [['cover'], 'image', 'skipOnEmpty' => true, 'on' => 'create', 'extensions' => 'jpg,png,gif','maxSize' => 1024 * 1024 * 2],
+            //  ['image', 'file', 'extensions' => ['png', 'jpg', 'gif'], 'maxSize' => 1024 * 1024 * 2],
         ];
     }
 

@@ -78,10 +78,16 @@ class ArticleController extends Controller
         $userIP = Yii::$app->request->UserIP;
         Yii::$app->params['uploadPath'] = 'uploads/coverimage/';
       if ($model->load(Yii::$app->request->post()) ) {
+      //if ($model->validate()) {
+          // echo "string";
+          //   var_dump($model->getErrors());
+          // exit(0);
         $image = UploadedFile::getInstance($modelimg,'cover');
-
+        // var_dump($image);
+        // exit(0);
          // store the source file name
          $modelimg->filename = $image->name;
+
          $ext = end((explode(".", $image->name)));
 
          // generate a unique file name
@@ -92,20 +98,25 @@ class ArticleController extends Controller
          $path = Yii::$app->params['uploadPath'] . $modelimg->filename;
 
          if($modelimg->save()){
-             $image->saveAs($path);
+            $image->saveAs($path);
              Image::frame($path)
              ->resize(new Box(1280, 720))
            ->save($path, ['quality' => 100]);
              $modelimg->id;
              $model->cover_img_id = $modelimg->id;
              $model->IPaddress = $userIP;
-             $model->save();
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id, 'rate_id' => $model->rate_id, 'cover_img_id' => $model->cover_img_id,  'category_id' => $model->category_id]);
+            }else {
+              var_dump($model->getErrors());
+            }
 
 
          } else {
-             // error in saving model
+              var_dump($modelimg->getErrors());
          }
-            return $this->redirect(['view', 'id' => $model->id, 'rate_id' => $model->rate_id, 'cover_img_id' => $model->cover_img_id,  'category_id' => $model->category_id]);
+       //}
+
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -156,7 +167,7 @@ class ArticleController extends Controller
           if($modelimg->save()){
 
               $image->saveAs($path);
-              Image::frame($path)
+              Image::getImagine()->open(Yii::getAlias($path))
             ->resize(new Box(1280, 720))
             ->save($path, ['quality' => 100]);
               $modelimg->id;
@@ -165,6 +176,7 @@ class ArticleController extends Controller
 
           } else {
               // error in saving model
+
           }
          }
             return $this->redirect(['view', 'id' => $model->id, 'rate_id' => $model->rate_id, 'cover_img_id' => $model->cover_img_id,  'category_id' => $model->category_id]);

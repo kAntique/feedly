@@ -83,17 +83,18 @@ use yii\bootstrap\Modal;
    <?php }?>
 
    <?= $form->field($modelimg, 'cover')->fileInput() ?>
-
+<!-- <div class="box box-success box-header box-solid"> -->
   <?= $form->field($model, 'link')->textInput() ?>
   <!-- = $form->field($model, 'status_link')->textInput() ?> -->
  <div class="text-right">
-<div>
+
          <?= Html::button('Dailymotion', ['value'=> Url::to('index.php?r=clip/clip/dailymotion'),'class'=> 'btn btn-primary','id'=> 'dailymotion']) ?>
 
         <?= Html::button('Openload',['value'=> Url::to('index.php?r=clip/clip/openload'),'class'=> 'btn btn-primary','id'=> 'modalButton'])  ?>
+      </div>
       <?php Modal::begin([
 
-          'header' => '<h4>Upload</h4>',
+        //  'header' => '<h4>อัพโหลดคลิป : กรอกลิงค์เพื่อทำการอัพโหลด</h4>',
             'id' => 'modal',
               'size' => 'modal-lg',
 
@@ -101,12 +102,12 @@ use yii\bootstrap\Modal;
 
               echo "<div id='modalContent'></div>";
               Modal::end();?>
-</div>
 
- </div>
+
+ <!-- </div> -->
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary','id'=> 'createVDO']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'เพิ่ม' : 'บันทึก', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-success','id'=> 'createVDO']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
