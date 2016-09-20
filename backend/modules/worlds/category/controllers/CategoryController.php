@@ -151,7 +151,7 @@ class CategoryController extends Controller
                // error in saving model
            }
          }
-        
+
             return $this->redirect(['view', 'id' => $model->id, 'rate_id' => $model->rate_id, 'world_id' => $model->world_id, 'cover_img_id' => $model->cover_img_id]);
         } else {
             return $this->render('update', [
@@ -206,4 +206,33 @@ class CategoryController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    public function actionJson_index()
+    {
+        $something = true; // or you can set for test -> false;
+        $model = Category::find()->all();
+        $return_json = ['status' => 'error'];
+        if ($something == true)
+        {
+            $return_json = ['status' => 200,  'msg' => 'OK','result' => $model];
+        }
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        return $return_json;
+    }
+
+    public function actionJson_view()
+    {
+        $something = true; // or you can set for test -> false;
+        $model = Category::find()->where('id')->one();
+        $return_json = ['status' => 'error'];
+        if ($something == true)
+        {
+            $return_json = ['status' => 200,  'msg' => 'OK','result' => $model];
+
+        }
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        return $return_json;
+    }
+
+    
 }

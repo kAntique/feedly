@@ -267,11 +267,33 @@ class ClipController extends Controller
           return $this->render('upload', [
               'model' => $model,
 
-
-
-
-
           ]);
+      }
+      public function actionJson_index()
+      {
+          $something = true; // or you can set for test -> false;
+          $model = Clip::find()->all();
+          $return_json = ['status' => 'error'];
+          if ($something == true)
+          {
+              $return_json = ['status' => 200,  'msg' => 'OK','result' => $model];
+          }
+          \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+          return $return_json;
+      }
+
+      public function actionJson_view()
+      {
+          $something = true; // or you can set for test -> false;
+          $model = Clip::find()->where('id')->one();
+          $return_json = ['status' => 'error'];
+          if ($something == true)
+          {
+              $return_json = ['status' => 200,  'msg' => 'OK','result' => $model];
+
+          }
+          \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+          return $return_json;
       }
 
 }
