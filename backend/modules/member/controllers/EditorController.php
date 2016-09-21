@@ -85,6 +85,7 @@ class EditorController extends Controller
             $user->type_member = Yii::$app->request->get('type_member');
             // $model->reCaptcha = '0';
             //  var_dump($model->reCaptcha);
+            // โค้ดในส่วนของการบันทึกรูปภาพอาจจะต้องลบออกให้มันบันทึกในฟอรม์ upload_crop.php ///
             if ($user->save()) {
                 $file = \yii\web\UploadedFile::getInstance($model, 'avatar_img');
                 $model->avatar = $file->name;

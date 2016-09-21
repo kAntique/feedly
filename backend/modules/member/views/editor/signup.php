@@ -48,6 +48,8 @@ use yii\captcha\Captcha;
                    ])->hint('กรอกได้มากกว่า 1 เว็บไซต์')?>
             <?php endif; ?>
 
+            <!-- เพิ่ม widget upload crop image ที่สร้างมาเอง -->
+
             <br><?php echo FileInput::widget([
                 'model' => $model,
               'attribute' => 'avatar_img',
