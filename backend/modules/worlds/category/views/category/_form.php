@@ -8,6 +8,7 @@ use backend\modules\worlds\world\models\World;
 use backend\modules\worlds\coverimg\models\CoverImg;
 use dosamigos\selectize\SelectizeTextInput;
 use kartik\file\FileInput;
+use dosamigos\ckeditor\CKEditor;
 /* @var $this yii\web\View */
 /* @var $model backend\modules\worlds\category\models\Category */
 /* @var $form yii\widgets\ActiveForm */
@@ -23,8 +24,11 @@ use kartik\file\FileInput;
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+    
+    <?= $form->field($model, 'description')->widget(CKEditor::className(), [
+        'options' => ['rows' => 6],
+        'preset' => 'basic'
+    ]) ?>
 
     <?= $form->field($model, 'tags')->widget(SelectizeTextInput::className(), [
 
@@ -49,9 +53,13 @@ use kartik\file\FileInput;
      ['prompt'=>'เลือก ภาพปก']
     ) ?> -->
     <?php if(!$model->isNewRecord){?>
-   <?=   Html::img('uploads/coverimage'.$model->coverImg['filename'], ['width' => '200px']);?>
+   <?=   Html::img('uploads/coverimage/'.$model->coverImg['filename'], ['width' => '200px']);?>
+
    <?php }?>
+
    <?= $form->field($modelimg, 'cover')->fileInput() ?>
+
+
     <!-- < echo FileInput::widget([
                     'name' =>'cover',
                       'pluginOptions' => [

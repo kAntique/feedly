@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
     ]) ?>
     <div class="text-center box " >
 
-    <?= Html::img('uploads/coverimage'.$model->filename,['width' => 620,'height' => 480])?>
+    <?= Html::img('uploads/coverimage/'.$model->filename,['width' => 620,'height' => 480])?>
 
     </div>
   </div>

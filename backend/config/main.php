@@ -30,6 +30,12 @@ return [
        'member' => [
             'class' => 'backend\modules\member\Module',
         ],
+       'clip' => [
+            'class' => 'backend\modules\clip\Module',
+        ],
+        'article' => [
+           'class' => 'backend\modules\article\Module',
+       ],
 
     ],
     'components' => [
@@ -91,6 +97,14 @@ return [
                    'encryption' => 'ssl',
                ],
            ],
+        //
+        // 'urlManager' => [
+        //     'enablePrettyUrl' => true,
+        //     'showScriptName' => false,
+        //     'rules' => [
+        //
+        //     ],
+        // ],
     ],
     'params' => $params,
 ];

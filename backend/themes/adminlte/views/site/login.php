@@ -61,7 +61,6 @@ $fieldOptions2 = [
                 in using Google+</a>
         </div> -->
         <!-- /.social-auth-links -->
-
         <a href="index.php?r=member/editor/request-password-reset">ลืมรหัสผ่าน</a><br>
         <a href="index.php?r=member/editor/select" class="text-center">สมัครสมาชิก</a>
     </div>

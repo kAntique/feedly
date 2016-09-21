@@ -583,7 +583,7 @@ class User extends Component
         $this->removeIdentityCookie();
         return null;
     }
-     
+
     /**
      * Removes the identity cookie.
      * This method is used when [[enableAutoLogin]] is true.

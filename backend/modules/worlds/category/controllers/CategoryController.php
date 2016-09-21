@@ -13,16 +13,10 @@ use yii\web\UploadedFile;
 use yii\data\ActiveDataProvider;
 use Imagine\Image\Box;
 use yii\imagine\Image;
+use backend\modules\clip\models\Clip;
 
-
-/**
- * CategoryController implements the CRUD actions for Category model.
- */
 class CategoryController extends Controller
 {
-    /**
-     * @inheritdoc
-     */
     public function behaviors()
     {
         return [
@@ -34,23 +28,17 @@ class CategoryController extends Controller
             ],
         ];
     }
-
     /**
      * Lists all Category models.
      * @return mixed
      */
     public function actionIndex()
     {
-
        $searchModel = new CategorySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
         return $this->render('index', [
            'searchModel' => $searchModel,
            'dataProvider' => $dataProvider,
-
-
-
         ]);
     }
 
@@ -80,17 +68,14 @@ class CategoryController extends Controller
     {
         $model = new Category();
         $modelimg = new Coverimg();
-        Yii::$app->params['uploadPath'] = 'uploads/coverimage';
+        Yii::$app->params['uploadPath'] = 'uploads/coverimage/';
         if ($model->load(Yii::$app->request->post())) {
           $image = UploadedFile::getInstance($modelimg,'cover');
-
            // store the source file name
            $modelimg->filename = $image->name;
            $ext = end((explode(".", $image->name)));
-
            // generate a unique file name
            $modelimg->filename = Yii::$app->security->generateRandomString().".{$ext}";
-
            // the path to save file, you can set an uploadPath
            // in Yii::$app->params (as used in example below)
            $path = Yii::$app->params['uploadPath'] . $modelimg->filename;
@@ -98,21 +83,14 @@ class CategoryController extends Controller
            if($modelimg->save()){
                $image->saveAs($path);
                Image::frame($path)
-             ->thumbnail(new Box(350, 300))
-             ->save($path, ['quality' => 70]);
+               ->resize(new Box(1280, 720))
+               ->save($path , ['quality' => 100]);
                $modelimg->id;
                $model->cover_img_id = $modelimg->id;
-
-
                $model->save();
-
            } else {
                // error in saving model
            }
-          // $file = UploadedFile::getInstance($modelimg,'cover');
-          //     $modelimg->filename = $file->name;
-          //     $file->saveAs('uploads/coverimage'.$file->name );
-          //     $modelimg->save();
 
             return $this->redirect(['view', 'id' => $model->id, 'rate_id' => $model->rate_id, 'world_id' => $model->world_id, 'cover_img_id' => $model->cover_img_id]);
         } else {
@@ -137,16 +115,16 @@ class CategoryController extends Controller
         $model = $this->findModel($id, $rate_id, $world_id, $cover_img_id);
 
 
-        $modelimg = new Coverimg();
+        $modelimg = CoverImg::find()->where(['id'=>$cover_img_id])->one();
 
-        Yii::$app->params['uploadPath'] = 'uploads/coverimage';
+        Yii::$app->params['uploadPath'] = 'uploads/coverimage/';
 
         if ($model->load(Yii::$app->request->post())) {
 
 
           $image = UploadedFile::getInstance($modelimg,'cover');
           if ($image->size!=0) {
-            unlink(getcwd().'/uploads/coverimage'.$model->coverImg['filename']);
+            unlink(getcwd().'/uploads/coverimage/'.$model->coverImg['filename']);
 
            // store the source file name
            $modelimg->filename = $image->name;
@@ -163,8 +141,8 @@ class CategoryController extends Controller
 
                $image->saveAs($path);
                Image::frame($path)
-             ->thumbnail(new Box(100, 100))
-             ->save($path, ['quality' => 70]);
+                 ->resize(new Box(1280, 720))
+               ->save($path, ['quality' => 100]);
                $modelimg->id;
                $model->cover_img_id = $modelimg->id;
                $model->save();
@@ -173,10 +151,7 @@ class CategoryController extends Controller
                // error in saving model
            }
          }
-        //  else {
-        //    Yii::$app->session->setFlash('warning', 'โปรดเลือกไฟล์.');
-        //      return $this->refresh();
-        //  }
+        
             return $this->redirect(['view', 'id' => $model->id, 'rate_id' => $model->rate_id, 'world_id' => $model->world_id, 'cover_img_id' => $model->cover_img_id]);
         } else {
             return $this->render('update', [
@@ -197,11 +172,19 @@ class CategoryController extends Controller
      */
     public function actionDelete($id, $rate_id, $world_id, $cover_img_id)
     {
-
+         $coverimage = CoverImg::find()->where(['id'=>$cover_img_id])->one();
          $model = $this->findModel($id, $rate_id, $world_id,$cover_img_id);
-         $coverimage = CoverImg::find()->where(['id'=>$model])->one();
-         $model =>
-           Yii::$app->session->setFlash('success', 'ลบข้อมูลสำเร็จ.');
+         $clip = Clip::find()->where(['category_id'=>$model])->one();
+         if ($clip) {
+           Yii::$app->session->setFlash('warning', 'ไม่สามารถลบข้อมูลได้ เป็นส่วนสำคัญของตารางหลัก.');
+
+         }else {
+         $model->delete();
+           unlink(getcwd().'/uploads/coverimage/'.$model->coverImg['filename']);
+          $coverimage->delete();
+         Yii::$app->session->setFlash('success', 'ลบข้อมูลสำเร็จ.');
+         }
+
         return $this->redirect(['index']);
     }
 

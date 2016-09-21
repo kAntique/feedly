@@ -16,12 +16,14 @@ class ComposerStaticInit8b5026c3702b01f5040b9139ea9c7ee5
         array (
             'yii\\swiftmailer\\' => 16,
             'yii\\imagine\\' => 12,
+            'yii\\httpclient\\' => 15,
             'yii\\gii\\' => 8,
             'yii\\faker\\' => 10,
             'yii\\debug\\' => 10,
             'yii\\composer\\' => 13,
             'yii\\codeception\\' => 16,
             'yii\\bootstrap\\' => 14,
+            'yii\\authclient\\' => 15,
             'yii\\' => 4,
         ),
         'r' => 
@@ -41,6 +43,7 @@ class ComposerStaticInit8b5026c3702b01f5040b9139ea9c7ee5
         'd' => 
         array (
             'dosamigos\\selectize\\' => 20,
+            'dosamigos\\ckeditor\\' => 19,
             'dmstr\\' => 6,
         ),
         'c' => 
@@ -61,6 +64,10 @@ class ComposerStaticInit8b5026c3702b01f5040b9139ea9c7ee5
         'yii\\imagine\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2-imagine',
+        ),
+        'yii\\httpclient\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yiisoft/yii2-httpclient',
         ),
         'yii\\gii\\' => 
         array (
@@ -85,6 +92,10 @@ class ComposerStaticInit8b5026c3702b01f5040b9139ea9c7ee5
         'yii\\bootstrap\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2-bootstrap',
+        ),
+        'yii\\authclient\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yiisoft/yii2-authclient',
         ),
         'yii\\' => 
         array (
@@ -114,6 +125,10 @@ class ComposerStaticInit8b5026c3702b01f5040b9139ea9c7ee5
         array (
             0 => __DIR__ . '/..' . '/2amigos/yii2-selectize-widget/src',
         ),
+        'dosamigos\\ckeditor\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/2amigos/yii2-ckeditor-widget/src',
+        ),
         'dmstr\\' => 
         array (
             0 => __DIR__ . '/..' . '/dmstr/yii2-adminlte-asset',
@@ -129,6 +144,13 @@ class ComposerStaticInit8b5026c3702b01f5040b9139ea9c7ee5
     );
 
     public static $prefixesPsr0 = array (
+        'y' => 
+        array (
+            'yii\\image\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/yurkinx/yii2-image',
+            ),
+        ),
         'c' => 
         array (
             'cebe\\gravatar\\' => 
