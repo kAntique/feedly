@@ -36,6 +36,10 @@ class ComposerStaticInit8b5026c3702b01f5040b9139ea9c7ee5
             'kartik\\file\\' => 12,
             'kartik\\base\\' => 12,
         ),
+        'h' => 
+        array (
+            'himiklab\\yii2\\recaptcha\\' => 24,
+        ),
         'd' => 
         array (
             'dosamigos\\selectize\\' => 20,
@@ -112,6 +116,10 @@ class ComposerStaticInit8b5026c3702b01f5040b9139ea9c7ee5
         'kartik\\base\\' => 
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-krajee-base',
+        ),
+        'himiklab\\yii2\\recaptcha\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/himiklab/yii2-recaptcha-widget',
         ),
         'dosamigos\\selectize\\' => 
         array (

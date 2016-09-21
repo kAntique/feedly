@@ -19,12 +19,16 @@
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
         "dmstr/yii2-adminlte-asset": "2.*",
-        "kartik-v/yii2-widget-fileinput": "@dev",
         "2amigos/yii2-selectize-widget": "~1.0",
         "yiisoft/yii2-imagine": "*",
+<<<<<<< HEAD
+        "kartik-v/yii2-widget-fileinput": "@dev",
+        "himiklab/yii2-recaptcha-widget" : "*"
+=======
         "2amigos/yii2-ckeditor-widget": "~1.0",
         "yurkinx/yii2-image": "^1.1",
         "yiisoft/yii2-authclient": "^2.1"
+>>>>>>> 460c4e0ff0fc759ae75199ff6f49f8e9cddb78a4
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

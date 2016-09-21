@@ -27,6 +27,9 @@ return [
         'status' => [
            'class' => 'backend\modules\worlds\status\Module',
        ],
+       'member' => [
+            'class' => 'backend\modules\member\Module',
+        ],
        'clip' => [
             'class' => 'backend\modules\clip\Module',
         ],
@@ -43,6 +46,12 @@ return [
              ],
          ],
     ],
+    // 'reCaptcha' => [
+    //     'name' => 'reCaptcha',
+    //     'class' => 'himiklab\yii2\recaptcha\ReCaptcha',
+    //     'siteKey' => 'your siteKey',
+    //     'secret' => 'your secret key',
+    //   ],
         'request' => [
             'csrfParam' => '_csrf-backend',
         ],
@@ -67,6 +76,27 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        /*
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'rules' => [
+            ],
+        ],
+        */
+        'mailer' => [
+          'class' => 'yii\swiftmailer\Mailer',
+               //'viewPath' => '@frontend\runtime\mail',
+               'useFileTransport' => false,
+               'transport' => [
+                   'class' => 'Swift_SmtpTransport',
+                   'host' => 'smtp.gmail.com',    //smtp.mandrillapp.com //smtp.gmail.com
+                   'username' => 'sakeerin.kh@gmail.com',
+                   'password' => '0884065505',
+                   'port' => '465',
+                   'encryption' => 'ssl',
+               ],
+           ],
         //
         // 'urlManager' => [
         //     'enablePrettyUrl' => true,
@@ -75,6 +105,7 @@ return [
         //
         //     ],
         // ],
+<<<<<<< HEAD
 
 
 'authClientCollection' => [
@@ -86,6 +117,8 @@ return [
           'clientSecret' => 'facebook_client_secret',
         ],],],
 
+=======
+>>>>>>> eef3f56475d53cfbadd0337d6f63c04358583003
     ],
     'params' => $params,
 ];

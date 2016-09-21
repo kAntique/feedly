@@ -1,0 +1,67 @@
+2016-08-29 19:15:57 [::1][9][f22acag6ca7da1re1qm6b08do4][error][yii\web\HttpException:404] exception 'yii\base\InvalidRouteException' with message 'Unable to resolve the request "member/editor/signup".' in /Applications/XAMPP/xamppfiles/htdocs/feedly/vendor/yiisoft/yii2/base/Module.php:460
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/feedly/vendor/yiisoft/yii2/web/Application.php(87): yii\base\Module->runAction('member/editor/s...', Array)
+#1 /Applications/XAMPP/xamppfiles/htdocs/feedly/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 /Applications/XAMPP/xamppfiles/htdocs/feedly/frontend/web/index.php(18): yii\base\Application->run()
+#3 {main}
+
+Next exception 'yii\web\NotFoundHttpException' with message 'ไม่พบหน้า' in /Applications/XAMPP/xamppfiles/htdocs/feedly/vendor/yiisoft/yii2/web/Application.php:99
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/feedly/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 /Applications/XAMPP/xamppfiles/htdocs/feedly/frontend/web/index.php(18): yii\base\Application->run()
+#2 {main}
+2016-08-29 19:15:57 [::1][9][f22acag6ca7da1re1qm6b08do4][info][application] $_GET = [
+    'r' => 'member/editor/signup'
+    'type_member' => '1'
+]
+
+$_COOKIE = [
+    'advanced-backend' => '6jgm0p6rm5c2lu78p6h84c54a6'
+    '_csrf-backend' => '7a9cbc2236f9a8cdab3b4a601620b2834914ae65966f9d698c974d36c370bc3ea:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"vX3T93_1mn1rqxHmfKDzEtHE4qza410B\";}'
+    'advanced-frontend' => 'f22acag6ca7da1re1qm6b08do4'
+    '_csrf-frontend' => '13f046dc039a30996cefd813e1b28fed2118d5ea5b1144ddefe60df2d48d1ed4a:2:{i:0;s:14:\"_csrf-frontend\";i:1;s:32:\"s4pTDrX-bZVVURg2YO-VvjxDjBdllmKa\";}'
+    '_identity-frontend' => '25ca6ef9c80ffcffafb56a5b94de08719c4bb7a6fee2ad99d91acd80fb6e64d4a:2:{i:0;s:18:\"_identity-frontend\";i:1;s:46:\"[9,\"CylgH12e3Vx0zDzd4sLnnuiBa0qohYni\",2592000]\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__captcha/site/captcha' => 'nalehdt'
+    '__captcha/site/captchacount' => 1
+    '__id' => 9
+]
+
+$_SERVER = [
+    'UNIQUE_ID' => 'V8RtzawUCgMAAXk7LAwAAAAD'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:50.0) Gecko/20100101 Firefox/50.0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_COOKIE' => 'advanced-backend=6jgm0p6rm5c2lu78p6h84c54a6; _csrf-backend=7a9cbc2236f9a8cdab3b4a601620b2834914ae65966f9d698c974d36c370bc3ea%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22vX3T93_1mn1rqxHmfKDzEtHE4qza410B%22%3B%7D; advanced-frontend=f22acag6ca7da1re1qm6b08do4; _csrf-frontend=13f046dc039a30996cefd813e1b28fed2118d5ea5b1144ddefe60df2d48d1ed4a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22s4pTDrX-bZVVURg2YO-VvjxDjBdllmKa%22%3B%7D; _identity-frontend=25ca6ef9c80ffcffafb56a5b94de08719c4bb7a6fee2ad99d91acd80fb6e64d4a%3A2%3A%7Bi%3A0%3Bs%3A18%3A%22_identity-frontend%22%3Bi%3A1%3Bs%3A46%3A%22%5B9%2C%22CylgH12e3Vx0zDzd4sLnnuiBa0qohYni%22%2C2592000%5D%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'PATH' => '/usr/bin:/bin:/usr/sbin:/sbin'
+    'DYLD_LIBRARY_PATH' => '/Applications/XAMPP/xamppfiles/lib'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.18 (Unix) OpenSSL/1.0.2h PHP/5.5.37 mod_perl/2.0.8-dev Perl/v5.16.3'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => '/Applications/XAMPP/xamppfiles/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/Applications/XAMPP/xamppfiles/htdocs'
+    'SERVER_ADMIN' => 'you@example.com'
+    'SCRIPT_FILENAME' => '/Applications/XAMPP/xamppfiles/htdocs/feedly/frontend/web/index.php'
+    'REMOTE_PORT' => '54522'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=member%2Feditor%2Fsignup&type_member=1'
+    'REQUEST_URI' => '/feedly/frontend/web/index.php?r=member%2Feditor%2Fsignup&type_member=1'
+    'SCRIPT_NAME' => '/feedly/frontend/web/index.php'
+    'PHP_SELF' => '/feedly/frontend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1472490957.124
+    'REQUEST_TIME' => 1472490957
+]

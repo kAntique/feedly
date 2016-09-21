@@ -84,6 +84,24 @@ return array (
       '@dmstr' => $vendorDir . '/dmstr/yii2-adminlte-asset',
     ),
   ),
+  '2amigos/yii2-selectize-widget' => 
+  array (
+    'name' => '2amigos/yii2-selectize-widget',
+    'version' => '1.0.1.0',
+    'alias' => 
+    array (
+      '@dosamigos/selectize' => $vendorDir . '/2amigos/yii2-selectize-widget/src',
+    ),
+  ),
+  'yiisoft/yii2-imagine' => 
+  array (
+    'name' => 'yiisoft/yii2-imagine',
+    'version' => '2.0.3.0',
+    'alias' => 
+    array (
+      '@yii/imagine' => $vendorDir . '/yiisoft/yii2-imagine',
+    ),
+  ),
   'kartik-v/yii2-krajee-base' => 
   array (
     'name' => 'kartik-v/yii2-krajee-base',
@@ -102,22 +120,13 @@ return array (
       '@kartik/file' => $vendorDir . '/kartik-v/yii2-widget-fileinput',
     ),
   ),
-  '2amigos/yii2-selectize-widget' => 
+  'himiklab/yii2-recaptcha-widget' => 
   array (
-    'name' => '2amigos/yii2-selectize-widget',
-    'version' => '1.0.1.0',
+    'name' => 'himiklab/yii2-recaptcha-widget',
+    'version' => '1.0.5.0',
     'alias' => 
     array (
-      '@dosamigos/selectize' => $vendorDir . '/2amigos/yii2-selectize-widget/src',
-    ),
-  ),
-  'yiisoft/yii2-imagine' => 
-  array (
-    'name' => 'yiisoft/yii2-imagine',
-    'version' => '2.0.3.0',
-    'alias' => 
-    array (
-      '@yii/imagine' => $vendorDir . '/yiisoft/yii2-imagine',
+      '@himiklab/yii2/recaptcha' => $vendorDir . '/himiklab/yii2-recaptcha-widget',
     ),
   ),
   '2amigos/yii2-ckeditor-widget' => 
