@@ -263,6 +263,7 @@ class ArticleController extends Controller
        return $this->render('firebase');
      }
      public function actionAuth_firebase() {
-        return $this->render('auth_firebase');
+        return $this->render('Auth');
       }
+
 }

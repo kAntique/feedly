@@ -77,7 +77,14 @@ return [
         // ],
 
 
-
+'authClientCollection' => [
+   'class' => 'yii\authclient\Collection',
+    'clients' => [
+       'firebase' => [
+         'class' => 'yii\authclient\clients\Firebase',
+         'clientId' => 'facebook_client_id',
+          'clientSecret' => 'facebook_client_secret',
+        ],],],
 
     ],
     'params' => $params,
