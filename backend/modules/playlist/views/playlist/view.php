@@ -1,7 +1,9 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\DetailView;
+use yii\bootstrap\Modal;
 
 /* @var $this yii\web\View */
 /* @var $model backend\modules\playlist\models\Playlist */
@@ -27,18 +29,36 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
+    <div class="text-center" >
 
+      <?= Html::img('uploads/coverimage/'.$cover->filename
+      ,['width' => 500,'height' => 315]
+      )?>
+
+    </div>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+            //'id',
             'name',
             'date',
             'description:ntext',
-            'cover_img_id',
-            'category_id',
+            //'cover_img_id',
+            'category.title',
         ],
     ]) ?>
+<p>
+  <?= Html::button('เพิ่มคลิป',['value'=> Url::to('index.php?r=listclip/listclip/create'),'class'=> 'btn btn-primary','id'=> 'modalButton'])  ?>
+</div>
+<?php Modal::begin([
 
+      'id' => 'modal',
+        'size' => 'modal-lg',
+
+      ]);
+       echo "<div class='text-center'>$model->name</div>";
+        echo "<div id='modalContent'></div>";
+        Modal::end();?>
+</p>
 </div>
 </div>

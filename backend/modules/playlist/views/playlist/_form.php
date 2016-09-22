@@ -26,7 +26,7 @@ use backend\modules\worlds\category\models\Category;
         'preset' => 'basic'
     ]) ?>
 <?= $form->field($model, 'category_id')->dropDownList(
-     ArrayHelper::map(Category::find()->where(['world_id'=>1])->all(),'id','title'),
+     ArrayHelper::map(Category::find()->all(),'id','title'),
      ['prompt'=>'เลือกหมวดหมู่']
     ) ?>
 <?php if(!$model->isNewRecord){?>

@@ -5,6 +5,8 @@ namespace backend\modules\listclip\controllers;
 use Yii;
 use backend\modules\listclip\models\Listclip;
 use backend\modules\listclip\models\ListclipSearch;
+use backend\modules\playlist\models\Playlist;
+use backend\modules\clip\models\Clip;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -65,12 +67,15 @@ class ListclipController extends Controller
     public function actionCreate()
     {
         $model = new Listclip();
-
+         $playlist = Playlist::find()->where(['id'=>1])->one();
+        $clip = Clip::find()->where(['category_id'=> 3])->all();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'playlist_id' => $model->playlist_id, 'clip_id' => $model->clip_id]);
         } else {
-            return $this->render('create', [
+            return $this->renderAjax('create', [
                 'model' => $model,
+                'playlist' => $playlist,
+                'clip' => $clip,
             ]);
         }
     }
@@ -125,4 +130,5 @@ class ListclipController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
 }
