@@ -234,5 +234,37 @@ class CategoryController extends Controller
         return $return_json;
     }
 
-    
+    public function actionPlaylist_clip()
+    {
+      $model = Category::find()->where(['world_id' => 1])->all();
+      $clip = Clip :: find()->where('category_id')->all();
+          return $this->render('playlist', [
+              'model' => $model,
+              'clip' => $clip,
+
+          ]);
+    }
+
+    public function actionPlaylist_article()
+    {
+    $model = Category::find()->where(['world_id' => 2])->all();
+
+        return $this->render('playlist', [
+            'model' => $model,
+
+
+        ]);
+    }
+
+    public function actionList_clip()
+    {
+    $model = Clip::find()->where(['category_id' => 11])->all();
+
+        return $this->render('list_clip', [
+            'model' => $model,
+
+
+        ]);
+    }
+
 }

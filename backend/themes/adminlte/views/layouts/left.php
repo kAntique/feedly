@@ -2,16 +2,6 @@
 
     <section class="sidebar">
 
-<<<<<<< HEAD
-        <!-- Sidebar user panel -->
-        <div class="user-panel">
-            <div class="pull-left image">
-                <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
-            </div>
-            <div class="pull-left info">
-                <!-- <p>< echo Yii::$app->user->identity->username; ?></p> -->
-=======
->>>>>>> 460c4e0ff0fc759ae75199ff6f49f8e9cddb78a4
 
 
 
@@ -34,6 +24,9 @@
                       ['label' => 'สถานะคลิป', 'icon' => 'glyphicon glyphicon-check', 'url' => ['/status/status']],
                       ['label' => 'บทความ', 'options' => ['class' => 'header']],
                       ['label' => 'เพิ่มบทความ', 'icon' => 'glyphicon glyphicon-edit', 'url' => ['/article/article']],
+                      ['label' => 'เพลลิสต์', 'options' => ['class' => 'header']],
+                      ['label' => 'คลิป', 'icon' => 'glyphicon glyphicon-play-circle', 'url' => ['/clip/clip']],
+                      ['label' => 'บทความ', 'icon' => 'glyphicon glyphicon-book', 'url' => ['/clip/clip']],
                       ['label' => 'ตั้งค่าทั่วไป', 'options' => ['class' => 'header']],
                       ['label' => 'ประเภท', 'icon' => 'glyphicon glyphicon-globe', 'url' => ['/world/world']],
                       ['label' => 'หมวดหมู่', 'icon' => 'glyphicon glyphicon-th-list', 'url' => ['/category/category']],

@@ -259,11 +259,15 @@ class ArticleController extends Controller
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         return $return_json;
     }
-    public function actionFirebase() {
-       return $this->render('firebase');
-     }
-     public function actionAuth_firebase() {
-        return $this->render('Auth');
-      }
+
+    public function actionPlaylist()
+    {
+    $model = Article::find()->where('category_id')->all();
+        return $this->render('playlist', [
+            'model' => $model,
+
+        ]);
+    }
+
 
 }

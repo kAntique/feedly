@@ -36,6 +36,17 @@ return [
         'article' => [
            'class' => 'backend\modules\article\Module',
        ],
+       'playlist' => [
+
+          'class' => 'backend\modules\playlist\Module',
+
+      ],
+      
+         'listclip' => [
+
+            'class' => 'backend\modules\listclip\Module',
+
+        ],
 
     ],
     'components' => [
@@ -105,20 +116,8 @@ return [
         //
         //     ],
         // ],
-<<<<<<< HEAD
 
 
-'authClientCollection' => [
-   'class' => 'yii\authclient\Collection',
-    'clients' => [
-       'firebase' => [
-         'class' => 'yii\authclient\clients\Firebase',
-         'clientId' => 'facebook_client_id',
-          'clientSecret' => 'facebook_client_secret',
-        ],],],
-
-=======
->>>>>>> eef3f56475d53cfbadd0337d6f63c04358583003
     ],
     'params' => $params,
 ];

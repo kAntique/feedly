@@ -256,7 +256,7 @@ class ClipController extends Controller
                  foreach( $decode->result as $list){
 
                    if ($list->status == "finished") {
-                      $value->link = $list->url;
+                      $value->link = 'https://openload.co/embed/'.$list->extid;
                       $value->status_link = 1;
                       $value->save();
 
@@ -295,5 +295,15 @@ class ClipController extends Controller
           \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
           return $return_json;
       }
+      public function actionPlaylist()
+      {
+      $model = Clip::find()->where('category_id')->all();
+          return $this->render('playlist', [
+              'model' => $model,
+
+          ]);
+      }
+
+
 
 }
