@@ -1,14 +1,14 @@
 <?php
 
-namespace backend\modules\listclip\models;
+namespace backend\modules\clip\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\modules\listclip\models\Listclip;
+use backend\modules\clip\models\Listclip;
 
 /**
- * ListclipSearch represents the model behind the search form about `backend\modules\listclip\models\Listclip`.
+ * ListclipSearch represents the model behind the search form about `backend\modules\clip\models\Listclip`.
  */
 class ListclipSearch extends Listclip
 {

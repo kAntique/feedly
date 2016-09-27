@@ -1,10 +1,10 @@
 <?php
 
-namespace backend\modules\playlist\controllers;
+namespace backend\modules\clip\controllers;
 
 use Yii;
-use backend\modules\playlist\models\Playlist;
-use backend\modules\playlist\models\PlaylistSearch;
+use backend\modules\clip\models\Playlist;
+use backend\modules\clip\models\PlaylistSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -205,5 +205,5 @@ class PlaylistController extends Controller
         }
     }
 
-  
+
 }

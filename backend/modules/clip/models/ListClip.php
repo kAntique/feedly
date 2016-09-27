@@ -1,10 +1,9 @@
 <?php
 
-namespace backend\modules\listclip\models;
+namespace backend\modules\clip\models;
 
 use Yii;
-use backend\modules\clip\models\Clip;
-use backend\modules\playlist\models\Playlist;
+
 /**
  * This is the model class for table "list_clip".
  *

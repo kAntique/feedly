@@ -1,14 +1,14 @@
 <?php
 
-namespace backend\modules\playlist\models;
+namespace backend\modules\clip\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\modules\playlist\models\Playlist;
+use backend\modules\clip\models\Playlist;
 
 /**
- * PlaylistSearch represents the model behind the search form about `backend\modules\playlist\models\Playlist`.
+ * PlaylistSearch represents the model behind the search form about `backend\modules\clip\models\Playlist`.
  */
 class PlaylistSearch extends Playlist
 {
@@ -19,7 +19,7 @@ class PlaylistSearch extends Playlist
     {
         return [
             [['id', 'cover_img_id', 'category_id'], 'integer'],
-            [['name', 'date', 'description'], 'safe'],
+            [['name', 'date', 'description', 'tags'], 'safe'],
         ];
     }
 
@@ -66,7 +66,8 @@ class PlaylistSearch extends Playlist
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'description', $this->description]);
+            ->andFilterWhere(['like', 'description', $this->description])
+            ->andFilterWhere(['like', 'tags', $this->tags]);
 
         return $dataProvider;
     }

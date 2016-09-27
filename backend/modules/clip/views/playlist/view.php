@@ -8,6 +8,11 @@ use yii\bootstrap\Modal;
 /* @var $this yii\web\View */
 /* @var $model backend\modules\playlist\models\Playlist */
 
+// $this->registerJs(" $('.popupModal').on('click', function(){
+//      var idplay = document.getElementById('id_playlist') ;
+//      var num = idplay.value;
+//      $('#listclip-playlist_id').val(num);
+//    }); ");
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Playlists', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -48,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 <p>
-  <?= Html::button('เพิ่มคลิป',['value'=> Url::to('index.php?r=listclip/listclip/create'),'class'=> 'btn btn-primary','id'=> 'modalButton'])  ?>
+  <?= Html::button('เพิ่มคลิป',['value'=> Url::to('index.php?r=clip/listclip/create'),'id'=>$model->id,'class'=> 'popupModal btn btn-primary',  $value = Yii::$app->request->post('id') ])  ?>
 </div>
 <?php Modal::begin([
 
@@ -56,9 +61,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'size' => 'modal-lg',
 
       ]);
+
        echo "<div class='text-center'>$model->name</div>";
-        echo "<div id='modalContent'></div>";
+       echo "<div class='text-center' id='id_playlist' value=$model->id></div>";
+        echo "<div id='modal-content'></div>";
+
+
         Modal::end();?>
+
 </p>
 </div>
 </div>

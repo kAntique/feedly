@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\modules\playlist\models;
+namespace backend\modules\clip\models;
 
 use Yii;
 use backend\modules\worlds\category\models\Category;

@@ -303,7 +303,14 @@ class ClipController extends Controller
 
           ]);
       }
+      public function actionAdd_clip2list()
+      {
+      $model = Clip::find()->all();
+          return $this->render('playlist', [
+              'model' => $model,
 
+          ]);
+      }
 
 
 }
