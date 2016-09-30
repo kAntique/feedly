@@ -295,22 +295,14 @@ class ClipController extends Controller
           \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
           return $return_json;
       }
-      public function actionPlaylist()
-      {
-      $model = Clip::find()->where('category_id')->all();
-          return $this->render('playlist', [
-              'model' => $model,
-
-          ]);
-      }
-      public function actionAdd_clip2list()
-      {
-      $model = Clip::find()->all();
-          return $this->render('playlist', [
-              'model' => $model,
-
-          ]);
-      }
+      // public function actionPlaylist()
+      // {
+      // $model = Clip::find()->where('category_id')->all();
+      //     return $this->render('playlist', [
+      //         'model' => $model,
+      //
+      //     ]);
+      //}
 
 
 }

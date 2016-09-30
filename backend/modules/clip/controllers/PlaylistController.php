@@ -5,6 +5,10 @@ namespace backend\modules\clip\controllers;
 use Yii;
 use backend\modules\clip\models\Playlist;
 use backend\modules\clip\models\PlaylistSearch;
+use backend\modules\clip\models\Listclip;
+use backend\modules\clip\models\ListclipSearch;
+use backend\modules\clip\models\Clip;
+use backend\modules\clip\models\ClipSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -12,6 +16,7 @@ use backend\modules\worlds\coverimg\models\CoverImg;
 use yii\web\UploadedFile;
 use Imagine\Image\Box;
 use yii\imagine\Image;
+use yii\data\ActiveDataProvider;
 /**
  * PlaylistController implements the CRUD actions for Playlist model.
  */
@@ -57,10 +62,30 @@ class PlaylistController extends Controller
     public function actionView($id, $cover_img_id, $category_id)
     {
       $cover = CoverImg::find()->where(['id'=>$cover_img_id])->one();
+      $list = Listclip::find()->where(['playlist_id'=>$id]);
+      $dataProvider = new ActiveDataProvider([
+          'query' => $list,
+
+      ]);
+
+        $clip_id = Clip::find()->where('id ')
+        ->andWhere(['category_id'=>$category_id])
+        //->andWhere(['LIKE', 'tags', 'โดเรมอน'])
+        ;
+
+        $dataProvider2 = new ActiveDataProvider([
+            'query' => $clip_id,
+        ]);
         return $this->render('view', [
             'model' => $this->findModel($id, $cover_img_id, $category_id),
             'cover'=>$cover,
+            'playlist_id' => $id,
+            'clip_id'=>$clip_id,
+            'dataProvider2' => $dataProvider2,
+            'dataProvider' => $dataProvider,
+            'list' => $list,
         ]);
+
     }
 
     /**
@@ -204,6 +229,51 @@ class PlaylistController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    public function actionAddclip2list($id,$category_id)
+    {
+      $model = new Listclip();
+        $model->playlist_id = $id;
+
+        $clip_id = Clip::find()->where(['category_id'=>$category_id])->all();
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $clip_id,
+
+        ]);
+      if ($model->load(Yii::$app->request->post()) && $model->save()) {
+          return   Yii::$app->session->setFlash('success', 'เพิ่มสำเร็จ.');
+      } else {
+          return $this->renderAjax('addclip', [
+              'model' => $model,
+              'clip_id'=>$clip_id,
+              'dataProvider' => $dataProvider,
+
+          ]);
+      }
+
+    }
+    public function actionCreatelist($playlist_id,$clip_id)
+    {
+      $model = new Listclip();
+        $model->playlist_id = $playlist_id;
+        $model->clip_id = $clip_id;
+    $model->load(Yii::$app->request->post()) ;
+    if ($model->save()) {
+  //return
+  //Yii::$app->session->setFlash('success', 'เพิ่มคลิปสำเร็จ.');
+    }
+  }
+  public function actionAll_playlist()
+  {
+    $model = Playlist::find()->all();
+
+    return $this->renderAjax('all_playlist', [
+        'model' => $model,
+
+
+    ]);
+  }
 
 
 }

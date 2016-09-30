@@ -6,9 +6,8 @@ $(function(){
     });
     $('.popupModal').click(function(e) {
       e.preventDefault();
-      $('#modal').modal('show').find('#id_playlist')
-      .load($(this).attr('value'));
-    
+      $('#modal').modal('show').find('#modal-content')
+      .load($(this).attr('href'));
 
     });
 });

@@ -120,4 +120,5 @@ class Clip extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Status::className(), ['id' => 'status_id']);
     }
+  
 }

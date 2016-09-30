@@ -56,7 +56,13 @@ class ListclipController extends Controller
             'model' => $this->findModel($playlist_id, $clip_id),
         ]);
     }
-
+    public function actionShowlist()
+    {
+      $model = ListClip::find()->all();
+        return $this->render('showlist', [
+            'model' => $model,
+        ]);
+    }
     /**
      * Creates a new Listclip model.
      * If creation is successful, the browser will be redirected to the 'view' page.

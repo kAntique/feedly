@@ -26,7 +26,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-          //  'id',
           [
         'attribute' => 'cover_img_id',
         'format' => 'html',
@@ -37,10 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
         },
     ],
             'name',
-            'description:ntext',
             'date',
-            //'cover_img_id',
-            // 'category_id',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

@@ -37,9 +37,10 @@ class Playlist extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'description', 'cover_img_id', 'category_id'], 'required'],
+            [['name', 'description','tags', 'cover_img_id', 'category_id'], 'required'],
             [['date'], 'safe'],
             [['description'], 'string'],
+            [['tags'], 'string', 'max' => 200],
             [['cover_img_id', 'category_id'], 'integer'],
             [['name'], 'string', 'max' => 50],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
@@ -59,6 +60,7 @@ class Playlist extends \yii\db\ActiveRecord
             'name' => 'ชื่อเพลลิสต์',
             'date' => 'Date',
             'description' => 'รายละเอียด',
+            'tags'=>'คำค้น',
             'cover_img_id' => 'ภาพปก',
             'category_id' => 'หมวดหมู่',
         ];

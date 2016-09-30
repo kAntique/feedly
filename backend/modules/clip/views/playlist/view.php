@@ -1,18 +1,14 @@
 <?php
-
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\DetailView;
 use yii\bootstrap\Modal;
-
+use yii\grid\GridView;
+use yii\widgets\ListView;
+use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $model backend\modules\playlist\models\Playlist */
 
-// $this->registerJs(" $('.popupModal').on('click', function(){
-//      var idplay = document.getElementById('id_playlist') ;
-//      var num = idplay.value;
-//      $('#listclip-playlist_id').val(num);
-//    }); ");
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Playlists', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -44,31 +40,129 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            //'id',
+
             'name',
             'date',
-            'description:ntext',
-            //'cover_img_id',
             'category.title',
         ],
     ]) ?>
-<p>
-  <?= Html::button('เพิ่มคลิป',['value'=> Url::to('index.php?r=clip/listclip/create'),'id'=>$model->id,'class'=> 'popupModal btn btn-primary',  $value = Yii::$app->request->post('id') ])  ?>
-</div>
-<?php Modal::begin([
-
-      'id' => 'modal',
-        'size' => 'modal-lg',
-
-      ]);
-
-       echo "<div class='text-center'>$model->name</div>";
-       echo "<div class='text-center' id='id_playlist' value=$model->id></div>";
-        echo "<div id='modal-content'></div>";
-
-
-        Modal::end();?>
-
-</p>
 </div>
 </div>
+
+  <div class="box box-success box-solid">
+    <div class="box-header with-border">
+      <h3 class="box-title">คลิปในเพลลิสต์</h3>
+
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+        </button>
+      </div>
+      <!-- /.box-tools -->
+    </div>
+    <!-- /.box-header -->
+
+    <div class="box-body" >
+      <?php Pjax::begin(['id'=>'showlist']);?>
+        <?= GridView::widget([
+             'dataProvider' => $dataProvider,
+             'columns' => [
+
+                         [
+                         'header'=>'รายการคลิป',
+                         'value'=> function ( $list)
+                                   {
+                                        return  $list->clip['title'];
+
+
+                                   },
+                         'format' => 'raw',
+                         ],
+                         [
+                         'header'=>'วันที่เพิ่ม',
+                         'value'=> function ( $list)
+                                   {
+                                        return  $list->datetime;
+
+
+                                   },
+                         'format' => 'raw',
+                         ],
+             ],
+         ]); ?>
+             <?php Pjax::end();?>
+    </div>
+    <!-- /.box-body -->
+
+  </div>
+
+  <div class="box box-success box-solid">
+    <div class="box-header with-border">
+      <h3 class="box-title">เพิ่มคลิป</h3>
+
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+        </button>
+      </div>
+      <!-- /.box-tools -->
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+      <?= GridView::widget([
+            'dataProvider' => $dataProvider2,
+            //'filterModel' => $searchModel,
+
+            'columns' => [
+                'title',
+
+                        [
+
+                        'header'=>'เพิ่มคลิป',
+                        'value'=> function ($clip_id) use ($playlist_id)
+
+                                  {
+                                    $this->registerJs(" $('#$clip_id->id').on('click', function(){
+                                      var playlist_id = $playlist_id;
+                                      var clip_id = $clip_id->id;
+                                      var url ='index.php?r=clip/playlist/createlist&playlist_id='+playlist_id+'&clip_id='+clip_id;
+                                      $.ajax({
+                                                url : url,
+                                               type: 'post',
+
+                                               success:function() {
+                                                   console.log();
+                                                     $('#$clip_id->id').prop('disabled', true);
+
+                                                     $.pjax.reload('#showlist');
+                                                   },
+                                                error:function(){
+
+                                                }
+                                      });
+                                    }); ");
+                                       return
+                                        Html::button( '',
+                                       ['class' => 'btnAddclip glyphicon glyphicon-plus','id'=> $clip_id->id]);
+
+                                    //    Html::a('.', ['createlist',
+                                    //  'playlist_id'=> $playlist_id,
+                                    //     'clip_id' => $clip_id->id], ['class' => 'btnAddclip glyphicon glyphicon-plus']);
+                                  },
+                        'format' => 'raw',
+                        ],
+                        // [
+                        // 'header'=>'รายการคลิป',
+                        // 'value'=> function ()
+                        //           {
+                        //                return
+                        //                ;
+                        //
+                        //           },
+                        // 'format' => 'raw',
+                        // ],
+
+            ],
+
+        ]); ?>
+    </div>
+    <!-- /.box-body -->
+  </div>

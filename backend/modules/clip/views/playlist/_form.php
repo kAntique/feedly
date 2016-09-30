@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use dosamigos\ckeditor\CKEditor;
 use backend\modules\worlds\category\models\Category;
+use dosamigos\selectize\SelectizeTextInput;
 /* @var $this yii\web\View */
 /* @var $model backend\modules\playlist\models\Playlist */
 /* @var $form yii\widgets\ActiveForm */
@@ -29,6 +30,14 @@ use backend\modules\worlds\category\models\Category;
      ArrayHelper::map(Category::find()->all(),'id','title'),
      ['prompt'=>'เลือกหมวดหมู่']
     ) ?>
+    <?= $form->field($model, 'tags')->widget(SelectizeTextInput::className(), [
+
+                    'clientOptions' => [ 'plugins' => ['remove_button'],
+                      'create' => true,
+                     ],
+                     ])
+                     ->hint('กรอกได้มากกว่า 1 คำค้น')
+                     ?>
 <?php if(!$model->isNewRecord){?>
    <?=   Html::img('uploads/coverimage/'.$model->coverImg['filename'], ['width' => '200px']);?>
 
