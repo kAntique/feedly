@@ -11,5 +11,6 @@ $this->title = 'หมวดหมู่';
 ?>
 
 <?php foreach( $model as $list) :?>
-  <?= Html::a(" $list->title", ['/category/category/list_clip'], ['class'=>'btn btn-gray']) ?>  <br>
+
+<?=  Html::a(" $list->title", ['/clip/playlist/all_playlist', 'category_id' => $list->id], ['class' => ' btn btn-primary'])?>
 <?php  endforeach ;?>

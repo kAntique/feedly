@@ -264,9 +264,9 @@ class PlaylistController extends Controller
   //Yii::$app->session->setFlash('success', 'เพิ่มคลิปสำเร็จ.');
     }
   }
-  public function actionAll_playlist()
+  public function actionAll_playlist($category_id)
   {
-    $model = Playlist::find()->all();
+    $model = Playlist::find()->where(['category_id'=>$category_id])->all();
 
     return $this->renderAjax('all_playlist', [
         'model' => $model,

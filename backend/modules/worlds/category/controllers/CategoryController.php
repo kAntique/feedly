@@ -234,22 +234,22 @@ class CategoryController extends Controller
         return $return_json;
     }
 
-    public function actionPlaylist_clip()
+    public function actionAllcat_clip()
     {
       $model = Category::find()->where(['world_id' => 1])->all();
       $clip = Clip :: find()->where('category_id')->all();
-          return $this->render('playlist', [
+          return $this->render('cat_clip', [
               'model' => $model,
               'clip' => $clip,
 
           ]);
     }
 
-    public function actionPlaylist_article()
+    public function actionAllcat_article()
     {
     $model = Category::find()->where(['world_id' => 2])->all();
 
-        return $this->render('playlist', [
+        return $this->render('cat_article', [
             'model' => $model,
 
 

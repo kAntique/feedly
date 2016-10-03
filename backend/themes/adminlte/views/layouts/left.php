@@ -34,8 +34,8 @@
                       ['label' => 'ระดับความเหมาะสม', 'icon' => 'glyphicon glyphicon-object-align-bottom', 'url' => ['/rate/rate']],
 
                        ['label' => 'เมนู', 'options' => ['class' => 'header']],
-                       ['label' => 'คลิป', 'icon' => 'glyphicon glyphicon-play-circle', 'url' => ['/category/category/playlist_clip']],
-                       ['label' => 'บทความ', 'icon' => 'glyphicon glyphicon-book', 'url' => ['/clip/clip']],
+                       ['label' => 'คลิป', 'icon' => 'glyphicon glyphicon-play-circle', 'url' => ['/category/category/allcat_clip']],
+                       ['label' => 'บทความ', 'icon' => 'glyphicon glyphicon-book', 'url' => ['/category/category/allcat_article']],
                     // ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
 
                 ],
