@@ -256,9 +256,15 @@ class ClipController extends Controller
                  foreach( $decode->result as $list){
 
                    if ($list->status == "finished") {
-                      $value->link = 'https://openload.co/embed/'.$list->extid;
+                     $file_info = \Yii::$app->params['url_openload_fileinfo'].$list->extid.\Yii::$app->params['login_openload'];
+                     $file_name = file_get_contents( $file_info );
+                     $name=json_decode($file_name);
+                    foreach ($name->result as $filename) {
+                      //echo $filename->name;
+                      $value->link = 'https://openload.co/embed/'.$list->extid.'/'.$filename->name;
                       $value->status_link = 1;
                       $value->save();
+                    }
 
                    }
                   }

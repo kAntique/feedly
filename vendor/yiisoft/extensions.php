@@ -165,4 +165,13 @@ return array (
       '@yii/authclient' => $vendorDir . '/yiisoft/yii2-authclient',
     ),
   ),
+  'wbraganca/yii2-videojs-widget' => 
+  array (
+    'name' => 'wbraganca/yii2-videojs-widget',
+    'version' => '1.0.1.0',
+    'alias' => 
+    array (
+      '@wbraganca/videojs' => $vendorDir . '/wbraganca/yii2-videojs-widget/src',
+    ),
+  ),
 );

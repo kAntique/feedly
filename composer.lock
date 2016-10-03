@@ -4,13 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
-    "hash": "3a6e0f579ac390b88fba8ac1032d45d6",
-    "content-hash": "52ec5a63ff78351efe7ae983909730dd",
-=======
-    "hash": "a4a67d0150960f75b5c5692d98ac6429",
-    "content-hash": "f4a3939d7663ff90a8192f7380bd3168",
->>>>>>> 460c4e0ff0fc759ae75199ff6f49f8e9cddb78a4
+    "hash": "50375a50ca1c9a583f211246f3e4d836",
+    "content-hash": "f162f8e7a114a976ee856956a55c5a7e",
     "packages": [
         {
             "name": "2amigos/yii2-ckeditor-widget",
@@ -474,6 +469,44 @@
             ]
         },
         {
+            "name": "bower-asset/video.js",
+            "version": "v5.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/videojs/video.js.git",
+                "reference": "19ee5100eaed903862203e169b1567f84c093548"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/videojs/video.js/zipball/19ee5100eaed903862203e169b1567f84c093548",
+                "reference": "19ee5100eaed903862203e169b1567f84c093548",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "src/js/video.js",
+                    "src/css/video-js.scss"
+                ],
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "node_modules",
+                    "bower_components",
+                    "test",
+                    "tests",
+                    "build"
+                ]
+            },
+            "description": "An HTML5 and Flash video player with a common API and skin for both.",
+            "keywords": [
+                "flash",
+                "html5",
+                "player",
+                "video",
+                "videojs"
+            ]
+        },
+        {
             "name": "bower-asset/yii2-pjax",
             "version": "v2.0.6",
             "source": {
@@ -739,27 +772,57 @@
             "type": "yii2-extension",
             "autoload": {
                 "psr-4": {
-                    "himiklab\\yii2\\recaptcha\\": ""
+                    "himiklab\\yii2\\recaptcha\\": "",
+                    "name": "yiisoft/yii2-authclient",
+                    "version": "2.1.1",
+                    "version_normalized": "2.1.1.0",
+                    "source": {
+                        "type": "git",
+                        "url": "https://github.com/yiisoft/yii2-authclient.git",
+                        "reference": "5ed7ebfda270d87197f7640b2a9c046297080cac"
+                    },
+                    "dist": {
+                        "type": "zip",
+                        "url": "https://api.github.com/repos/yiisoft/yii2-authclient/zipball/5ed7ebfda270d87197f7640b2a9c046297080cac",
+                        "reference": "5ed7ebfda270d87197f7640b2a9c046297080cac",
+                        "shasum": ""
+                    },
+                    "require": {
+                        "yiisoft/yii2-httpclient": "~2.0.1"
+                    },
+                    "time": "2016-08-29 09:21:09",
+                    "type": "yii2-extension",
+                    "extra": {
+                        "branch-alias": {
+                            "dev-master": "2.0.x-dev"
+                        }
+                    },
+                    "installation-source": "dist",
+                    "autoload": {
+                        "psr-4": {
+                            "yii\\authclient\\": ""
+                        }
+                    },
+                    "notification-url": "https://packagist.org/downloads/",
+                    "license": [
+                        "MIT"
+                    ],
+                    "authors": [
+                        {
+                            "name": "Paul Klimov",
+                            "email": "klimov.paul@gmail.com"
+                        }
+                    ],
+                    "description": "External authentication via OAuth and OpenID for the Yii framework",
+                    "keywords": [
+                        "OpenId",
+                        "api",
+                        "auth",
+                        "oauth",
+                        "yii2"
+                    ]
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "HimikLab",
-                    "homepage": "https://github.com/himiklab/"
-                }
-            ],
-            "description": "Yii2 Google reCAPTCHA widget",
-            "keywords": [
-                "captcha",
-                "google",
-                "recaptcha",
-                "widget",
-                "yii2"
-            ],
             "time": "2016-06-10 15:38:28"
         },
         {
@@ -944,33 +1007,58 @@
             },
             "autoload": {
                 "psr-4": {
-                    "kartik\\file\\": ""
+                    "kartik\\file\\": "",
+                    "name": "yiisoft/yii2-httpclient",
+                    "version": "2.0.1",
+                    "version_normalized": "2.0.1.0",
+                    "source": {
+                        "type": "git",
+                        "url": "https://github.com/yiisoft/yii2-httpclient.git",
+                        "reference": "05056e8f13fdee09c252686cea62f0889ecab8b7"
+                    },
+                    "dist": {
+                        "type": "zip",
+                        "url": "https://api.github.com/repos/yiisoft/yii2-httpclient/zipball/05056e8f13fdee09c252686cea62f0889ecab8b7",
+                        "reference": "05056e8f13fdee09c252686cea62f0889ecab8b7",
+                        "shasum": ""
+                    },
+                    "require": {
+                        "yiisoft/yii2": "~2.0.0"
+                    },
+                    "time": "2016-08-04 13:29:03",
+                    "type": "yii2-extension",
+                    "extra": {
+                        "branch-alias": {
+                            "dev-master": "2.0.x-dev"
+                        }
+                    },
+                    "installation-source": "dist",
+                    "autoload": {
+                        "psr-4": {
+                            "yii\\httpclient\\": ""
+                        }
+                    },
+                    "notification-url": "https://packagist.org/downloads/",
+                    "license": [
+                        "BSD-3-Clause"
+                    ],
+                    "authors": [
+                        {
+                            "name": "Kartik Visweswaran",
+                            "email": "kartikv2@gmail.com",
+                            "homepage": "http://www.krajee.com/"
+                        }
+                    ],
+                    "description": "HTTP client extension for the Yii framework",
+                    "homepage": "https://github.com/kartik-v/yii2-widget-fileinput",
+                    "keywords": [
+                        "curl",
+                        "http",
+                        "httpclient",
+                        "yii2"
+                    ]
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Kartik Visweswaran",
-                    "email": "kartikv2@gmail.com",
-                    "homepage": "http://www.krajee.com/"
-                }
-            ],
-            "description": "An enhanced FileInput widget for Bootstrap 3.x with file preview, multiple selection, and more features (sub repo split from yii2-widgets)",
-            "homepage": "https://github.com/kartik-v/yii2-widget-fileinput",
-            "keywords": [
-                "extension",
-                "file",
-                "form",
-                "input",
-                "jquery",
-                "plugin",
-                "upload",
-                "widget",
-                "yii2"
-            ],
             "time": "2016-07-23 15:30:48"
         },
         {
@@ -1076,6 +1164,64 @@
                 "mailer"
             ],
             "time": "2016-07-08 11:51:25"
+        },
+        {
+            "name": "wbraganca/yii2-videojs-widget",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wbraganca/yii2-videojs-widget.git",
+                "reference": "e8d0f161af6a5cc47e3c74edee680879d94818a8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wbraganca/yii2-videojs-widget/zipball/e8d0f161af6a5cc47e3c74edee680879d94818a8",
+                "reference": "e8d0f161af6a5cc47e3c74edee680879d94818a8",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/video.js": "~5.1.0",
+                "yiisoft/yii2": "~2.0"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "asset-installer-paths": {
+                    "npm-asset-library": "vendor/npm",
+                    "bower-asset-library": "vendor/bower"
+                },
+                "asset-ignore-files": {
+                    "bower-asset/video.js": [
+                        "*/**",
+                        "!dist/*"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "wbraganca\\videojs\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Wanderson Bragança",
+                    "email": "wanderson.wbc@gmail.com",
+                    "homepage": "http://wbraganca.com"
+                }
+            ],
+            "description": "The yii2-videojs-widget is a Yii 2 wrapper for the [video.js](http://www.videojs.com/). A JavaScript and CSS library that makes it easier to work with and build on HTML5 video. This is also known as an HTML5 Video Player.",
+            "keywords": [
+                "html5 video",
+                "videojs",
+                "yii2",
+                "yii2-extension",
+                "yii2-videojs",
+                "yii2-videojs-widget"
+            ],
+            "time": "2015-11-05 18:39:32"
         },
         {
             "name": "yiisoft/yii2",
@@ -1480,6 +1626,119 @@
                 "yiisoft/yii2": "*"
             },
             "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.3.x-dev",
+                    "name": "2amigos/yii2-ckeditor-widget",
+                    "version": "1.0.4",
+                    "version_normalized": "1.0.4.0",
+                    "source": {
+                        "type": "git",
+                        "url": "https://github.com/2amigos/yii2-ckeditor-widget.git",
+                        "reference": "023eb29fedfc3c3121c17688ed237e8688f5eb50"
+                    },
+                    "dist": {
+                        "type": "zip",
+                        "url": "https://api.github.com/repos/2amigos/yii2-ckeditor-widget/zipball/023eb29fedfc3c3121c17688ed237e8688f5eb50",
+                        "reference": "023eb29fedfc3c3121c17688ed237e8688f5eb50",
+                        "shasum": ""
+                    },
+                    "require": {
+                        "yiisoft/yii2": "~2.0.0"
+                    },
+                    "require-dev": {
+                        "phpunit/phpunit": "4.*"
+                    },
+                    "time": "2015-04-30 12:22:25",
+                    "type": "yii2-extension",
+                    "extra": {
+                        "branch-alias": {
+                            "dev-master": "1.0-dev"
+                        },
+                        "asset-installer-paths": {
+                            "bower-asset-library": "vendor/bower"
+                        }
+                    },
+                    "installation-source": "dist",
+                    "autoload": {
+                        "psr-4": {
+                            "kartik\\plugins\\fileinput\\": "",
+                            "dosamigos\\ckeditor\\": "src"
+                        }
+                    },
+                    "notification-url": "https://packagist.org/downloads/",
+                    "license": [
+                        "BSD-3-Clause"
+                    ],
+                    "authors": [
+                        {
+                            "name": "Kartik Visweswaran",
+                            "email": "kartikv2@gmail.com",
+                            "homepage": "http://www.krajee.com/"
+                        }
+                    ],
+                    "description": "An enhanced HTML 5 file input for Bootstrap 3.x with features for file preview for many file types, multiple selection, ajax uploads, and more.",
+                    "homepage": "https://github.com/kartik-v/bootstrap-fileinput",
+                    "keywords": [
+                        "ajax",
+                        "bootstrap",
+                        "delete",
+                        "file",
+                        "image",
+                        "input",
+                        "jquery",
+                        "multiple",
+                        "preview",
+                        "progress",
+                        "upload"
+                    ]
+                },
+                "name": "kartik-v/yii2-krajee-base",
+                "version": "v1.8.6",
+                "version_normalized": "1.8.6.0",
+                "source": {
+                    "type": "git",
+                    "url": "https://github.com/kartik-v/yii2-krajee-base.git",
+                    "reference": "713a1c4ad5b3f9be2832586584679c4b094c6937"
+                },
+                "dist": {
+                    "type": "zip",
+                    "url": "https://api.github.com/repos/kartik-v/yii2-krajee-base/zipball/713a1c4ad5b3f9be2832586584679c4b094c6937",
+                    "reference": "713a1c4ad5b3f9be2832586584679c4b094c6937",
+                    "shasum": ""
+                },
+                "require": {
+                    "yiisoft/yii2-bootstrap": "@dev"
+                },
+                "time": "2016-08-19 17:48:27",
+                "type": "yii2-extension",
+                "extra": {
+                    "branch-alias": {
+                        "dev-master": "1.8.x-dev"
+                    }
+                },
+                "installation-source": "dist",
+                "autoload": {
+                    "psr-4": {
+                        "kartik\\base\\": "",
+                        "name": "2amigOS! Consulting Group",
+                        "email": "hola@2amigos.us",
+                        "homepage": "http://2amigos.us",
+                        "role": "Developer"
+                    }
+                },
+                "description": "CKEditor widget for Yii2.",
+                "homepage": "http://yiiwheels.com/extension/ckeditor-widget",
+                "keywords": [
+                    "2amigos",
+                    "CKEditor",
+                    "extension",
+                    "widget",
+                    "yii",
+                    "yii 2",
+                    "yii2"
+                ]
+            },
             "autoload": {
                 "psr-0": {
                     "yii\\image\\": ""
@@ -1491,8 +1750,9 @@
             ],
             "authors": [
                 {
-                    "name": "Yuri Kileev",
-                    "email": "kileev@gmail.com"
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
                 }
             ],
             "description": "Yii2 extension for image manipulating using Kohana Image Library.",
