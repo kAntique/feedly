@@ -112,7 +112,7 @@ class ListclipController extends Controller
     {
         $this->findModel($playlist_id, $clip_id)->delete();
 
-        return $this->redirect(['index']);
+      //  return $this->redirect(['index']);
     }
 
     /**
@@ -134,10 +134,10 @@ class ListclipController extends Controller
     public function actionList_clip($playlist_id)
     {
         $model = Listclip::find()->where(['playlist_id'=>$playlist_id])->all();
-
-
+        
             return $this->render('list_clip', [
                 'model' => $model,
+
             ]);
 
     }

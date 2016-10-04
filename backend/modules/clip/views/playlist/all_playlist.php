@@ -12,5 +12,5 @@ $this->title = 'เพลลิสต์ทั้งหมด';
 
 <?php foreach( $model as $list) :?>
 
-<?=  Html::a(" $list->name", ['/clip/listclip/list_clip', 'playlist_id' => $list->id], ['class' => ' btn btn-primary'])?>
+<?=  Html::a(" $list->name", ['/clip/listclip/list_clip', 'playlist_id' => $list->id], ['class' => 'btn btn-primary'])?>
 <?php  endforeach ;?>

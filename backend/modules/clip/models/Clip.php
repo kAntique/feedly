@@ -53,7 +53,7 @@ class Clip extends \yii\db\ActiveRecord
             [['date_time'], 'safe'],
             [['cover_img_id', 'rate_id', 'status_id', 'category_id' , 'status_link'], 'integer'],
             [['tags'], 'string', 'max' => 200],
-            [['link'], 'string', 'max' => 100],
+            [['link'], 'string', 'max' => 255],
             [['IPaddress'], 'string', 'max' => 20],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
             [['cover_img_id'], 'exist', 'skipOnError' => true, 'targetClass' => CoverImg::className(), 'targetAttribute' => ['cover_img_id' => 'id']],
@@ -120,5 +120,5 @@ class Clip extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Status::className(), ['id' => 'status_id']);
     }
-  
+
 }

@@ -256,15 +256,23 @@ class ClipController extends Controller
                  foreach( $decode->result as $list){
 
                    if ($list->status == "finished") {
-                     $file_info = \Yii::$app->params['url_openload_fileinfo'].$list->extid.\Yii::$app->params['login_openload'];
-                     $file_name = file_get_contents( $file_info );
-                     $name=json_decode($file_name);
-                    foreach ($name->result as $filename) {
-                      //echo $filename->name;
-                      $value->link = 'https://openload.co/embed/'.$list->extid.'/'.$filename->name;
+                     $post = \Yii::$app->params['url_openload_tiket'].$list->extid.\Yii::$app->params['login_openload'];
+                     $downloadTicket = file_get_contents( $post );
+                     $decode_ticket=json_decode($downloadTicket);
+                     $ticket = $decode_ticket->result->ticket;
+
+                      $post_downloadLink = \Yii::$app->params['url_openload_link'].$list->extid."&ticket=".$ticket.'&captcha_response={captcha_response}';
+                      $downloadLink = file_get_contents( $post_downloadLink );
+                      $decode_link=json_decode($downloadLink);
+                      //  var_dump ($decode_link->result->url);
+                       $value->link = $decode_link->result->url;
                       $value->status_link = 1;
-                      $value->save();
-                    }
+                      if ($value->save()) {
+                        # code...
+                      }else {
+                        var_dump($value->getErrors());
+                      }
+
 
                    }
                   }
@@ -275,6 +283,7 @@ class ClipController extends Controller
 
           ]);
       }
+
       public function actionJson_index()
       {
           $something = true; // or you can set for test -> false;
@@ -301,14 +310,14 @@ class ClipController extends Controller
           \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
           return $return_json;
       }
-      // public function actionPlaylist()
-      // {
-      // $model = Clip::find()->where('category_id')->all();
-      //     return $this->render('playlist', [
-      //         'model' => $model,
-      //
-      //     ]);
-      //}
+      public function actionPlay_clip($clip_id)
+      {
+      $model = Clip::find()->where(['id'=>$clip_id])->one();
+          return $this->renderPartial('play_clip', [
+              'model' => $model,
+
+          ]);
+      }
 
 
 }

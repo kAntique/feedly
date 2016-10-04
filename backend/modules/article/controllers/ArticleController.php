@@ -176,7 +176,7 @@ class ArticleController extends Controller
               $model->save();
 
           } else {
-              // error in saving model
+              var_dump($modelimg->getErrors());
 
           }
          }

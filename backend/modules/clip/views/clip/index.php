@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            //'id',
+
             [
           'attribute' => 'cover_img_id',
           'format' => 'html',
@@ -43,15 +43,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'subtitle:ntext',
             'year:ntext',
             'ep:ntext',
-            // 'description:ntext',
-            // 'tags',
-            // 'link',
-            // 'date_time',
-            // 'IPaddress',
-            // 'cover_img_id',
-            // 'rate_id',
-            // 'status_id',
-            // 'category_id',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

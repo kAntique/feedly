@@ -75,13 +75,14 @@ th, td {
     </tr>
 
     <?php  endforeach ;?>
-  </table>
 
-</div>
-  <?php Pjax::end();?>
+  </table>
   <div class="text-center" style="color:red;" >
-<?php  if ($model == null) {
+  <?php  if ($model == null) {
     echo "*** ไม่มีรายการอัพโหลด ***";
   }?>
+  </div>
 </div>
+  <?php Pjax::end();?>
+
 </div>

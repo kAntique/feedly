@@ -87,6 +87,36 @@ $this->params['breadcrumbs'][] = $this->title;
                                    },
                          'format' => 'raw',
                          ],
+                         [
+
+                           'header'=>'ลบคลิป',
+                         'value'=> function ($list)
+
+                                   {
+                                     $this->registerJs(" $('#$list->clip_id').on('click', function(){
+                                       var playlist_id = $list->playlist_id;
+                                       var clip_id = $list->clip_id;
+                                       var url ='index.php?r=clip/listclip/delete&playlist_id='+playlist_id+'&clip_id='+clip_id;
+                                       $.ajax({
+                                                 url : url,
+                                                type: 'post',
+
+                                                success:function() {
+                                                    console.log();
+                                                      $.pjax.reload('#showlist');
+                                                    },
+                                                 error:function(){
+
+                                                 }
+                                       });
+                                     }); ");
+                                        return
+                                         Html::button( '',
+                                        ['class' => 'btn btn-danger glyphicon glyphicon-trash','id'=> $list->clip_id]);
+                                   },
+                         'format' => 'raw',
+                         ],
+
              ],
          ]); ?>
              <?php Pjax::end();?>
