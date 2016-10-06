@@ -9,6 +9,8 @@ use yii\widgets\DetailView;
 $this->title = $model->name;
 //$this->params['breadcrumbs'][] = ['label' => 'Editors', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+$img = 'thumb_'.$model->id.'.jpg';
+
 ?>
 <div class="box box-success box-solid">
     <div class="box-header">
@@ -35,11 +37,15 @@ $this->params['breadcrumbs'][] = $this->title;
           'lastname',
           'user.email',
           'website',
-          'avatar',
+          //'avatar',
         ],
     ]) ?>
-    <div class="text-center">
-        <?= Html::img('uploads/avatar/'.$model->avatar,['width' => 300,'height' => 300]) ?>
+    <br/>
+    <div class="">
+        <p>
+          <b>&nbsp;&nbsp;&nbsp;รูปโปรไฟล์</b>
+        </p>
+        <?= Html::img('uploads/avatar/'.$img,['class' => 'thumbnail']); $model->refresh(); ?>
     </div>
 </div>
 </div>

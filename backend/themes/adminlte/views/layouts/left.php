@@ -2,16 +2,7 @@
 
     <section class="sidebar">
 
-<<<<<<< HEAD
-        <!-- Sidebar user panel -->
-        <div class="user-panel">
-            <div class="pull-left image">
-                <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
-            </div>
-            <div class="pull-left info">
-                <!-- <p>< echo Yii::$app->user->identity->username; ?></p> -->
-=======
->>>>>>> 460c4e0ff0fc759ae75199ff6f49f8e9cddb78a4
+
 
 
 

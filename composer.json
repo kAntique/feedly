@@ -21,14 +21,13 @@
         "dmstr/yii2-adminlte-asset": "2.*",
         "2amigos/yii2-selectize-widget": "~1.0",
         "yiisoft/yii2-imagine": "*",
-<<<<<<< HEAD
         "kartik-v/yii2-widget-fileinput": "@dev",
-        "himiklab/yii2-recaptcha-widget" : "*"
-=======
+        "himiklab/yii2-recaptcha-widget" : "*",
         "2amigos/yii2-ckeditor-widget": "~1.0",
         "yurkinx/yii2-image": "^1.1",
-        "yiisoft/yii2-authclient": "^2.1"
->>>>>>> 460c4e0ff0fc759ae75199ff6f49f8e9cddb78a4
+        "yiisoft/yii2-authclient": "^2.1",
+        "bupy7/yii2-widget-cropbox": "*"
+
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

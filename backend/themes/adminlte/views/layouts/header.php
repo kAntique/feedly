@@ -22,29 +22,38 @@ use yii\helpers\Html;
 
 
                 <!-- User Account: style can be found in dropdown.less -->
-
+                <?php
+                    //use backend\modules\member\models\Editor;
+                    $img = 'thumb_'.Yii::$app->user->identity->id.'.jpg';
+                    // $id = Yii::$app->user->identity->id;
+                    // $model = Editor::find()->where(['id' => $id]);
+                    // $name =  $model->name;
+                    // echo $name;
+                ?>
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
-<<<<<<< HEAD
-                        <span class="hidden-xs"><?php echo Yii::$app->user->identity->username; ?></span>
-=======
-                        <span class="hidden-xs">Admin</span>
->>>>>>> 460c4e0ff0fc759ae75199ff6f49f8e9cddb78a4
+                        <!-- <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="user-image" alt="User Image"/> -->
+                        <?= Html::img('uploads/avatar/'.$img,['width' => 30,'height' => 30,'class'=>'img-circle']) ?>
+                        <span class="hidden-xs">&nbsp;<?php echo Yii::$app->user->identity->username; ?></span>
+
+                        <!-- <span class="hidden-xs">Admin</span> -->
+
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle"
-                                 alt="User Image"/>
+                            <!-- <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle"
+                                 alt="User Image"/> -->
+                            <?= Html::img('uploads/avatar/'.$img,['width' => 200,'height' => 200,'class'=>'img-circle']) ?>
 
                             <p>
+
                                 Alexander Pierce - Web Developer
                                 <small>Member since Nov. 2012</small>
                             </p>
                         </li>
                         <!-- Menu Body -->
-                        <li class="user-body">
+                        <!-- <li class="user-body">
                             <div class="col-xs-4 text-center">
                                 <a href="#">Followers</a>
                             </div>
@@ -54,7 +63,7 @@ use yii\helpers\Html;
                             <div class="col-xs-4 text-center">
                                 <a href="#">Friends</a>
                             </div>
-                        </li>
+                        </li> -->
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">

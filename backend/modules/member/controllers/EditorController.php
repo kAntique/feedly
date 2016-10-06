@@ -7,9 +7,6 @@ use backend\modules\member\models\Editor;
 use backend\modules\member\models\EditorSearch;
 use backend\modules\member\models\PasswordResetRequestForm;
 use backend\modules\member\models\ResetPasswordForm;
-use yii\web\UploadedFile;
-use dosamigos\fileupload\FileUpload;
-use dosamigos\fileupload\FileUploadUI;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -17,6 +14,10 @@ use common\models\User;
 use yii\imagine\Image;
 use Imagine\Image\Box;
 use yii\bootstrap\ActiveForm;
+use yii\bootstrap\Alert;
+// use yii\web\UploadedFile;
+// use dosamigos\fileupload\FileUpload;
+// use dosamigos\fileupload\FileUploadUI;
 
 /**
  * EditorController implements the CRUD actions for Editor model.
@@ -81,34 +82,39 @@ class EditorController extends Controller
                 return ActiveForm::validate($user,$model);
             }
             $user->password_hash = Yii::$app->security->generatePasswordHash($user->password_hash);
-            $user->auth_key = Yii::$app->security->generateRandomString();
             $user->type_member = Yii::$app->request->get('type_member');
-            // $model->reCaptcha = '0';
-            //  var_dump($model->reCaptcha);
-            // โค้ดในส่วนของการบันทึกรูปภาพอาจจะต้องลบออกให้มันบันทึกในฟอรม์ upload_crop.php ///
-            if ($user->save()) {
-                $file = \yii\web\UploadedFile::getInstance($model, 'avatar_img');
-                $model->avatar = $file->name;
-                $file->saveAs('uploads/avatar/'.md5($file->name). '.' . $file->extension);
-                $model->avatar = md5($file->name).'.' . $file->extension;
-                Image::thumbnail('uploads/avatar/' . $model->avatar, 500, 300)
-                ->resize(new Box(500,300));
-                // ->save('uploads/avatar/thumbnail-500x300/' . $model->avatar . '.' . $file->extension,
-                //         ['quality' => 70]);
+            $user->auth_key = Yii::$app->security->generateRandomString();
+            $image = \yii\web\UploadedFile::getInstance($model, 'image');
+            if ($image != '') {
+              if ($user->save()) {
+                  // $image = \yii\web\UploadedFile::getInstance($model, 'image');
+                  $model->avatar = $image->name;
+                  $image->saveAs('uploads/avatar/'.$image->name);
+                  $model->avatar = md5($image->name).'.' . $image->extension;
 
-                $model->user_id = $user->id;
-                if($user->type_member == '1'){
-                   $model->website = "-";
-                }else {
-                   $model->website = 'http://www'.'.'.$model->website;
-                }
-                // if (!$model->reCaptcha == '0') {
-                //   $model->save();
-                // }
-                $model->save();
+                  $model->user_id = $user->id;
+                  if($user->type_member == '1'){
+                     $model->website = "-";
+                  }else {
+                     $model->website = 'http://www'.'.'.$model->website;
+                  }
+                  $model->save();
+              }
+            }else {
 
-
+              Alert::begin([
+                  'options' => [
+                    'class' => 'alert-warning',
+                  ],
+              ]);
+              echo '!!!กรุณาเพิ่มรูปภาพและใส่รหัสผ่านใหม่อีกครั้ง!!!';
+              Alert::end();
+              return $this->render('signup', [
+                  'model' => $model,
+                  'user' => $user,
+              ]);
             }
+
             if ($model->validate() && $user->validate()) {
               if (Yii::$app->getUser()->login($user)) {
                   Yii::$app->session->setFlash('success', 'Feedly ยินดีต้อนรับ คุณได้สมัครสมาชิกเรียบร้อยแล้ว');
@@ -141,9 +147,6 @@ class EditorController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-           // check type user
-           //var_dump(Yii::$app->user->email);
-
             return $this->goBack();
         } else {
             return $this->render('login', [
@@ -258,7 +261,7 @@ class EditorController extends Controller
         $model = $this->findModel($id);
         $user = $model->user;
         $oldPass = $user->password_hash;
-        $oldAvatar = $model->avatar;
+        //$oldAvatar = $model->avatar;
         //echo $oldAvatar;
         if ($model->load(Yii::$app->request->post()) && $user->load(Yii::$app->request->post())) {
           if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
@@ -269,16 +272,16 @@ class EditorController extends Controller
               $user->password_hash = Yii::$app->security->generatePasswordHash($user->password_hash);
            }
            if ($user->save()) {
-                $file = \yii\web\UploadedFile::getInstance($model, 'avatar_img');
-                if (isset($file->size) && $file->size !== 0) {
-                    $model->avatar = $file->name;
-                    $file->saveAs('uploads/avatar/'.md5($file->name).'.'.$file->extension);
-                    $model->avatar = md5($file->name).'.' . $file->extension;
-                    if ($oldAvatar != 0) {
-                        if ($oldAvatar == $model->avatar) {  //ที่จริงควรเพิ่ม $oldAvatar != $model->avatar //เหตุผลที่ไม่ใส่ไปเพราะในฐานข้อมูลที่บาง attribute มีชื่ออยู่แต่รูปไม่มี
-                            unlink('uploads/avatar/'.$oldAvatar);
-                        }
-                    }
+                $image = \yii\web\UploadedFile::getInstance($model, 'image');
+                if (isset($image->size) && $image->size !== 0) {
+                    $model->avatar = $image->name;
+                    $image->saveAs('uploads/avatar/'.$image->name);
+                    $model->avatar = md5($image->name).'.' . $image->extension;
+                    // if ($oldAvatar != 0) {
+                    //     if ($oldAvatar == $model->avatar) {  //ที่จริงควรเพิ่ม $oldAvatar != $model->avatar //เหตุผลที่ไม่ใส่ไปเพราะในฐานข้อมูลที่บาง attribute มีชื่ออยู่แต่รูปไม่มี
+                    //         unlink('uploads/avatar/'.$oldAvatar);
+                    //     }
+                    // }
                     // Image::thumbnail('uploads/avatar/' . $model->avatar, 500, 300)
                     // ->resize(new Box(500,300));
                 }
@@ -303,13 +306,15 @@ class EditorController extends Controller
      */
     public function actionDelete($id)
     {
+
         $model = $this->findModel($id);
         $user = $model->user;
+        $img = 'thumb_'.$user->id.'.jpg';
         // $oldAvatar = $model->avatar;
         // if ($oldAvatar != 0) {
         //     unlink('uploads/avatar/'.$oldAvatar);
         // }
-        unlink('uploads/avatar/'.$model->avatar);
+        unlink('uploads/avatar/'.$img);
         $model->delete();
         $user->delete();
         //Yii::$app->session->setFlash('success', 'คุณได้ลบข้อมูลส่วนตัวของคุณเรียบร้อยแล้วครับ');

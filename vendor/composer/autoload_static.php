@@ -50,6 +50,10 @@ class ComposerStaticInit8b5026c3702b01f5040b9139ea9c7ee5
         array (
             'cebe\\markdown\\' => 14,
         ),
+        'b' => 
+        array (
+            'bupy7\\cropbox\\' => 14,
+        ),
         'F' => 
         array (
             'Faker\\' => 6,
@@ -107,7 +111,8 @@ class ComposerStaticInit8b5026c3702b01f5040b9139ea9c7ee5
         ),
         'kartik\\plugins\\fileinput\\' => 
         array (
-            0 => __DIR__ . '/..' . '/kartik-v/bootstrap-fileinput',
+            0 => __DIR__ . '/..' . '/2amigos/yii2-ckeditor-widget',
+            1 => __DIR__ . '/..' . '/kartik-v/bootstrap-fileinput',
         ),
         'kartik\\file\\' => 
         array (
@@ -136,6 +141,10 @@ class ComposerStaticInit8b5026c3702b01f5040b9139ea9c7ee5
         'cebe\\markdown\\' => 
         array (
             0 => __DIR__ . '/..' . '/cebe/markdown',
+        ),
+        'bupy7\\cropbox\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/bupy7/yii2-widget-cropbox',
         ),
         'Faker\\' => 
         array (
