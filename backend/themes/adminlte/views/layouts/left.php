@@ -2,11 +2,6 @@
 
     <section class="sidebar">
 
-<<<<<<< HEAD
-
-=======
->>>>>>> a79cdaa3e8edf6532bc61db05e2dc7fe67e011d1
-
 
 
         <!-- <form  class="sidebar-menu" >
