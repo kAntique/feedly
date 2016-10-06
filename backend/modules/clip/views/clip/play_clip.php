@@ -11,7 +11,7 @@ $this->title = $model->title;
 ?>
 
 <html>
-<body bgcolor="black" >
+<body style="width:100%" bgcolor="black" >
   <div >
 
 
@@ -41,6 +41,10 @@ $this->title = $model->title;
 
       </center>
   </div>
+  <div class="box">
+    <h4>code iframe</h4>
 
+    <textarea  id="text " name="iframe_allcat_clip"  style="width:100%"><iframe src="<?php echo Yii::$app->params['url_play_clip'].$model->id ;?>"></iframe></textarea>
+  </div>
 </body>
 </html>

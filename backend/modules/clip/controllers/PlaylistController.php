@@ -268,9 +268,9 @@ class PlaylistController extends Controller
   {
     $model = Playlist::find()->where(['category_id'=>$category_id])->all();
 
-    return $this->render('all_playlist', [
+    return $this->renderPartial('all_playlist', [
         'model' => $model,
-
+        'category_id'=>$category_id,
 
     ]);
   }

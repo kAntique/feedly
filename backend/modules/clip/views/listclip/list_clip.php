@@ -11,43 +11,53 @@ use backend\modules\worlds\coverimg\models\CoverImg;
 
 $this->title = 'คลิป';
 ?>
+<?php $i = 0; ?>
+<table>
 
-<?php foreach( $model as $list) :
-  $img = $list->clip['cover_img_id'];
-    $poster = CoverImg::find()->where(['id'=>$img])->one();?>
-    <div class="box box-success box-solid">
-      <table >
-        <tr>
+<?php foreach( $model as $list) :?>
 
-          <p>
-              <?=  Html::a($list->clip['title'], ['/clip/clip/play_clip','clip_id'=>$list->clip['id']], ['class' => 'btn btn-primary'])?>
-          </p>
-
-            <?= VideoJsWidget::widget([
-                'options' => [
-                    'class' => 'video-js vjs-default-skin vjs-big-play-centered',
-                    'poster' =>'uploads/coverimage/'.$poster->filename,
-                    'width' => '400',
-                    'height' => '200',
-                    'controls' => true,
-                ],
-                'jsOptions' => [
-                    'preload' => 'auto',
-                ],
-                'tags' => [
-                    'source' => [
-                         ['src' =>$list->clip['link'], 'type' => 'video/mp4'],
-                    ],
-                    // 'track' => [
-                    //     ['kind' => 'captions', 'src' => 'http://vjs.zencdn.net/vtt/captions.vtt', 'srclang' => 'en', 'label' => 'English']
-                    // ]
-                ]
-            ]); ?>
-
-        </tr>
-      </table>
+  <?php  $i++;
+    echo '<td>';
+       $img = $list->clip['cover_img_id'];
+          $poster = CoverImg::find()->where(['id'=>$img])->one();?>
 
 
+          <?=    VideoJsWidget::widget([
+                  'options' => [
+                      'class' => 'video-js vjs-default-skin vjs-big-play-centered',
+                      'poster' =>'uploads/coverimage/'.$poster->filename,
+                      'width' => '300',
+                      'height' => '200',
+                      'controls' => true,
+                  ],
+                  'jsOptions' => [
+                      'preload' => 'auto',
+                  ],
+                  'tags' => [
+                      'source' => [
+                           ['src' =>$list->clip['link'], 'type' => 'video/mp4'],
+                      ],
+                      // 'track' => [
+                      //     ['kind' => 'captions', 'src' => 'http://vjs.zencdn.net/vtt/captions.vtt', 'srclang' => 'en', 'label' => 'English']
+                      // ]
+                  ]
+              ]);?>
+      <center>  <?= Html::a($list->clip['title'], ['/clip/clip/play_clip','clip_id'=>$list->clip['id']], ['class' => 'btn btn-primary']);?></center>
+  <?php  echo '</td>';
 
-</div><br>
+
+    if($i == 4) {
+        echo '</tr><tr>';
+        $i = 0;
+    } ?>
+
 <?php  endforeach ;?>
+
+</table>
+<div class="box">
+  <h4>code iframe</h4>
+
+  <textarea  id="text " name="iframe_allcat_clip"  style="width:100%">
+    <iframe src="<?php echo Yii::$app->params['url_list_clip'].$playlist_id ;?>" ></iframe>
+  </textarea>
+</div>

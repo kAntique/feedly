@@ -238,7 +238,7 @@ class CategoryController extends Controller
     {
       $model = Category::find()->where(['world_id' => 1])->all();
       $clip = Clip :: find()->where('category_id')->all();
-          return $this->render('cat_clip', [
+          return $this->renderPartial('cat_clip', [
               'model' => $model,
               'clip' => $clip,
 

@@ -9,8 +9,27 @@ use yii\grid\GridView;
 
 $this->title = 'เพลลิสต์ทั้งหมด';
 ?>
+<?php $i = 0;?>
+<table >
 
 <?php foreach( $model as $list) :?>
 
-<?=  Html::a(" $list->name", ['/clip/listclip/list_clip', 'playlist_id' => $list->id], ['class' => 'btn btn-primary'])?>
+<?php  $i++;
+  echo '<td>'.
+  Html::img('uploads/coverimage/' . $list->coverImg['filename'],['width' => '300','height' => '200']).'<br><center>'.
+  Html::a(" $list->name",['/clip/listclip/list_clip', 'playlist_id' => $list->id], ['class' => ' btn btn-primary'])
+  .'</center></td>';
+
+
+  if($i == 4) {
+      echo '</tr><tr>';
+      $i = 0;
+  } ?>
+
 <?php  endforeach ;?>
+</table>
+<div class="box">
+  <h4>code iframe</h4>
+
+  <textarea  id="text " name="iframe_allcat_clip"  style="width:100%"><iframe src="<?php echo Yii::$app->params['url_all_playlist'].$category_id ;?>"></iframe></textarea>
+</div>

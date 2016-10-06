@@ -134,10 +134,10 @@ class ListclipController extends Controller
     public function actionList_clip($playlist_id)
     {
         $model = Listclip::find()->where(['playlist_id'=>$playlist_id])->all();
-        
-            return $this->render('list_clip', [
-                'model' => $model,
 
+            return $this->renderPartial('list_clip', [
+                'model' => $model,
+                'playlist_id' => $playlist_id,
             ]);
 
     }
