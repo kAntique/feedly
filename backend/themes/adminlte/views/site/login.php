@@ -53,6 +53,7 @@ $fieldOptions2 = [
 
         <?php ActiveForm::end(); ?>
 
+
         <!-- <div class="social-auth-links text-center">
             <p>- OR -</p>
             <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in
@@ -63,6 +64,8 @@ $fieldOptions2 = [
         <!-- /.social-auth-links -->
         <a href="index.php?r=member/editor/request-password-reset">ลืมรหัสผ่าน</a><br>
         <a href="index.php?r=member/editor/select" class="text-center">สมัครสมาชิก</a>
+
     </div>
+
     <!-- /.login-box-body -->
 </div><!-- /.login-box -->

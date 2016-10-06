@@ -12,6 +12,7 @@ use backend\modules\worlds\coverimg\models\CoverImg;
 use yii\web\UploadedFile;
 use Imagine\Image\Box;
 use yii\imagine\Image;
+use yii\web\Response;
 /**
  * ArticleController implements the CRUD actions for Article model.
  */
@@ -167,15 +168,15 @@ class ArticleController extends Controller
           if($modelimg->save()){
 
               $image->saveAs($path);
-              Image::getImagine()->open(Yii::getAlias($path))
-            ->resize(new Box(1280, 720))
+              Image::frame($path)
+              ->resize(new Box(1280, 720))
             ->save($path, ['quality' => 100]);
               $modelimg->id;
               $model->cover_img_id = $modelimg->id;
               $model->save();
 
           } else {
-              // error in saving model
+              var_dump($modelimg->getErrors());
 
           }
          }
@@ -231,4 +232,42 @@ class ArticleController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    public function actionJson_index()
+    {
+        $something = true; // or you can set for test -> false;
+        $model = Article::find()->all();
+        $return_json = ['status' => 'error'];
+        if ($something == true)
+        {
+            $return_json = ['status' => 200,  'msg' => 'OK','result' => $model];
+        }
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        return $return_json;
+    }
+
+    public function actionJson_view()
+    {
+        $something = true; // or you can set for test -> false;
+        $model = Article::find()->where('id')->one();
+        $return_json = ['status' => 'error'];
+        if ($something == true)
+        {
+            $return_json = ['status' => 200,  'msg' => 'OK','result' => $model];
+
+        }
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        return $return_json;
+    }
+
+    public function actionPlaylist()
+    {
+    $model = Article::find()->where('category_id')->all();
+        return $this->render('playlist', [
+            'model' => $model,
+
+        ]);
+    }
+
+
 }

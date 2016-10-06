@@ -165,6 +165,7 @@ return array (
       '@kartik/base' => $vendorDir . '/kartik-v/yii2-krajee-base',
     ),
   ),
+<<<<<<< HEAD
   'bupy7/yii2-widget-cropbox' => 
   array (
     'name' => 'bupy7/yii2-widget-cropbox',
@@ -172,6 +173,24 @@ return array (
     'alias' => 
     array (
       '@bupy7/cropbox' => $vendorDir . '/bupy7/yii2-widget-cropbox',
+=======
+  'wbraganca/yii2-videojs-widget' => 
+  array (
+    'name' => 'wbraganca/yii2-videojs-widget',
+    'version' => '1.0.1.0',
+    'alias' => 
+    array (
+      '@wbraganca/videojs' => $vendorDir . '/wbraganca/yii2-videojs-widget/src',
+    ),
+  ),
+  'vision/yii2-you-tube-widget' => 
+  array (
+    'name' => 'vision/yii2-you-tube-widget',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@vision/ytbwidget' => $vendorDir . '/vision/yii2-you-tube-widget',
+>>>>>>> a79cdaa3e8edf6532bc61db05e2dc7fe67e011d1
     ),
   ),
 );

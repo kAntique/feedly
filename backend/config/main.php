@@ -36,6 +36,17 @@ return [
         'article' => [
            'class' => 'backend\modules\article\Module',
        ],
+       'playlist' => [
+
+          'class' => 'backend\modules\playlist\Module',
+
+      ],
+      
+         'listclip' => [
+
+            'class' => 'backend\modules\listclip\Module',
+
+        ],
 
     ],
     'components' => [
@@ -105,6 +116,8 @@ return [
         //
         //     ],
         // ],
+
+
     ],
     'params' => $params,
 ];

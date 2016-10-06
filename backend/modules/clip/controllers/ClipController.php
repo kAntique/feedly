@@ -256,9 +256,23 @@ class ClipController extends Controller
                  foreach( $decode->result as $list){
 
                    if ($list->status == "finished") {
-                      $value->link = $list->url;
+                     $post = \Yii::$app->params['url_openload_tiket'].$list->extid.\Yii::$app->params['login_openload'];
+                     $downloadTicket = file_get_contents( $post );
+                     $decode_ticket=json_decode($downloadTicket);
+                     $ticket = $decode_ticket->result->ticket;
+
+                      $post_downloadLink = \Yii::$app->params['url_openload_link'].$list->extid."&ticket=".$ticket.'&captcha_response={captcha_response}';
+                      $downloadLink = file_get_contents( $post_downloadLink );
+                      $decode_link=json_decode($downloadLink);
+                      //  var_dump ($decode_link->result->url);
+                       $value->link = $decode_link->result->url;
                       $value->status_link = 1;
-                      $value->save();
+                      if ($value->save()) {
+                        # code...
+                      }else {
+                        var_dump($value->getErrors());
+                      }
+
 
                    }
                   }
@@ -267,11 +281,43 @@ class ClipController extends Controller
           return $this->render('upload', [
               'model' => $model,
 
+          ]);
+      }
 
+      public function actionJson_index()
+      {
+          $something = true; // or you can set for test -> false;
+          $model = Clip::find()->all();
+          $return_json = ['status' => 'error'];
+          if ($something == true)
+          {
+              $return_json = ['status' => 200,  'msg' => 'OK','result' => $model];
+          }
+          \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+          return $return_json;
+      }
 
+      public function actionJson_view()
+      {
+          $something = true; // or you can set for test -> false;
+          $model = Clip::find()->where('id')->one();
+          $return_json = ['status' => 'error'];
+          if ($something == true)
+          {
+              $return_json = ['status' => 200,  'msg' => 'OK','result' => $model];
 
+          }
+          \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+          return $return_json;
+      }
+      public function actionPlay_clip($clip_id)
+      {
+      $model = Clip::find()->where(['id'=>$clip_id])->one();
+          return $this->renderPartial('play_clip', [
+              'model' => $model,
 
           ]);
       }
+
 
 }

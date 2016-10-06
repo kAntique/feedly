@@ -32,11 +32,17 @@ use yii\helpers\Html;
                 ?>
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+<<<<<<< HEAD
                         <!-- <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="user-image" alt="User Image"/> -->
                         <?= Html::img('uploads/avatar/'.$img,['width' => 30,'height' => 30,'class'=>'img-circle']) ?>
                         <span class="hidden-xs">&nbsp;<?php echo Yii::$app->user->identity->username; ?></span>
 
                         <!-- <span class="hidden-xs">Admin</span> -->
+=======
+                        <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
+
+                        <span class="hidden-xs"><?php echo Yii::$app->user->identity->username; ?></span>
+>>>>>>> a79cdaa3e8edf6532bc61db05e2dc7fe67e011d1
 
                     </a>
                     <ul class="dropdown-menu">
@@ -47,8 +53,12 @@ use yii\helpers\Html;
                             <?= Html::img('uploads/avatar/'.$img,['width' => 200,'height' => 200,'class'=>'img-circle']) ?>
 
                             <p>
+<<<<<<< HEAD
 
                                 Alexander Pierce - Web Developer
+=======
+                                <?php echo Yii::$app->user->identity->username; ?>
+>>>>>>> a79cdaa3e8edf6532bc61db05e2dc7fe67e011d1
                                 <small>Member since Nov. 2012</small>
                             </p>
                         </li>

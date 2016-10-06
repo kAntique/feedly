@@ -23,10 +23,19 @@
         "yiisoft/yii2-imagine": "*",
         "kartik-v/yii2-widget-fileinput": "@dev",
         "himiklab/yii2-recaptcha-widget" : "*",
+<<<<<<< HEAD
         "2amigos/yii2-ckeditor-widget": "~1.0",
         "yurkinx/yii2-image": "^1.1",
         "yiisoft/yii2-authclient": "^2.1",
         "bupy7/yii2-widget-cropbox": "*"
+=======
+        "2amigos/yii2-ckeditor-widget" : "~1.0",
+        "yurkinx/yii2-image": "^1.1",
+        "yiisoft/yii2-authclient": "^2.1",
+        "xj/yii2-jplayer-widget": "*",
+        "wbraganca/yii2-videojs-widget": "~1.0",
+        "vision/yii2-you-tube-widget": "dev-master"
+>>>>>>> a79cdaa3e8edf6532bc61db05e2dc7fe67e011d1
 
     },
     "require-dev": {

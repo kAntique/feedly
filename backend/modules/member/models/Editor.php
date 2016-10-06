@@ -34,7 +34,7 @@ class Editor extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'editor';
+        return 'editors';
     }
 
     /**

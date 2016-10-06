@@ -28,4 +28,7 @@ return array(
     'cebe\\markdown\\' => array($vendorDir . '/cebe/markdown'),
     'bupy7\\cropbox\\' => array($vendorDir . '/bupy7/yii2-widget-cropbox'),
     'Faker\\' => array($vendorDir . '/fzaninotto/faker/src/Faker'),
+    'xj\\jplayer\\' => array($vendorDir . '/xj/yii2-jplayer-widget'),
+    'wbraganca\\videojs\\'=> array($vendorDir . '/wbraganca/yii2-videojs-widget/src'),
+    'vision\\ytbwidget\\'=> array($vendorDir . '/vision/yii2-you-tube-widget'),
 );
