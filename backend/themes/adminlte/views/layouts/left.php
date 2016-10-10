@@ -4,8 +4,12 @@
 
 
 
+<<<<<<< HEAD
 
       <form  class="sidebar-menu" >
+=======
+        <!-- <form  class="sidebar-menu" >
+>>>>>>> 424ba834795e76126559220a408def2710e0c19a
             <div class="text-center" style="color:white;font-size:150%;" >
               <?php echo "เมนู" ?>
             </div>

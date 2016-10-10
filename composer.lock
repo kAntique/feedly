@@ -4,8 +4,13 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
+    "hash": "6a338339d8fc3ea84bff3d9689ccaff3",
+    "content-hash": "c5f17b3cdd6577a0847e3d78bd61a293",
+=======
     "hash": "b24974968c1b1b7ebc01b65564b87281",
     "content-hash": "1957b4efab99ec24c9b596d8bbb37bb7",
+>>>>>>> a79cdaa3e8edf6532bc61db05e2dc7fe67e011d1
     "packages": [
         {
             "name": "2amigos/yii2-ckeditor-widget",
@@ -38,6 +43,7 @@
             },
             "autoload": {
                 "psr-4": {
+                    "kartik\\plugins\\fileinput\\": "",
                     "dosamigos\\ckeditor\\": "src"
                 }
             },
@@ -47,22 +53,25 @@
             ],
             "authors": [
                 {
-                    "name": "2amigOS! Consulting Group",
-                    "email": "hola@2amigos.us",
-                    "homepage": "http://2amigos.us",
-                    "role": "Developer"
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
                 }
             ],
-            "description": "CKEditor widget for Yii2.",
-            "homepage": "http://yiiwheels.com/extension/ckeditor-widget",
+            "description": "An enhanced HTML 5 file input for Bootstrap 3.x with features for file preview for many file types, multiple selection, ajax uploads, and more.",
+            "homepage": "https://github.com/kartik-v/bootstrap-fileinput",
             "keywords": [
-                "2amigos",
-                "CKEditor",
-                "extension",
-                "widget",
-                "yii",
-                "yii 2",
-                "yii2"
+                "ajax",
+                "bootstrap",
+                "delete",
+                "file",
+                "image",
+                "input",
+                "jquery",
+                "multiple",
+                "preview",
+                "progress",
+                "upload"
             ],
             "time": "2015-04-30 12:22:25"
         },
@@ -222,6 +231,48 @@
             ]
         },
         {
+            "name": "bower-asset/jq-cropbox",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bupy7/jquery-cropbox.git",
+                "reference": "292013d58981f0bcc740d347c5e71971b68c5a48"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bupy7/jquery-cropbox/zipball/292013d58981f0bcc740d347c5e71971b68c5a48",
+                "reference": "292013d58981f0bcc740d347c5e71971b68c5a48",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery": ">=1.8",
+                "bower-asset/jquery-mousewheel": "*"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "dist/*.js",
+                    "dist/*.css",
+                    "src/*.js",
+                    "src/*.css"
+                ],
+                "bower-asset-ignore": [
+                    ".*",
+                    "*.md",
+                    "/scripts"
+                ]
+            },
+            "license": [
+                "BSD 3-Clause"
+            ],
+            "description": "A lightweight and simple plugin to crop your image.",
+            "keywords": [
+                "crop",
+                "cropbox",
+                "image"
+            ]
+        },
+        {
             "name": "bower-asset/jquery",
             "version": "2.2.4",
             "source": {
@@ -251,6 +302,37 @@
                 "jquery",
                 "library"
             ]
+        },
+        {
+            "name": "bower-asset/jquery-mousewheel",
+            "version": "3.1.13",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jquery/jquery-mousewheel.git",
+                "reference": "67289b6b2aa0066d7d78a5807f520387135ffb22"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jquery/jquery-mousewheel/zipball/67289b6b2aa0066d7d78a5807f520387135ffb22",
+                "reference": "67289b6b2aa0066d7d78a5807f520387135ffb22",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery": ">=1.2.2"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "./jquery.mousewheel.js",
+                "bower-asset-ignore": [
+                    "*.json",
+                    "*.markdown",
+                    "*.txt",
+                    ".*",
+                    "!LICENSE.txt",
+                    "Gruntfile.js",
+                    "test"
+                ]
+            }
         },
         {
             "name": "bower-asset/jquery.inputmask",
@@ -539,6 +621,52 @@
             "license": [
                 "MIT"
             ]
+        },
+        {
+            "name": "bupy7/yii2-widget-cropbox",
+            "version": "4.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bupy7/yii2-widget-cropbox.git",
+                "reference": "b640ff9a906c2da1d73956d3a7256c52d9aba312"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bupy7/yii2-widget-cropbox/zipball/b640ff9a906c2da1d73956d3a7256c52d9aba312",
+                "reference": "b640ff9a906c2da1d73956d3a7256c52d9aba312",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jq-cropbox": "1.0.*",
+                "yiisoft/yii2-bootstrap": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "bupy7\\cropbox\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD 3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Vasilij Belosludcev",
+                    "email": "bupy765@gmail.com",
+                    "homepage": "http://mihaly4.ru"
+                }
+            ],
+            "description": "This is widget wrapper of https://github.com/bupy7/jquery-cropbox. This widget allows crop image before upload to server and send informations about crop in JSON format.",
+            "homepage": "https://github.com/bupy7/yii2-widget-cropbox",
+            "keywords": [
+                "crop image",
+                "extension",
+                "image",
+                "widget",
+                "yii2"
+            ],
+            "time": "2016-05-18 18:07:02"
         },
         {
             "name": "cebe/markdown",
@@ -1412,6 +1540,11 @@
             "require": {
                 "yiisoft/yii2-httpclient": "~2.0.1"
             },
+            "require-dev": {
+                "phpunit/dbunit": ">=1.2",
+                "phpunit/phpunit": ">=3.7",
+                "phpunit/phpunit-selenium": ">=1.2"
+            },
             "type": "yii2-extension",
             "extra": {
                 "branch-alias": {
@@ -1425,7 +1558,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "BSD-3-Clause"
+                "MIT"
             ],
             "authors": [
                 {
@@ -1574,11 +1707,13 @@
             ],
             "authors": [
                 {
-                    "name": "Paul Klimov",
-                    "email": "klimov.paul@gmail.com"
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
                 }
             ],
             "description": "HTTP client extension for the Yii framework",
+            "homepage": "https://github.com/kartik-v/yii2-widget-fileinput",
             "keywords": [
                 "curl",
                 "http",

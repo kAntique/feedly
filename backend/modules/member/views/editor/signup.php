@@ -11,16 +11,18 @@ use dosamigos\fileupload\FileUploadUI;
 use kartik\file\FileInput;
 use dosamigos\selectize\SelectizeTextInput;
 use yii\captcha\Captcha;
+use bupy7\cropbox\Cropbox;
 //use	yii\widgets\ActiveForm;
 
 //$this->title = 'สมัครสมาชิก';
 //$this->params['breadcrumbs'][] = $this->title;
+$name = 'thumb_'.$model->id.'.jpg';
 ?>
 <div class="box-body">
 <p>กรุณากรอกข้อมูลต่อไปนี้เพื่อสมัครสมาชิก :</p>
 
 <div class="row-lg-12">
-    <div class="col-lg-12">
+    <div class="col-lg-16">
         <?php $form = ActiveForm::begin([
           'enableAjaxValidation' =>true,
           'options' =>['enctype' => 'multipart/form-data'],
@@ -48,9 +50,7 @@ use yii\captcha\Captcha;
                    ])->hint('กรอกได้มากกว่า 1 เว็บไซต์')?>
             <?php endif; ?>
 
-            <!-- เพิ่ม widget upload crop image ที่สร้างมาเอง -->
-
-            <br><?php echo FileInput::widget([
+            <!-- <br>< echo FileInput::widget([
                 'model' => $model,
               'attribute' => 'avatar_img',
                 'pluginOptions' => [
@@ -62,13 +62,20 @@ use yii\captcha\Captcha;
                     'browseLabel' =>  'Select Photo'
                 ],
                 'options' => ['accept' => 'image/*']
-            ]); ?><br>
+            ]); ?> -->
 
             <?php if(!$model->isNewRecord){?>
-              <?= Html::img('uploads/avatar/'.$model->avatar,['class' => 'img-responsive thumbnail','width' => 250]);?>
+              <p><b>รูปโปรไฟล์</b></p>
+              <?= Html::img('uploads/avatar/'.$name,['class' => 'thumbnail']);?>
             <?php
               }
             ?>
+            <!-- <div class="text-center"> -->
+              <?php echo $form->field($model, 'image')->widget(Cropbox::className(), [
+                  'attributeCropInfo' => 'crop_info',
+              ]); ?>
+            <!-- </div> -->
+
 
             <!-- < $form->field($user, 're_password')->passwordInput() ?> -->
 
