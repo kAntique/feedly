@@ -237,10 +237,10 @@ class CategoryController extends Controller
     public function actionAllcat_clip()
     {
       $model = Category::find()->where(['world_id' => 1])->all();
-      $clip = Clip :: find()->where('category_id')->all();
+      //$clip = Clip :: find()->where('category_id')->all();
           return $this->renderPartial('cat_clip', [
               'model' => $model,
-              'clip' => $clip,
+            //  'clip' => $clip,
 
           ]);
     }
@@ -248,23 +248,23 @@ class CategoryController extends Controller
     public function actionAllcat_article()
     {
     $model = Category::find()->where(['world_id' => 2])->all();
-
-        return $this->render('cat_article', [
+  //  $article =   Article :: find()->where('category_id')->all();
+        return $this->renderPartial('cat_article', [
             'model' => $model,
-
+          //  'article'=>$article,
 
         ]);
     }
 
-    public function actionList_clip()
-    {
-    $model = Clip::find()->where(['category_id' => 11])->all();
-
-        return $this->render('list_clip', [
-            'model' => $model,
-
-
-        ]);
-    }
+    // public function actionList_clip()
+    // {
+    // $model = Clip::find()->where(['category_id' => 11])->all();
+    //
+    //     return $this->render('list_clip', [
+    //         'model' => $model,
+    //
+    //
+    //     ]);
+    // }
 
 }

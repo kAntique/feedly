@@ -13,4 +13,5 @@ return [
     'url_all_playlist'=>'http://localhost/feedly/backend/web/index.php?r=clip%2Fplaylist%2Fall_playlist&category_id=',
     'url_list_clip'=>'http://localhost/feedly/backend/web/index.php?r=clip%2Flistclip%2Flist_clip&playlist_id=',
     'url_play_clip'=>'http://localhost/feedly/backend/web/index.php?r=clip%2Fclip%2Fplay_clip&clip_id=',
+    'url_cat_article'=>'http://localhost/feedly/backend/web/index.php?r=category%2Fcategory%2Fallcat_article',
 ];

@@ -11,8 +11,8 @@ $this->title = $model->title;
 ?>
 
 <html>
-<body style="width:100%" bgcolor="black" >
-  <div >
+<body  bgcolor="black" >
+  <div style="width:100%">
 
 
   <center>
@@ -21,9 +21,10 @@ $this->title = $model->title;
              'options' => [
                  'class' => 'video-js vjs-default-skin vjs-big-play-centered',
                  'poster' =>'uploads/coverimage/'.$model->coverImg['filename'],
-                 'width' => '720',
-                 'height' => '480',
+                 'width' => '100%',
+                 //'height' => '480',
                  'controls' => true,
+
              ],
              'jsOptions' => [
                  'preload' => 'auto',
@@ -32,9 +33,9 @@ $this->title = $model->title;
                  'source' => [
                       ['src' =>$model->link, 'type' => 'video/mp4'],
                  ],
-                 // 'track' => [
-                 //     ['kind' => 'captions', 'src' => 'http://vjs.zencdn.net/vtt/captions.vtt', 'srclang' => 'en', 'label' => 'English']
-                 // ]
+                //  'track' => [
+                //      ['kind' => 'captions', 'src' => 'http://vjs.zencdn.net/vtt/captions.vtt', 'srclang' => 'en', 'label' => 'English']
+                //  ]
              ]
          ]); ?>
 

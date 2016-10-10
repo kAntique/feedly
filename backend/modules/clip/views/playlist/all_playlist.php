@@ -9,6 +9,7 @@ use yii\grid\GridView;
 
 $this->title = 'เพลลิสต์ทั้งหมด';
 ?>
+<center>  <h3>เพลลิสต์ทั้งหมด</h3></center>
 <?php $i = 0;?>
 <table >
 
@@ -16,7 +17,7 @@ $this->title = 'เพลลิสต์ทั้งหมด';
 
 <?php  $i++;
   echo '<td>'.
-  Html::img('uploads/coverimage/' . $list->coverImg['filename'],['width' => '300','height' => '200']).'<br><center>'.
+  Html::img('uploads/coverimage/' . $list->coverImg['filename'],['width' => '100%']).'<br><center>'.
   Html::a(" $list->name",['/clip/listclip/list_clip', 'playlist_id' => $list->id], ['class' => ' btn btn-primary'])
   .'</center></td>';
 

@@ -11,8 +11,9 @@ use backend\modules\worlds\coverimg\models\CoverImg;
 
 $this->title = 'คลิป';
 ?>
+<center>  <h3>คลิป</h3></center>
 <?php $i = 0; ?>
-<table>
+<table style="width:100%">
 
 <?php foreach( $model as $list) :?>
 
@@ -26,8 +27,8 @@ $this->title = 'คลิป';
                   'options' => [
                       'class' => 'video-js vjs-default-skin vjs-big-play-centered',
                       'poster' =>'uploads/coverimage/'.$poster->filename,
-                      'width' => '300',
-                      'height' => '200',
+                      'width' => '100%',
+                       //'height' => '100%',
                       'controls' => true,
                   ],
                   'jsOptions' => [

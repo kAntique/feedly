@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
           },
       ],
             'title:ntext',
-            'subtitle:ntext',
+            //'subtitle:ntext',
             'year:ntext',
             'ep:ntext',
 
