@@ -3,18 +3,6 @@
     <section class="sidebar">
 
 
-
-<<<<<<< HEAD
-
-      <form  class="sidebar-menu" >
-=======
-        <!-- <form  class="sidebar-menu" >
->>>>>>> 424ba834795e76126559220a408def2710e0c19a
-            <div class="text-center" style="color:white;font-size:150%;" >
-              <?php echo "เมนู" ?>
-            </div>
-        </form>
-
           <div>
             <?= dmstr\widgets\Menu::widget(
                 [
@@ -29,52 +17,30 @@
                           ['label' => 'อัพโหลด',  'icon' => 'glyphicon glyphicon-upload', 'url' => ['/clip/clip/upload']],
                           ['label' => 'สถานะคลิป', 'icon' => 'glyphicon glyphicon-check', 'url' => ['/status/status']],
 
+
                           ['label' => 'บทความ', 'options' => ['class' => 'header']],
                           ['label' => 'เพิ่มบทความ', 'icon' => 'glyphicon glyphicon-edit', 'url' => ['/article/article']],
+
 
                           ['label' => 'ตั้งค่าทั่วไป', 'options' => ['class' => 'header']],
                           ['label' => 'ประเภท', 'icon' => 'glyphicon glyphicon-globe', 'url' => ['/world/world']],
                           ['label' => 'หมวดหมู่', 'icon' => 'glyphicon glyphicon-th-list', 'url' => ['/category/category']],
                           ['label' => 'ระดับความเหมาะสม', 'icon' => 'glyphicon glyphicon-object-align-bottom', 'url' => ['/rate/rate']],
 
-                        // ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
+
                         ['label' => 'คลิป', 'options' => ['class' => 'header','id' => 'public']],
-                        ['label' => 'คลิปใหม่', 'icon' => 'glyphicon glyphicon-play-circle', 'url' => ['/category/category/allcat_clip']],
-                        ['label' => 'หนัง', 'icon' => 'glyphicon glyphicon-play-circle', 'url' => ['/category/category/allcat_clip']],
-                        ['label' => 'การ์ตูน', 'icon' => 'glyphicon glyphicon-play-circle', 'url' => ['/category/category/allcat_clip']],
-                        ['label' => 'ละคร', 'icon' => 'glyphicon glyphicon-play-circle', 'url' => ['/category/category/allcat_clip']],
-                        ['label' => 'ซีรีย์', 'icon' => 'glyphicon glyphicon-play-circle', 'url' => ['/category/category/allcat_clip']],
-                        ['label' => 'ซิทคอม', 'icon' => 'glyphicon glyphicon-play-circle', 'url' => ['/category/category/allcat_clip']],
-                        ['label' => 'เพลง', 'icon' => 'glyphicon glyphicon-play-circle', 'url' => ['/category/category/allcat_clip']],
-                        ['label' => 'รายการทีวี', 'icon' => 'glyphicon glyphicon-play-circle', 'url' => ['/category/category/allcat_clip']],
-                        ['label' => 'Rate X', 'icon' => 'glyphicon glyphicon-play-circle', 'url' => ['/category/category/allcat_clip']],
-                        ['label' => 'Rete R', 'icon' => 'glyphicon glyphicon-play-circle', 'url' => ['/category/category/allcat_clip']],
-                    //     [
-                    //     'label' => 'คลิปทั้งหมด',
-                    //     'icon' => 'fa fa-share',
-                    //     'url' => '#',
-                    //     'items' => [
-                    //         ['label' => 'หนัง', 'icon' => 'fa fa-file-code-o', 'url' => ['/gii'],],
-                    //         ['label' => 'การ์ตูน', 'icon' => 'fa fa-dashboard', 'url' => ['/debug'],],
-                    //         [
-                    //             'label' => 'Level One',
-                    //             'icon' => 'fa fa-circle-o',
-                    //             'url' => '#',
-                    //             'items' => [
-                    //                 ['label' => 'Level Two', 'icon' => 'fa fa-circle-o', 'url' => '#',],
-                    //                 [
-                    //                     'label' => 'Level Two',
-                    //                     'icon' => 'fa fa-circle-o',
-                    //                     'url' => '#',
-                    //                     'items' => [
-                    //                         ['label' => 'Level Three', 'icon' => 'fa fa-circle-o', 'url' => '#',],
-                    //                         ['label' => 'Level Three', 'icon' => 'fa fa-circle-o', 'url' => '#',],
-                    //                     ],
-                    //                 ],
-                    //             ],
-                    //         ],
-                    //     ],
-                    // ],
+                        ['label' => 'คลิปใหม่', 'icon' => 'glyphicon glyphicon-play-circle', 'url' => ['/clip/playlist/newclip']],
+                        ['label' => 'หนัง', 'icon' => 'glyphicon glyphicon-play-circle', 'url' => ['/clip/playlist/movie']],
+                        ['label' => 'การ์ตูน', 'icon' => 'glyphicon glyphicon-play-circle', 'url' => ['/clip/playlist/cartoon']],
+                        ['label' => 'ละคร', 'icon' => 'glyphicon glyphicon-play-circle', 'url' => ['/clip/playlist/drama']],
+                        ['label' => 'ซีรีย์', 'icon' => 'glyphicon glyphicon-play-circle', 'url' => ['/clip/playlist/series']],
+                        ['label' => 'ซิทคอม', 'icon' => 'glyphicon glyphicon-play-circle', 'url' => ['/clip/playlist/sitcom']],
+                        ['label' => 'เพลง', 'icon' => 'glyphicon glyphicon-play-circle', 'url' => ['/clip/playlist/music']],
+                        ['label' => 'รายการทีวี', 'icon' => 'glyphicon glyphicon-play-circle', 'url' => ['/clip/playlist/tv_programe']],
+                        ['label' => 'Rate X', 'icon' => 'glyphicon glyphicon-play-circle', 'url' => ['/clip/playlist/ratex']],
+                        ['label' => 'Rete R', 'icon' => 'glyphicon glyphicon-play-circle', 'url' => ['/clip/playlist/rater']],
+
+
                     ['label' => 'บทความ', 'options' => ['class' => 'header','id' => 'public']],
 
                     ['label' => 'บทความใหม่',
@@ -87,9 +53,31 @@
                     ['label' => 'บ้านและสวน', 'icon' => 'glyphicon glyphicon-book', 'url' => ['/category/category/allcat_article']],
                     ['label' => 'แฟชั่น', 'icon' => 'glyphicon glyphicon-book', 'url' => ['/category/category/allcat_article']],
                     ['label' => 'กีฬา', 'icon' => 'glyphicon glyphicon-book', 'url' => ['/category/category/allcat_article']],
-                    ['label' => 'หวย', 'icon' => 'glyphicon glyphicon-book', 'url' => ['/category/category/allcat_article']],
+                    ['label' => 'เลขเด็ด', 'icon' => 'glyphicon glyphicon-book', 'url' => ['/category/category/allcat_article']],
+                    ['label' => 'ดูดวง', 'icon' => 'glyphicon glyphicon-book', 'url' => ['/category/category/allcat_article']],
                     ['label' => 'ยานยนต์', 'icon' => 'glyphicon glyphicon-book', 'url' => ['/category/category/allcat_article']],
                     ['label' => 'เทคโนโลยี', 'icon' => 'glyphicon glyphicon-book', 'url' => ['/category/category/allcat_article']],
+                    ['label' => 'โซเชียลฮิต', 'icon' => 'glyphicon glyphicon-book', 'url' => ['/category/category/allcat_article']],
+                    ['label' => 'มือถือ', 'icon' => 'glyphicon glyphicon-book', 'url' => ['/category/category/allcat_article']],
+                    ['label' => 'Android', 'icon' => 'glyphicon glyphicon-book', 'url' => ['/category/category/allcat_article']],
+                    ['label' => 'ios', 'icon' => 'glyphicon glyphicon-book', 'url' => ['/category/category/allcat_article']],
+                    ['label' => 'windows phone', 'icon' => 'glyphicon glyphicon-book', 'url' => ['/category/category/allcat_article']],
+                    ['label' => 'ท่องเที่ยว', 'icon' => 'glyphicon glyphicon-book', 'url' => ['/category/category/allcat_article']],
+                    ['label' => 'ทำอาหาร', 'icon' => 'glyphicon glyphicon-book', 'url' => ['/category/category/allcat_article']],
+                    ['label' => 'สุขภาพ', 'icon' => 'glyphicon glyphicon-book', 'url' => ['/category/category/allcat_article']],
+                    ['label' => 'บันเทิง', 'icon' => 'glyphicon glyphicon-book', 'url' => ['/category/category/allcat_article']],
+                    ['label' => 'เรื่องย่อละคร', 'icon' => 'glyphicon glyphicon-book', 'url' => ['/category/category/allcat_article']],
+                    ['label' => 'ผู้ชาย', 'icon' => 'glyphicon glyphicon-book', 'url' => ['/category/category/allcat_article']],
+                    ['label' => 'ผู้หญิง', 'icon' => 'glyphicon glyphicon-book', 'url' => ['/category/category/allcat_article']],
+                    ['label' => 'เด็ก', 'icon' => 'glyphicon glyphicon-book', 'url' => ['/category/category/allcat_article']],
+                    ['label' => 'วาไรตี้', 'icon' => 'glyphicon glyphicon-book', 'url' => ['/category/category/allcat_article']],
+                    ['label' => 'แต่งงาน', 'icon' => 'glyphicon glyphicon-book', 'url' => ['/category/category/allcat_article']],
+                    ['label' => 'การเงิน', 'icon' => 'glyphicon glyphicon-book', 'url' => ['/category/category/allcat_article']],
+                    ['label' => 'เกม', 'icon' => 'glyphicon glyphicon-book', 'url' => ['/category/category/allcat_article']],
+                    ['label' => 'รีวิวหนัง', 'icon' => 'glyphicon glyphicon-book', 'url' => ['/category/category/allcat_article']],
+                    ['label' => 'ฟุตบอล', 'icon' => 'glyphicon glyphicon-book', 'url' => ['/category/category/allcat_article']],
+                    ['label' => 'สัตว์', 'icon' => 'glyphicon glyphicon-book', 'url' => ['/category/category/allcat_article']],
+
                     ],
 
                 ]

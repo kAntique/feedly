@@ -34,7 +34,7 @@ class Editor extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'editor';
+        return 'editors';
     }
 
     /**
@@ -44,7 +44,7 @@ class Editor extends \yii\db\ActiveRecord
     {
         return [
             [['user_id', 'name', 'lastname', 'avatar'], 'required'],
-            [['name','lastname'], 'match', 'pattern' => '/^[ก-ฮ,a-z]\w*$/i'],
+        
             [['user_id'], 'integer'],
             [['date_register'], 'safe'],
             [['website'], 'string'],
@@ -56,9 +56,7 @@ class Editor extends \yii\db\ActiveRecord
               'mimeTypes' => ['image/jpg','image/png', 'image/gif'],
             ],
             ['crop_info', 'safe'],
-            //[['avatar_img'], 'file', 'skipOnEmpty' => true, 'on' => 'create', 'extensions' => 'jpg,png,gif'], //'maxSize' => 1024*1024
-            //['website', 'url', 'defaultScheme' => 'http'], // checks if "website" is a valid URL. Prepend "http://" to the "website" attribute
-            //[['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator::className(), 'secret' => '6Le55CgTAAAAAMRv7obGVW6Ju4x3JEgnQTwBylm3'],
+
 
         ];
     }

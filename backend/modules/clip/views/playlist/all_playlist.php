@@ -9,9 +9,15 @@ use yii\grid\GridView;
 
 $this->title = 'เพลลิสต์ทั้งหมด';
 ?>
-<center>  <h3>เพลลิสต์ทั้งหมด</h3></center>
+<center>  <h3>เพลลิสต์ทั้งหมด</h3>
+<div style="color:red;" >
+<?php  if ($model == null) {
+  echo "*** ไม่มีรายการเพลลิสต์ ***";
+}?>
+</div></center>
 <?php $i = 0;?>
 <table >
+
 
 <?php foreach( $model as $list) :?>
 

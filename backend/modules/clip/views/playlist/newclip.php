@@ -9,15 +9,9 @@ use backend\modules\worlds\coverimg\models\CoverImg;
 /* @var $searchModel backend\modules\clip\models\ClipSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'คลิป';
+$this->title = 'คลิปใหม่';
 ?>
-<center>  <h3>คลิป</h3>
-  <div style="color:red;" >
-  <?php  if ($model == null) {
-    echo "*** ไม่มีรายการคลิป ***";
-  }?>
-  </div>
-</center>
+<center>  <h3>คลิปใหม่</h3></center>
 <?php $i = 0; ?>
 <table style="width:100%">
 
@@ -25,16 +19,16 @@ $this->title = 'คลิป';
 
   <?php  $i++;
     echo '<td>';
-       $img = $list->clip['cover_img_id'];
+       $img = $list->cover_img_id;
           $poster = CoverImg::find()->where(['id'=>$img])->one();?>
 
 
-          <?=    VideoJsWidget::widget([
+        <center >  <?=    VideoJsWidget::widget([
                   'options' => [
                       'class' => 'video-js vjs-default-skin vjs-big-play-centered',
                       'poster' =>'uploads/coverimage/'.$poster->filename,
-                      'width' => '100%',
-                       //'height' => '100%',
+                       //'width' => '100%',
+                       'height' => '150%',
                       'controls' => true,
                   ],
                   'jsOptions' => [
@@ -42,14 +36,14 @@ $this->title = 'คลิป';
                   ],
                   'tags' => [
                       'source' => [
-                           ['src' =>$list->clip['link'], 'type' => 'video/mp4'],
+                           ['src' =>$list->link, 'type' => 'video/mp4'],
                       ],
                       // 'track' => [
                       //     ['kind' => 'captions', 'src' => 'http://vjs.zencdn.net/vtt/captions.vtt', 'srclang' => 'en', 'label' => 'English']
                       // ]
                   ]
               ]);?>
-      <center>  <?= Html::a($list->clip['title'], ['/clip/clip/play_clip','clip_id'=>$list->clip['id']], ['class' => 'btn btn-primary']);?></center>
+              <?= Html::a($list->title, ['/clip/clip/play_clip','clip_id'=>$list->id]);?></center>
   <?php  echo '</td>';
 
 
@@ -61,10 +55,3 @@ $this->title = 'คลิป';
 <?php  endforeach ;?>
 
 </table>
-<div class="box">
-  <h4>code iframe</h4>
-
-  <textarea  id="text " name="iframe_allcat_clip"  style="width:100%">
-    <iframe src="<?php echo Yii::$app->params['url_list_clip'].$playlist_id ;?>" ></iframe>
-  </textarea>
-</div>

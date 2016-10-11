@@ -274,6 +274,72 @@ class PlaylistController extends Controller
 
     ]);
   }
+  public function actionNewclip()
+  {
+    $model = Clip::find()
+    ->orderBy([
+           'id' => SORT_DESC,
+        ])
+    ->limit(16)
+    ->all();
+
+    return $this->render('newclip', [
+        'model' => $model,
 
 
+    ]);
+  }
+
+  public function actionCartoon()
+  {
+
+    return $this->render('cartoon');
+  }
+
+  public function actionDrama()
+  {
+
+      return $this->render('drama');
+  }
+
+  public function actionSeries()
+  {
+
+    return $this->render('series');
+  }
+
+  public function actionSitcom()
+  {
+
+      return $this->render('sitcom');
+  }
+
+  public function actionMusic()
+  {
+
+    return $this->render('music');
+  }
+
+  public function actionRatex()
+  {
+
+      return $this->render('ratex');
+  }
+
+  public function actionRater()
+  {
+
+    return $this->render('rater');
+  }
+
+  public function actionTv_programe()
+  {
+
+      return $this->render('tv_programe');
+  }
+  public function actionMovie()
+  {
+
+      return $this->render('movie');
+  }
 }

@@ -6,13 +6,9 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\modules\clip\models\ClipSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-// $this->registerJs(" $(#text).each(function () {
-//
-// }); ");
-
-
 $this->title = 'หมวดหมู่';
 ?>
+
 <?php $i = 0;?>
 <center>  <h3>หมวดหมู่คลิป</h3></center>
 <table style="width:100%">
@@ -36,7 +32,7 @@ $this->title = 'หมวดหมู่';
 
 </table>
 
-<div id="text" >
+<div >
   <h4>code iframe</h4>
-  <textarea  style="width:100% "><iframe src="<?php echo Yii::$app->params['url_cat_clip'];?>" style="visibility: hidden" scrolling="auto" width="100%" height="100%" frameborder="0" ></iframe></textarea>
+  <textarea  style="width:100% "><iframe src="<?php echo Yii::$app->params['url_cat_clip'];?>" scrolling="auto" width="100%" height="100%" frameborder="0" ></iframe></textarea>
 </div>

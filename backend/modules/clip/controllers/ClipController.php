@@ -319,7 +319,6 @@ class ClipController extends Controller
           ]);
       }
 
-    
 
 
 }

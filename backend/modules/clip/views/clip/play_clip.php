@@ -11,12 +11,13 @@ $this->title = $model->title;
 ?>
 
 <html>
-<body  bgcolor="black" >
+<body >
   <div style="width:100%">
 
 
   <center>
-    <font color="white"><h3 class="box-title"><?= Html::encode($this->title) ?></h3></font>
+    <h3 class="box-title"><?= Html::encode($this->title) ?>
+     <small>ตอน <?php echo $model->ep; ?></small></h3>
       <?= VideoJsWidget::widget([
              'options' => [
                  'class' => 'video-js vjs-default-skin vjs-big-play-centered',

@@ -1,6 +1,6 @@
 <?php
 use yii\helpers\Html;
-
+use backend\modules\member\models\Editor;
 /* @var $this \yii\web\View */
 /* @var $content string */
 ?>
@@ -34,7 +34,7 @@ use yii\helpers\Html;
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
                         <!-- <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="user-image" alt="User Image"/> -->
-                        <?= Html::img('uploads/avatar/'.$img,['width' => 30,'height' => 30,'class'=>'img-circle']) ?>
+                        <?= Html::img('uploads/avatar/'.$img,['width' => 20,'height' => 20,'class'=>'img-circle']) ?>
                         <span class="hidden-xs">&nbsp;<?php echo Yii::$app->user->identity->username; ?></span>
 
                         <!-- <span class="hidden-xs">Admin</span> -->
@@ -53,10 +53,11 @@ use yii\helpers\Html;
 
                             <p>
 
-                                Alexander Pierce - Web Developer
+
 
                                 <?php echo Yii::$app->user->identity->username; ?>
-                                <small>Member since Nov. 2012</small>
+                                  <?php $date = Editor::find()->where(['user_id'=>Yii::$app->user->identity->id])->one(); ?>
+                                <small>Member since.<br> <?php echo $date->date_register; ?></small>
                             </p>
                         </li>
                         <!-- Menu Body -->
