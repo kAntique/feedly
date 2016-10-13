@@ -342,4 +342,9 @@ class PlaylistController extends Controller
 
       return $this->render('movie');
   }
+  public function actionAllclip()
+  {
+
+      return $this->render('allclip');
+  }
 }

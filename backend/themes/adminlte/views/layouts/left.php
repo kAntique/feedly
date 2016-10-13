@@ -29,6 +29,7 @@
 
 
                         ['label' => 'คลิป', 'options' => ['class' => 'header','id' => 'public']],
+                        ['label' => 'คลิปทั้งหมด', 'icon' => 'glyphicon glyphicon-play-circle', 'url' => ['/clip/playlist/allclip']],
                         ['label' => 'คลิปใหม่', 'icon' => 'glyphicon glyphicon-play-circle', 'url' => ['/clip/playlist/newclip']],
                         ['label' => 'หนัง', 'icon' => 'glyphicon glyphicon-play-circle', 'url' => ['/clip/playlist/movie']],
                         ['label' => 'การ์ตูน', 'icon' => 'glyphicon glyphicon-play-circle', 'url' => ['/clip/playlist/cartoon']],
