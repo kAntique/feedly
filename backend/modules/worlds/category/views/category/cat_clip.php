@@ -47,6 +47,13 @@ $this->title = 'หมวดหมู่';
          display: block;         /* display submenu on click */
 
        }
+       td {
+           border: 0px solid #a1a1a1;
+           padding: 20px 40px;
+           background: #dddddd;
+           width: 300px;
+           border-radius: 25px;
+       }
 
 </style>
 <?php $i = 0;?>
@@ -83,8 +90,3 @@ $this->title = 'หมวดหมู่';
   </ol>
 </li>
 </table>
-
-<div >
-  <h4>code iframe</h4>
-  <textarea  style="width:100% "><iframe src="<?php echo Yii::$app->params['url_cat_clip'];?>" scrolling="auto" width="100%" height="100%" frameborder="0" ></iframe></textarea>
-</div>

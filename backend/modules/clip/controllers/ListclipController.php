@@ -8,7 +8,8 @@ use backend\modules\clip\models\ListclipSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use backend\modules\worlds\category\models\Category;
+use backend\modules\article\models\Listarticle;
 /**
  * ListclipController implements the CRUD actions for Listclip model.
  */
@@ -131,14 +132,28 @@ class ListclipController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-    public function actionList_clip($playlist_id)
+    public function actionList_clip($playlist_id,$category_id)
     {
-        $model = Listclip::find()->where(['playlist_id'=>$playlist_id])->all();
 
-            return $this->renderPartial('list_clip', [
-                'model' => $model,
-                'playlist_id' => $playlist_id,
-            ]);
+       $world = Category::find()->where(['id'=>$category_id])->all();
+       foreach ($world as  $value) {
+
+       if ($value->world_id == 1) {
+           $model = Listclip::find()->where(['playlist_id'=>$playlist_id])->all();
+         return $this->renderPartial('list_clip', [
+             'model' => $model,
+             'playlist_id' => $playlist_id,
+             'category_id' =>$category_id
+         ]);
+       }
+         $model = Listarticle::find()->where(['playlist_id'=>$playlist_id])->all();
+         return $this->renderPartial('list_article', [
+             'model' => $model,
+             'playlist_id' => $playlist_id,
+              'category_id' =>$category_id
+         ]);
+       }
+
 
     }
 }

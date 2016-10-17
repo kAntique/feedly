@@ -64,14 +64,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="box-body" >
       <?php Pjax::begin(['id'=>'showlist']);?>
         <?= GridView::widget([
-             'dataProvider' => $dataProvider,
+             'dataProvider' => $dataProvider4,
              'columns' => [
 
                          [
                          'header'=>'รายการคลิป',
-                         'value'=> function ( $list)
+                         'value'=> function ( $listArticle)
                                    {
-                                        return  $list->clip['title'];
+                                        return  $listArticle->article['headline'];
 
 
                                    },
@@ -79,9 +79,9 @@ $this->params['breadcrumbs'][] = $this->title;
                          ],
                          [
                          'header'=>'วันที่เพิ่ม',
-                         'value'=> function ( $list)
+                         'value'=> function ( $listArticle)
                                    {
-                                        return  $list->datetime;
+                                        return  $listArticle->datetime;
 
 
                                    },
@@ -90,13 +90,13 @@ $this->params['breadcrumbs'][] = $this->title;
                          [
 
                            'header'=>'ลบคลิป',
-                         'value'=> function ($list)
+                         'value'=> function ($listArticle)
 
                                    {
-                                     $this->registerJs(" $('#$list->clip_id').on('click', function(){
-                                       var playlist_id = $list->playlist_id;
-                                       var clip_id = $list->clip_id;
-                                       var url ='index.php?r=clip/listclip/delete&playlist_id='+playlist_id+'&clip_id='+clip_id;
+                                     $this->registerJs(" $('#$listArticle->article_id').on('click', function(){
+                                       var playlist_id = $listArticle->playlist_id;
+                                       var article_id = $listArticle->article_id;
+                                       var url ='index.php?r=article/listarticle/delete&playlist_id='+playlist_id+'&article_id='+article_id;
                                        $.ajax({
                                                  url : url,
                                                 type: 'post',
@@ -112,7 +112,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                      }); ");
                                         return
                                          Html::button( '',
-                                        ['class' => 'btn btn-danger glyphicon glyphicon-trash','id'=> $list->clip_id]);
+                                        ['class' => 'btn btn-danger glyphicon glyphicon-trash','id'=> $listArticle->article_id]);
                                    },
                          'format' => 'raw',
                          ],
@@ -126,7 +126,7 @@ $this->params['breadcrumbs'][] = $this->title;
   </div>
   <div class="box box-success box-solid">
     <div class="box-header with-border">
-      <h3 class="box-title">เพิ่มคลิป</h3>
+      <h3 class="box-title">เพิ่มบทความ</h3>
 
       <div class="box-tools pull-right">
         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -137,29 +137,29 @@ $this->params['breadcrumbs'][] = $this->title;
     <!-- /.box-header -->
     <div class="box-body">
       <?= GridView::widget([
-            'dataProvider' => $dataProvider2,
+            'dataProvider' => $dataProvider3,
             //'filterModel' => $searchModel,
 
             'columns' => [
-                'title',
+                'headline',
 
                         [
 
-                        'header'=>'เพิ่มคลิป',
-                        'value'=> function ($clip_id) use ($playlist_id)
+                        'header'=>'เพิ่มบทความ',
+                        'value'=> function ($article_id) use ($playlist_id)
 
                                   {
-                                    $this->registerJs(" $('#$clip_id->id').on('click', function(){
+                                    $this->registerJs(" $('#$article_id->id').on('click', function(){
                                       var playlist_id = $playlist_id;
-                                      var clip_id = $clip_id->id;
-                                      var url ='index.php?r=clip/playlist/createlist&playlist_id='+playlist_id+'&clip_id='+clip_id;
+                                      var article_id = $article_id->id;
+                                      var url ='index.php?r=clip/playlist/createlist_article&playlist_id='+playlist_id+'&article_id='+article_id;
                                       $.ajax({
                                                 url : url,
                                                type: 'post',
 
                                                success:function() {
                                                    console.log();
-                                                     $('#$clip_id->id').prop('disabled', true);
+                                                     $('#$article_id->id').prop('disabled', true);
 
                                                      $.pjax.reload('#showlist');
                                                    },
@@ -170,7 +170,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     }); ");
                                        return
                                         Html::button( '',
-                                       ['class' => 'btnAddclip glyphicon glyphicon-plus','id'=> $clip_id->id]);
+                                       ['class' => 'btnAddclip glyphicon glyphicon-plus','id'=> $article_id->id]);
 
                                   },
                         'format' => 'raw',

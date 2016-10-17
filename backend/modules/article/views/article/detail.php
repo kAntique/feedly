@@ -2,12 +2,10 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use wbraganca\videojs\VideoJsWidget;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\modules\clip\models\ClipSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = $model->title;
 ?>
 
 <html>
@@ -58,18 +56,14 @@ $this->title = $model->title;
       <ol>
 
         <li>
-        <textarea  id="text " name="iframe_allcat_clip"  style="width:100%"><iframe src="<?php echo Yii::$app->params['url_play_clip'].$model->id ;?>"></iframe></textarea>
+        <textarea  id="text " name="iframe_allcat_clip"  style="width:100%"><iframe src="<?php echo Yii::$app->params['url_detail_article'].$model->id ;?>"></iframe></textarea>
         </li>
       </ol>
     </li>
   <center>
-    <h3 class="box-title"><?= Html::encode($this->title) ?>
-     <small>ตอน <?php echo $model->ep; ?></small></h3>
-     <iframe src=<?php echo $model->link; ?> scrolling="auto" frameborder="0"
-      width="720" height="480" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true">
-    </iframe>
-
-
+    <h3 class="box-title"><?= Html::encode($model->headline) ?></h3>
+    <?php echo $model->content;?><br>
+      <?php echo  $model->date_time; ?>
       </center>
   </div>
 

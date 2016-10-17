@@ -46,7 +46,13 @@ $this->title = 'เพลลิสต์ทั้งหมด';
          display: block;         /* display submenu on click */
 
        }
-
+       td {
+           border: 0px solid #a1a1a1;
+           padding: 20px 40px;
+           background: #dddddd;
+           width: 300px;
+           border-radius: 25px;
+       }
 </style>
 <center>  <h3>เพลลิสต์ทั้งหมด</h3>
 <div style="color:red;" >
@@ -63,7 +69,7 @@ $this->title = 'เพลลิสต์ทั้งหมด';
 <?php  $i++;
   echo '<td>'.
   Html::img('uploads/coverimage/' . $list->coverImg['filename'],['width' => '100%']).'<br><center>'.
-  Html::a(" $list->name",['/clip/listclip/list_clip', 'playlist_id' => $list->id], ['class' => ' btn btn-primary'])
+  Html::a(" $list->name",['/clip/listclip/list_clip', 'playlist_id' => $list->id,'category_id' => $list->category_id], ['class' => ' btn btn-primary'])
   .'</center></td>';
 
 
@@ -88,8 +94,3 @@ $this->title = 'เพลลิสต์ทั้งหมด';
   </ol>
 </li>
 </table>
-<!-- <div class="box">
-  <h4>code iframe</h4>
-
-  <textarea  id="text " name="iframe_allcat_clip"  style="width:100%"><iframe src="<?php echo Yii::$app->params['url_all_playlist'].$category_id ;?>"></iframe></textarea>
-</div> -->

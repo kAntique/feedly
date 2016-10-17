@@ -40,18 +40,9 @@ $this->params['breadcrumbs'][] = $this->title;
           },
       ],
 
-
-            //'id',
             'headline',
-            //'content:ntext',
             'date_time',
-          //  'IPaddress',
-            // 'tags',
-            // 'rate_id',
-             //'cover_img',
-            // 'world_id',
-            // 'category_id',
-            // 'status_id',
+
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

@@ -247,35 +247,42 @@ class ClipController extends Controller
     public function actionUpload()
     {
       $model = Clip::find()->where(['status_link'=>0])->all();
+
       foreach ($model as $value){
       $link = $value->link;
-      $url = \Yii::$app->params['url_openload_status'].$link ;
-      $ch = file_get_contents( $url );
-      $decode=json_decode($ch);
+      if(substr($link, 0, 8) == "https://") {
+        $value->status_link = 1;
+        if ($value->save()) {
+         # code...
+       }else {
+         var_dump($value->getErrors());
+       }
+      }else {
+        $url = \Yii::$app->params['url_openload_status'].$link ;
+        $ch = file_get_contents( $url );
+        $decode=json_decode($ch);
+        // var_dump($decode);
+                    foreach( $decode->result as $list){
+                     if ($list->status == "finished") {
+                       $post = \Yii::$app->params['url_openload_fileInfo'].$list->extid.\Yii::$app->params['login_openload'];
+                        $file_info = file_get_contents( $post );
+                        $decode_data=json_decode($file_info);
+                      foreach ($decode_data->result as $file_name) {
 
-                 foreach( $decode->result as $list){
-
-                   if ($list->status == "finished") {
-                     $post = \Yii::$app->params['url_openload_tiket'].$list->extid.\Yii::$app->params['login_openload'];
-                     $downloadTicket = file_get_contents( $post );
-                     $decode_ticket=json_decode($downloadTicket);
-                     $ticket = $decode_ticket->result->ticket;
-
-                      $post_downloadLink = \Yii::$app->params['url_openload_link'].$list->extid."&ticket=".$ticket.'&captcha_response={captcha_response}';
-                      $downloadLink = file_get_contents( $post_downloadLink );
-                      $decode_link=json_decode($downloadLink);
-                      //  var_dump ($decode_link->result->url);
-                       $value->link = $decode_link->result->url;
-                      $value->status_link = 1;
-                      if ($value->save()) {
-                        # code...
-                      }else {
-                        var_dump($value->getErrors());
                       }
 
+                          $value->link = 'https://openload.co/embed/'.$list->extid.'/'.$file_name->name;
+                          $value->status_link = 1;
+                          if ($value->save()) {
+                           # code...
+                         }else {
+                           var_dump($value->getErrors());
+                         }
 
-                   }
-                  }
+                     }
+                     }
+      }
+
       }
 
           return $this->render('upload', [

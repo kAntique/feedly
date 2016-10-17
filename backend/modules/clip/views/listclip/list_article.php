@@ -2,13 +2,14 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-
+use yii\helpers\Url;
+use wbraganca\videojs\VideoJsWidget;
+use backend\modules\worlds\coverimg\models\CoverImg;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\modules\clip\models\ClipSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-
-$this->title = 'หมวดหมู่';
+$this->title = 'บทความ';
 ?>
 <style >
 
@@ -47,6 +48,7 @@ $this->title = 'หมวดหมู่';
          display: block;         /* display submenu on click */
 
        }
+
        td {
            border: 0px solid #a1a1a1;
            padding: 20px 40px;
@@ -55,25 +57,37 @@ $this->title = 'หมวดหมู่';
            border-radius: 25px;
        }
 
+
 </style>
-<?php $i = 0;?>
-<center>  <h3>หมวดหมู่บทความ</h3></center>
-<table style="width:100%">
+<center>  <h3>บทความ</h3>
+  <div style="color:red;" >
+  <?php  if ($model == null) {
+    echo "*** ไม่มีรายการคลิป ***";
+  }?>
+  </div>
+</center>
+<?php $i = 0; ?>
+<table >
 
 <?php foreach( $model as $list) :?>
 
   <?php  $i++;
-    echo '<td>'.
-    Html::img('uploads/coverimage/' . $list->coverImg['filename'],['width' => '100%']).'<br><center>'.
-    Html::a(" $list->title", ['/clip/playlist/all_playlist', 'category_id' => $list->id], ['class' => ' btn btn-primary'])
-    .'</center></td>';
+    echo '<td>';
+       $img = $list->article['cover_img_id'];
+          $poster = CoverImg::find()->where(['id'=>$img])->one();?>
+
+          <center>
+
+            <?php echo Html::img('uploads/coverimage/' . $poster->filename,  ['width' => '100%']); ?><br>
+       <?= Html::a($list->article['headline'], ['/article/article/detail','article_id'=>$list->article['id']], ['class' => 'btn btn-primary']);?>
+     </center>
+  <?php  echo '</td>';
 
 
     if($i == 4) {
         echo '</tr><tr>';
         $i = 0;
     } ?>
-
 
 <?php  endforeach ;?>
 <li>
@@ -83,7 +97,7 @@ $this->title = 'หมวดหมู่';
   <ol>
 
     <li>
-      <textarea  id="text " name="iframe_allcat_clip"  style="width:100%"><iframe src="<?php echo Yii::$app->params['url_cat_article'];?>"></iframe></textarea>
+      <textarea  id="text " name="iframe_allcat_clip"  style="width:100%"><iframe src="<?php echo Yii::$app->params['url_list_clip'].$playlist_id.'&category_id='.$category_id ;?>"></iframe></textarea>
 
 
     </li>

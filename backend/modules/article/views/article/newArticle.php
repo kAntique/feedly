@@ -1,15 +1,13 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
 use yii\helpers\Url;
-use wbraganca\videojs\VideoJsWidget;
 use backend\modules\worlds\coverimg\models\CoverImg;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\modules\clip\models\ClipSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'คลิปใหม่';
+$this->title = 'บทความใหม่';
 ?>
 <style>
 td {
@@ -20,7 +18,7 @@ td {
     border-radius: 25px;
 }
 </style>
-<center>  <h3>คลิปใหม่</h3></center>
+<center>  <h3>บทความใหม่</h3></center>
 <?php $i = 0; ?>
 <table >
 
@@ -31,12 +29,10 @@ td {
        $img = $list->cover_img_id;
           $poster = CoverImg::find()->where(['id'=>$img])->one();?>
 
-            <center >
-                <iframe src=<?php echo $list->link; ?> scrolling="no" frameborder="5"
-                 width="100%" height="100%"  allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true">
-               </iframe>
-                <?= Html::a($list->title, ['/clip/clip/play_clip','clip_id'=>$list->id]);?>
-            </center>
+          <center>
+            <?php echo Html::img('uploads/coverimage/' . $poster->filename,  ['width' => '100%']); ?><br>
+       <?= Html::a($list->headline, ['/article/article/detail','article_id'=>$list->id]);?>
+     </center>
 
   <?php  echo '</td>';
 

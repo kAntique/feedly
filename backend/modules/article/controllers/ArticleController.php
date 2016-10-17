@@ -269,5 +269,35 @@ class ArticleController extends Controller
         ]);
     }
 
+    public function actionAll_article()
+    {
+
+        return $this->render('all_article');
+    }
+    public function actionDetail($article_id)
+    {
+    $model = Article::find()->where(['id'=>$article_id])->one();
+        return $this->renderPartial('detail', [
+            'model' => $model,
+
+        ]);
+    }
+
+    public function actionNew_article()
+    {
+      $model = Article::find()
+      ->orderBy([
+             'id' => SORT_DESC,
+          ])
+      ->limit(16)
+      ->all();
+
+      return $this->render('newArticle', [
+          'model' => $model,
+
+
+      ]);
+    }
+
 
 }
